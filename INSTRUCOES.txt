@@ -1,0 +1,14 @@
+WERO1 OPERARIO - CORRECAO DE DEPLOY
+
+1. Extraia este ZIP.
+2. Envie Dockerfile e render.yaml para a RAIZ do repositorio Neymaresol/Wero1all.
+3. Nao coloque os dois arquivos dentro de uma subpasta.
+4. Mantenha main.py, requirements.txt, index.html e style.css na raiz.
+5. Depois do upload, confirme o commit no GitHub.
+6. Volte ao ChatGPT e peça: "Verifique novamente".
+
+IMPORTANTE:
+- WEBHOOK_SECRET e outras credenciais devem ser configuradas como variaveis de ambiente; nao grave chaves no repositorio.
+- O dashboard sera copiado para /app/static pelo Dockerfile.
+- /health sera usado para verificar a saude do servico.
+- O SQLite sera persistido em /app/data quando o disco persistente estiver habilitado.
