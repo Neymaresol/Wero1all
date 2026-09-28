@@ -2,12 +2,12 @@ services:
   - type: web
     name: wero1-operario
     runtime: docker
-    plan: starter
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /health
     envVars:
       - key: WERO_MODE
         value: production
-      - key: WEBHOOK_SECRET
-        generateValue: true
       - key: DB_PATH
         value: /app/data/wero1.db
+      - key: WEBHOOK_SECRET
+        generateValue: true
