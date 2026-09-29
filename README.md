@@ -1,13 +1,16 @@
-# Wero1Status
-Monitor web do Wero1 Operário e sua hierarquia PAI/FILHOS.
+# Wero1 Operário v1.0.2 — Hotmart Webhook 2.0
+Última versão: 29/09/2026 06:21 (Brasil, UTC-3).
 
-## Regra financeira principal
-Nenhum valor é considerado transferência real sem confirmação do provedor financeiro. Projeções, simulações e valores pendentes devem permanecer separados.
+Correções:
+- Hotmart 2.0: id/event/data.
+- PURCHASE_APPROVED é o único evento contado como venda confirmada.
+- Idempotência evita duplicação em retentativas.
+- HOTMART_HOTTOK fica somente no ambiente do Render.
+- Disco persistente configurado em /app/data.
 
-## Executar localmente
-No diretório Wero1Status execute: `python3 -m http.server 8080` e abra `http://localhost:8080`.
-
-## Integração de produção
-O frontend está preparado para receber uma lista de robôs do backend. Em produção, conectar via WebSocket ou SSE a um serviço que consuma webhooks/APIs oficiais (ex.: provedor de pagamentos e plataformas de venda), valide assinatura/idempotência e persista eventos antes de publicar no dashboard.
-
-Campos por robô: id, name, parent, status, sales, gross, commission, balance, transferred, transferConfirmed, lastEvent.
+Após upload no GitHub:
+1. Fazer/aguardar redeploy no Render.
+2. Configurar HOTMART_HOTTOK no Render, sem publicar o segredo.
+3. Confirmar /health com version 1.0.2.
+4. Reprocessar um evento Hotmart e buscar HTTP 2xx.
+5. Eventos de teste não são vendas reais.
