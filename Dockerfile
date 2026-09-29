@@ -3,6 +3,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
-COPY static ./static
-RUN mkdir -p /app/data
+RUN mkdir -p /app/static /app/data
+COPY index.html /app/static/index.html
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]

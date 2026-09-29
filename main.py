@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 
 DB = os.getenv("DB_PATH", "/app/data/wero1.db")
 HOTMART_HOTTOK = os.getenv("HOTMART_HOTTOK", "")
-app = FastAPI(title="Wero1 Operario", version="1.1.0")
+app = FastAPI(title="Wero1 Operario", version="1.1.1")
 
 CONFIRMED_SALE_EVENTS = {"PURCHASE_APPROVED", "PURCHASE_COMPLETE"}
 REVERSAL_EVENTS = {"PURCHASE_REFUNDED", "PURCHASE_CHARGEBACK", "PURCHASE_CANCELED", "PURCHASE_EXPIRED"}
@@ -34,7 +34,7 @@ def startup():
 
 @app.get("/health")
 def health():
-    return {"status":"ok", "service":"wero1-operario", "version":"1.1.0",
+    return {"status":"ok", "service":"wero1-operario", "version":"1.1.1",
             "hotmart_hottok_configured": bool(HOTMART_HOTTOK),
             "time": datetime.now(timezone.utc).isoformat()}
 
@@ -51,7 +51,7 @@ def status():
     offers = c.execute("SELECT COUNT(*) total, SUM(CASE WHEN active=1 THEN 1 ELSE 0 END) active FROM offers").fetchone()
     c.close()
     robots = [dict(r) for r in rows]
-    return {"mode": os.getenv("WERO_MODE", "production"), "version":"1.1.0", "robots": robots,
+    return {"mode": os.getenv("WERO_MODE", "production"), "version":"1.1.1", "robots": robots,
             "offers":{"total": offers["total"] or 0, "active": offers["active"] or 0},
             "totals":{"robots":len(robots), "sales":sum(r["sales"] or 0 for r in robots),
             "gross":sum(r["gross"] or 0 for r in robots), "commission":sum(r["commission"] or 0 for r in robots),

@@ -1,31 +1,24 @@
-# Wero1 Operário v1.1.0
-Atualização preparada em 29/09/2026.
+# Wero1 Operário v1.1.1 — Correção de Deploy
 
-## Objetivo
-Manter o Wero1 em produção e acrescentar base para vendas digitais Hotmart sem OpenAI API nesta fase.
+Data: 29/09/2026
 
-## Recursos
-- Webhook Hotmart protegido por HOTMART_HOTTOK
-- Idempotência por event_id
-- Eventos de funil, venda e reversão
-- Catálogo local de ofertas/HotLinks
-- /health, /api/status, /api/funnel e /api/offers
-- Dashboard simples com atualização automática
+Correção principal:
+- O Render falhava com `"/static": not found`.
+- O Dockerfile agora cria `/app/static` durante o build e copia o `index.html`
+  da raiz do repositório para `/app/static/index.html`.
+- Assim o deploy não depende da existência prévia da pasta `static` no GitHub.
 
-## Configuração obrigatória no Render
-HOTMART_HOTTOK = token Hottok configurado na Hotmart
-DB_PATH = /app/data/wero1.db
-WERO_MODE = production
+Mantido:
+- Catálogo de ofertas/HotLinks.
+- Funil Hotmart.
+- Eventos de venda aprovada/completa.
+- Reembolso, chargeback, cancelamento e expiração.
+- Deduplicação de eventos.
+- Validação HOTMART_HOTTOK.
+- OpenAI API continua fora desta versão.
 
-Nunca coloque tokens/chaves diretamente no GitHub.
+Após subir os arquivos na raiz do GitHub, execute no Render:
+Manual Deploy > Deploy latest commit
 
-## Antes do GO
-1. Fazer backup da versão atual.
-2. Subir estes arquivos no repositório.
-3. Confirmar HOTMART_HOTTOK no Render.
-4. Aguardar deploy e abrir /health.
-5. Confirmar version=1.1.0 e status=ok.
-6. Testar webhook Hotmart.
-7. Só contabilizar venda real após evento válido da Hotmart.
-
-Observação: esta versão não cria tráfego nem garante vendas. Ela fornece infraestrutura de ofertas, rastreamento e confirmação para o funil comercial.
+Resultado esperado em /health:
+`"status":"ok"` e `"version":"1.1.1"`.
