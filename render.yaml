@@ -13,6 +13,8 @@ services:
         sync: false
       - key: WERO_ADMIN_TOKEN
         sync: false
+      - key: HOTMART_ACCESS_TOKEN
+        sync: false
     disk:
       name: wero1-data
       mountPath: /app/data

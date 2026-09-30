@@ -1,24 +1,11 @@
-# Wero1 Operário v1.1.2
-Atualização de segurança e integridade financeira.
+# Wero1 Operário v1.2.0 — Auto Catalog
+Versão: 2026-09-29 BRT
 
-## Mudanças
-- Deduplicação por `event_id` e consolidação financeira por `transaction_id` Hotmart.
-- `PURCHASE_APPROVED` + `PURCHASE_COMPLETE` da mesma transação contam uma única venda.
-- Refund/chargeback/cancel/expired marcam a transação como revertida.
-- `PURCHASE_PROTEST` e payloads identificados como teste não entram nas vendas financeiras.
-- Métricas `/api/status` passam a usar o ledger `transactions`, isolando os eventos antigos de teste da v1.1.1.
-- `POST /api/offers` protegido por `Authorization: Bearer <WERO_ADMIN_TOKEN>`.
-- Mantém Hottok no header `X-HOTMART-HOTTOK`.
+- Busca automática via API oficial Hotmart.
+- POST /api/catalog/scan (WERO_ADMIN_TOKEN).
+- GET /api/catalog.
+- HOTMART_ACCESS_TOKEN apenas no Render.
+- Preserva ledger e deduplicação da v1.1.2.
+- Não cria produtos, compradores ou vendas.
 
-## Render
-Mantenha `HOTMART_HOTTOK` e configure uma nova variável secreta `WERO_ADMIN_TOKEN` com um valor forte gerado no próprio Render/gerenciador de segredos. Não coloque segredos no GitHub.
-
-## Após deploy
-1. Abra `/health` e confirme version 1.1.2, Hottok true e admin token true.
-2. Reenvie somente um evento Hotmart conhecido e confira HTTP 200.
-3. Confira `/api/funnel`.
-4. Confira `/api/status`: eventos de teste antigos não devem aparecer como vendas.
-5. Cadastre ofertas SOMENTE com HotLinks reais/autorizados usando o token administrativo.
-
-## Importante
-Esta versão não fabrica compradores e não inventa produtos/HotLinks. Tráfego deve vir de canais legítimos e ofertas autorizadas. Comissão, saldo e transferência permanecem zero até integração/reconciliação financeira específica com a fonte oficial.
+Limite: a documentação oficial atual descreve GET /products/api/v1/products como catálogo do creator, não como Mercado de Afiliação. Por isso esta versão não inventa nem converte links de creator em HotLinks de afiliado. A ativação comercial automática só deve ocorrer quando uma interface oficial/autorizada retornar a afiliação e o HotLink da conta.

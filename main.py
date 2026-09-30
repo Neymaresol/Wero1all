@@ -1,13 +1,14 @@
-import os, sqlite3, hmac, json, secrets
+import os, sqlite3, hmac, json, secrets, urllib.request, urllib.error
 from datetime import datetime, timezone
 from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.1.2"
+VERSION="1.2.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
+HOTMART_ACCESS_TOKEN=os.getenv("HOTMART_ACCESS_TOKEN","")
 app=FastAPI(title="Wero1 Operario",version=VERSION)
 
 SALE_EVENTS={"PURCHASE_APPROVED","PURCHASE_COMPLETE"}
@@ -24,6 +25,7 @@ def db():
     # v1.1.2 canonical transaction ledger. Old test/event rows remain for audit but no longer drive financial status.
     c.execute("""CREATE TABLE IF NOT EXISTS transactions(transaction_id TEXT PRIMARY KEY,provider TEXT,robot_id TEXT,product_id TEXT,event_state TEXT,amount REAL DEFAULT 0,currency TEXT DEFAULT 'BRL',is_test INTEGER DEFAULT 0,confirmed INTEGER DEFAULT 0,reversed INTEGER DEFAULT 0,first_seen TEXT,last_seen TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS event_v112(event_id TEXT PRIMARY KEY,transaction_id TEXT,event_type TEXT,is_test INTEGER DEFAULT 0,received_at TEXT)""")
+    c.execute("""CREATE TABLE IF NOT EXISTS catalog_products(product_id TEXT PRIMARY KEY,ucode TEXT,name TEXT,status TEXT,format TEXT,source TEXT,eligible INTEGER DEFAULT 0,last_scan TEXT)""")
     c.commit(); return c
 
 def admin(auth):
@@ -54,7 +56,7 @@ def startup(): db().close()
 
 @app.get("/health")
 def health():
-    return {"status":"ok","service":"wero1-operario","version":VERSION,"hotmart_hottok_configured":bool(HOTMART_HOTTOK),"admin_token_configured":bool(ADMIN_TOKEN),"time":now()}
+    return {"status":"ok","service":"wero1-operario","version":VERSION,"hotmart_hottok_configured":bool(HOTMART_HOTTOK),"admin_token_configured":bool(ADMIN_TOKEN),"hotmart_api_configured":bool(HOTMART_ACCESS_TOKEN),"time":now()}
 
 @app.get("/api/status")
 def status():
@@ -73,6 +75,35 @@ def funnel():
 @app.get("/api/offers")
 def offers():
     c=db(); rows=c.execute("SELECT id,provider,product_id,product_name,hotlink,niche,price,commission,currency,active,updated_at FROM offers ORDER BY active DESC,id DESC").fetchall(); c.close(); return {"offers":[dict(r) for r in rows]}
+
+def hotmart_get(url):
+    if not HOTMART_ACCESS_TOKEN: raise HTTPException(503,"HOTMART_ACCESS_TOKEN not configured")
+    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.2.0"})
+    try:
+        with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e: raise HTTPException(502,f"Hotmart API HTTP {e.code}")
+    except Exception as e: raise HTTPException(502,f"Hotmart API error: {type(e).__name__}")
+
+@app.get("/api/catalog")
+def catalog():
+    c=db(); rows=c.execute("SELECT * FROM catalog_products ORDER BY name").fetchall(); c.close()
+    return {"products":[dict(r) for r in rows]}
+
+@app.post("/api/catalog/scan")
+def scan_catalog(authorization:str|None=Header(default=None)):
+    admin(authorization)
+    data=hotmart_get("https://developers.hotmart.com/products/api/v1/products?max_results=50&status=ACTIVE")
+    items=data.get("items") or []; c=db(); t=now(); seen=0
+    for x in items:
+        pid=str(x.get("id","")); name=str(x.get("name","")).strip()
+        if not pid or not name: continue
+        seen+=1
+        c.execute("""INSERT INTO catalog_products(product_id,ucode,name,status,format,source,eligible,last_scan)
+        VALUES(?,?,?,?,?,?,0,?) ON CONFLICT(product_id) DO UPDATE SET ucode=excluded.ucode,name=excluded.name,status=excluded.status,format=excluded.format,last_scan=excluded.last_scan""",
+        (pid,str(x.get("ucode","")),name,str(x.get("status","")),str(x.get("format","")),"hotmart_creator_api",t))
+    c.commit(); c.close()
+    return {"accepted":True,"products_seen":seen,"offers_activated":0,
+    "message":"Catalogo oficial consultado. Nenhum HotLink de afiliado foi inventado ou ativado; a API documentada lista produtos do creator."}
 
 @app.post("/api/offers")
 async def add_offer(request:Request,authorization:str|None=Header(default=None)):
