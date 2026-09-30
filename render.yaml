@@ -11,6 +11,8 @@ services:
         value: /app/data/wero1.db
       - key: HOTMART_HOTTOK
         sync: false
+      - key: WERO_ADMIN_TOKEN
+        sync: false
     disk:
       name: wero1-data
       mountPath: /app/data
