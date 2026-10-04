@@ -1,1 +1,39 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wero1 Operário v1.2.0</title><style>body{font-family:system-ui;max-width:1000px;margin:40px auto;padding:0 16px}pre{background:#111;color:#eee;padding:16px;border-radius:10px;overflow:auto}.ok{font-weight:700}</style></head><body><h1>Wero1 Operário v1.2.0</h1><p class="ok">Dashboard operacional</p><h2>Status</h2><pre id="s">Carregando...</pre><h2>Funil</h2><pre id="f">Carregando...</pre><script>async function load(){for(const [id,u] of [['s','/api/status'],['f','/api/funnel']]){try{document.getElementById(id).textContent=JSON.stringify(await (await fetch(u)).json(),null,2)}catch(e){document.getElementById(id).textContent=String(e)}}}load();setInterval(load,15000)</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wero1 Operário</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#08111f;color:#eef6ff}
+main{max-width:920px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}
+h1{font-size:clamp(22px,5vw,34px);margin:0}.status{font-size:14px;color:#8fa9c4}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:#101d2e;border:1px solid #20334b;border-radius:16px;padding:20px}
+.label{color:#9db1c7;font-size:13px}.value{font-size:clamp(25px,5vw,38px);font-weight:750;margin-top:8px}.note{color:#8299b2;font-size:12px;margin-top:8px}
+footer{margin-top:22px;color:#7890aa;font-size:12px}
+@media(max-width:680px){main{padding:16px}.top{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.card{padding:18px}}
+</style></head>
+<body><main>
+<div class="top"><div><h1>Wero1 Operário</h1><div class="status">Painel de vendas confirmadas</div></div><div id="health" class="status">Carregando…</div></div>
+<section class="grid">
+<div class="card"><div class="label">VENDAS CONFIRMADAS</div><div class="value" id="sales">0</div><div class="note">Exclui testes e estornos</div></div>
+<div class="card"><div class="label">VALOR BRUTO CONFIRMADO</div><div class="value" id="gross">R$ 0,00</div><div class="note">Dados registrados pelo Wero1</div></div>
+<div class="card"><div class="label">PREVISÃO MENSAL</div><div class="value" id="forecast">R$ 0,00</div><div class="note">Estimativa baseada no ritmo real do mês; não é receita confirmada</div></div>
+</section>
+<footer id="updated">Aguardando dados reais.</footer>
+</main>
+<script>
+const brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+async function load(){
+ try{
+  const r=await fetch('/api/status',{cache:'no-store'}); if(!r.ok)throw 0; const d=await r.json();
+  const t=d.totals||{}; const sales=Number(t.sales||0); const gross=Number(t.gross??t.bruss??0);
+  document.querySelector('#sales').textContent=sales.toLocaleString('pt-BR');
+  document.querySelector('#gross').textContent=brl.format(gross);
+  const now=new Date(), day=now.getDate(), days=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  const forecast=day>0?gross/day*days:0; document.querySelector('#forecast').textContent=brl.format(forecast);
+  document.querySelector('#health').textContent='Sistema online';
+  document.querySelector('#updated').textContent='Atualizado: '+now.toLocaleString('pt-BR')+' • previsão é estimativa.';
+ }catch(e){document.querySelector('#health').textContent='Sem dados';document.querySelector('#updated').textContent='Aguardando dados confirmados do Wero1.'}
+}
+load();setInterval(load,60000);
+</script></body></html>
