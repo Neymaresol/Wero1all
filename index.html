@@ -1,1 +1,20 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wero1 Operário v1.2.0</title><style>body{font-family:system-ui;max-width:1000px;margin:40px auto;padding:0 16px}pre{background:#111;color:#eee;padding:16px;border-radius:10px;overflow:auto}.ok{font-weight:700}</style></head><body><h1>Wero1 Operário v1.2.0</h1><p class="ok">Dashboard operacional</p><h2>Status</h2><pre id="s">Carregando...</pre><h2>Funil</h2><pre id="f">Carregando...</pre><script>async function load(){for(const [id,u] of [['s','/api/status'],['f','/api/funnel']]){try{document.getElementById(id).textContent=JSON.stringify(await (await fetch(u)).json(),null,2)}catch(e){document.getElementById(id).textContent=String(e)}}}load();setInterval(load,15000)</script></body></html>
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PARADIGMA • Wero1 Operário v1.3.0</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header><div><b>PARADIGMA</b><small>Dashboard • Robôs Pai/Filhos</small></div><div class="right"><span id="prod">● Produção</span><span id="clock">—</span></div></header>
+<main>
+<section class="hero"><div><h1>Visão Geral</h1><p id="system">Conectando aos dados reais…</p></div><button onclick="refresh()">↻ Atualizar</button></section>
+<section class="cards">
+<article><span>🤖 Robôs ativos</span><strong id="robots">0</strong><small>Pai + Filhos com venda confirmada</small></article>
+<article><span>🛒 Vendas confirmadas</span><strong id="sales">0</strong><small>Somente transações reais</small></article>
+<article><span>💳 Valor processado</span><strong id="gross">R$ 0,00</strong><small>Vendas válidas não revertidas</small></article>
+<article><span>💰 Comissão</span><strong id="commission">R$ 0,00</strong><small>Confirmada pelo provedor</small></article>
+<article><span>🏦 Saldo</span><strong id="balance">R$ 0,00</strong><small>Confirmado pelo provedor</small></article>
+<article><span>💸 Transferido</span><strong id="transferred">R$ 0,00</strong><small>Transferências confirmadas</small></article>
+</section>
+<section class="panel"><div class="panelhead"><div><h2>Robôs Pai / Filhos</h2><p>Atualização automática a cada 5 segundos</p></div><input id="search" placeholder="Buscar robô…"></div>
+<div class="tablewrap"><table><thead><tr><th>ROBÔ</th><th>VENDAS</th><th>PROCESSADO</th><th>COMISSÃO</th><th>SALDO</th><th>TRANSFERIDO</th><th>ÚLTIMO EVENTO</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div id="empty">⏳ Aguardando a primeira venda confirmada. O dashboard atualizará automaticamente.</div></section>
+<section class="health"><span>● Backend/API</span><span>● Webhook Hotmart</span><span>● Dashboard</span><span>Dados financeiros: somente confirmados</span></section>
+</main><script src="/static/app.js"></script></body></html>
