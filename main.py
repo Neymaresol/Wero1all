@@ -1,10 +1,10 @@
 import os, sqlite3, hmac, json, secrets, urllib.request, urllib.error
 from datetime import datetime, timezone
 from fastapi import FastAPI, Request, HTTPException, Header
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.2.0"
+VERSION="3.0.0-sales"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -26,6 +26,7 @@ def db():
     c.execute("""CREATE TABLE IF NOT EXISTS transactions(transaction_id TEXT PRIMARY KEY,provider TEXT,robot_id TEXT,product_id TEXT,event_state TEXT,amount REAL DEFAULT 0,currency TEXT DEFAULT 'BRL',is_test INTEGER DEFAULT 0,confirmed INTEGER DEFAULT 0,reversed INTEGER DEFAULT 0,first_seen TEXT,last_seen TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS event_v112(event_id TEXT PRIMARY KEY,transaction_id TEXT,event_type TEXT,is_test INTEGER DEFAULT 0,received_at TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS catalog_products(product_id TEXT PRIMARY KEY,ucode TEXT,name TEXT,status TEXT,format TEXT,source TEXT,eligible INTEGER DEFAULT 0,last_scan TEXT)""")
+    c.execute("""CREATE TABLE IF NOT EXISTS outbound_clicks(id INTEGER PRIMARY KEY AUTOINCREMENT,offer_id INTEGER,robot_id TEXT,source TEXT,created_at TEXT)""")
     c.commit(); return c
 
 def admin(auth):
@@ -66,6 +67,33 @@ def status():
     c.close(); robots=[]
     for r in rows: robots.append({"robot_id":r["robot_id"],"sales":r["sales"],"gross":r["gross"],"commission":0,"balance":0,"transferred":0,"last_event":r["last_event"]})
     return {"mode":os.getenv("WERO_MODE","production"),"version":VERSION,"robots":robots,"offers":{"total":offers["total"] or 0,"active":offers["active"] or 0},"totals":{"robots":len(robots),"sales":sum(r["sales"] for r in robots),"gross":sum(r["gross"] for r in robots),"commission":0,"balance":0,"transferred":0}}
+
+@app.get("/go/{offer_id}")
+def go_offer(offer_id:int, robot_id:str="WERO1-PAI", source:str="direct"):
+    c=db()
+    offer=c.execute("SELECT id,hotlink,active FROM offers WHERE id=?",(offer_id,)).fetchone()
+    if not offer or not offer["active"]:
+        c.close(); raise HTTPException(404,"active offer not found")
+    c.execute("INSERT INTO outbound_clicks(offer_id,robot_id,source,created_at) VALUES(?,?,?,?)",(offer_id,robot_id,source,now()))
+    c.commit(); hotlink=offer["hotlink"]; c.close()
+    return RedirectResponse(url=hotlink,status_code=307)
+
+@app.get("/api/sales/metrics")
+def sales_metrics():
+    c=db()
+    clicks=c.execute("SELECT COUNT(*) qty FROM outbound_clicks").fetchone()["qty"]
+    sales=c.execute("SELECT COUNT(*) qty,COALESCE(SUM(amount),0) gross FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0").fetchone()
+    by_offer=c.execute("""SELECT o.id offer_id,o.product_name,o.product_id,COUNT(DISTINCT oc.id) clicks,
+        COUNT(DISTINCT CASE WHEN t.confirmed=1 AND t.reversed=0 AND t.is_test=0 THEN t.transaction_id END) sales,
+        COALESCE(SUM(DISTINCT CASE WHEN t.confirmed=1 AND t.reversed=0 AND t.is_test=0 THEN t.amount ELSE 0 END),0) gross
+        FROM offers o LEFT JOIN outbound_clicks oc ON oc.offer_id=o.id
+        LEFT JOIN transactions t ON t.product_id=o.product_id
+        WHERE o.active=1 GROUP BY o.id,o.product_name,o.product_id ORDER BY sales DESC,clicks DESC""").fetchall()
+    c.close()
+    conv=(sales["qty"]/clicks*100) if clicks else 0
+    return {"version":VERSION,"confirmed_only":True,"clicks":clicks,"sales":sales["qty"],"gross":sales["gross"],
+            "conversion_percent":round(conv,2),"offers":[dict(r) for r in by_offer],
+            "note":"Lucro nao e estimado: custos e comissoes precisam ser confirmados pelo provedor."}
 
 @app.get("/api/funnel")
 def funnel():
