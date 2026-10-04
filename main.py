@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.2.0"
+VERSION="1.3.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -78,7 +78,7 @@ def offers():
 
 def hotmart_get(url):
     if not HOTMART_ACCESS_TOKEN: raise HTTPException(503,"HOTMART_ACCESS_TOKEN not configured")
-    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.2.0"})
+    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.3.0"})
     try:
         with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())
     except urllib.error.HTTPError as e: raise HTTPException(502,f"Hotmart API HTTP {e.code}")
