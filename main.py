@@ -28,6 +28,9 @@ def db():
     c.execute("""CREATE TABLE IF NOT EXISTS catalog_products(product_id TEXT PRIMARY KEY,ucode TEXT,name TEXT,status TEXT,format TEXT,source TEXT,eligible INTEGER DEFAULT 0,last_scan TEXT)""")
     # v1.3.1 commercial funnel: tracks authorized campaign traffic without changing the financial ledger.
     c.execute("""CREATE TABLE IF NOT EXISTS campaign_clicks(click_id TEXT PRIMARY KEY,offer_id INTEGER,channel TEXT,campaign TEXT,robot_id TEXT,country TEXT,language TEXT,created_at TEXT)""")
+    cols={r["name"] for r in c.execute("PRAGMA table_info(campaign_clicks)").fetchall()}
+    if "country" not in cols: c.execute("ALTER TABLE campaign_clicks ADD COLUMN country TEXT")
+    if "language" not in cols: c.execute("ALTER TABLE campaign_clicks ADD COLUMN language TEXT")
     c.commit(); return c
 
 def admin(auth):
