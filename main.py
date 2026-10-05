@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.2.0"
+VERSION="1.3.1"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -26,6 +26,8 @@ def db():
     c.execute("""CREATE TABLE IF NOT EXISTS transactions(transaction_id TEXT PRIMARY KEY,provider TEXT,robot_id TEXT,product_id TEXT,event_state TEXT,amount REAL DEFAULT 0,currency TEXT DEFAULT 'BRL',is_test INTEGER DEFAULT 0,confirmed INTEGER DEFAULT 0,reversed INTEGER DEFAULT 0,first_seen TEXT,last_seen TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS event_v112(event_id TEXT PRIMARY KEY,transaction_id TEXT,event_type TEXT,is_test INTEGER DEFAULT 0,received_at TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS catalog_products(product_id TEXT PRIMARY KEY,ucode TEXT,name TEXT,status TEXT,format TEXT,source TEXT,eligible INTEGER DEFAULT 0,last_scan TEXT)""")
+    # v1.3.1 commercial funnel: tracks authorized campaign traffic without changing the financial ledger.
+    c.execute("""CREATE TABLE IF NOT EXISTS campaign_clicks(click_id TEXT PRIMARY KEY,offer_id INTEGER,channel TEXT,campaign TEXT,robot_id TEXT,created_at TEXT)""")
     c.commit(); return c
 
 def admin(auth):
@@ -72,13 +74,40 @@ def funnel():
     c=db(); rows=c.execute("SELECT event_type kind,COUNT(*) qty FROM event_v112 GROUP BY event_type ORDER BY qty DESC").fetchall(); c.close()
     return {"events":[dict(r) for r in rows]}
 
+@app.get("/api/commercial")
+def commercial():
+    c=db()
+    clicks=c.execute("SELECT COUNT(*) n FROM campaign_clicks").fetchone()["n"]
+    active=c.execute("SELECT COUNT(*) n FROM offers WHERE active=1").fetchone()["n"]
+    sales=c.execute("SELECT COUNT(*) n FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0").fetchone()["n"]
+    rows=c.execute("""SELECT o.id,o.product_name,o.product_id,o.hotlink,o.niche,o.price,o.commission,
+        COUNT(cc.click_id) clicks
+        FROM offers o LEFT JOIN campaign_clicks cc ON cc.offer_id=o.id
+        WHERE o.active=1 GROUP BY o.id ORDER BY clicks DESC,o.commission DESC,o.id DESC""").fetchall()
+    c.close()
+    conversion=(sales/clicks*100) if clicks else 0
+    return {"engine":"wero1-commercial","version":VERSION,"active_offers":active,"clicks":clicks,
+            "confirmed_sales":sales,"conversion_pct":round(conversion,2),
+            "ranking":[dict(x) for x in rows]}
+
+@app.get("/go/{offer_id}")
+def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:str="WERO1-PAI"):
+    # Redirect only to an already registered/authorized HotLink; no links are fabricated.
+    from fastapi.responses import RedirectResponse
+    c=db(); o=c.execute("SELECT id,hotlink,active FROM offers WHERE id=?",(offer_id,)).fetchone()
+    if not o or not o["active"]: c.close(); raise HTTPException(404,"active offer not found")
+    click_id=secrets.token_urlsafe(16); c.execute("INSERT INTO campaign_clicks(click_id,offer_id,channel,campaign,robot_id,created_at) VALUES(?,?,?,?,?,?)",
+        (click_id,offer_id,(channel or "direct")[:80],(campaign or "organic")[:120],(robot_id or "WERO1-PAI")[:80],now()))
+    c.commit(); url=o["hotlink"]; c.close()
+    return RedirectResponse(url=url,status_code=302)
+
 @app.get("/api/offers")
 def offers():
     c=db(); rows=c.execute("SELECT id,provider,product_id,product_name,hotlink,niche,price,commission,currency,active,updated_at FROM offers ORDER BY active DESC,id DESC").fetchall(); c.close(); return {"offers":[dict(r) for r in rows]}
 
 def hotmart_get(url):
     if not HOTMART_ACCESS_TOKEN: raise HTTPException(503,"HOTMART_ACCESS_TOKEN not configured")
-    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.2.0"})
+    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.3.0"})
     try:
         with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())
     except urllib.error.HTTPError as e: raise HTTPException(502,f"Hotmart API HTTP {e.code}")
