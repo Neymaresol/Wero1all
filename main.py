@@ -87,11 +87,12 @@ def commercial():
         COUNT(cc.click_id) clicks
         FROM offers o LEFT JOIN campaign_clicks cc ON cc.offer_id=o.id
         WHERE o.active=1 GROUP BY o.id ORDER BY clicks DESC,o.commission DESC,o.id DESC""").fetchall()
+    geo=c.execute("""SELECT COALESCE(NULLIF(country,''),'unknown') country,COALESCE(NULLIF(language,''),'unknown') language,COUNT(*) clicks FROM campaign_clicks GROUP BY country,language ORDER BY clicks DESC""").fetchall()
     c.close()
     conversion=(sales/clicks*100) if clicks else 0
     return {"engine":"wero1-commercial","version":VERSION,"active_offers":active,"clicks":clicks,
             "confirmed_sales":sales,"conversion_pct":round(conversion,2),
-            "ranking":[dict(x) for x in rows]}
+            "ranking":[dict(x) for x in rows],"geo":[dict(x) for x in geo]}
 
 @app.get("/go/{offer_id}")
 def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:str="WERO1-PAI",country:str="",language:str=""):
@@ -110,7 +111,7 @@ def offers():
 
 def hotmart_get(url):
     if not HOTMART_ACCESS_TOKEN: raise HTTPException(503,"HOTMART_ACCESS_TOKEN not configured")
-    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.3.0"})
+    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+HOTMART_ACCESS_TOKEN,"Content-Type":"application/json","User-Agent":"Wero1/1.4.0"})
     try:
         with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())
     except urllib.error.HTTPError as e: raise HTTPException(502,f"Hotmart API HTTP {e.code}")
