@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.3.2"
+VERSION="1.4.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -134,34 +134,51 @@ def scan_catalog(authorization:str|None=Header(default=None)):
     return {"accepted":True,"products_seen":seen,"offers_activated":0,
     "message":"Catalogo oficial consultado. Nenhum HotLink de afiliado foi inventado ou ativado; a API documentada lista produtos do creator."}
 
-LEADLOVERS_OFFERS = [
-    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y","niche":"marketing automation","variant":"sales_page"},
-    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?dp=1","niche":"marketing automation","variant":"product_page"},
-    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?ap=f792","niche":"marketing automation","variant":"affiliate_page"},
-]
+def normalize_offer(p):
+    hotlink=str(p.get("hotlink","")).strip()
+    name=str(p.get("product_name","")).strip()
+    if not hotlink.startswith(("https://go.hotmart.com/","http://go.hotmart.com/")):
+        raise HTTPException(400,"authorized Hotmart hotlink required")
+    if not name: raise HTTPException(400,"product_name required")
+    try:
+        price=float(p.get("price",0) or 0); commission=float(p.get("commission",0) or 0)
+    except (TypeError,ValueError):
+        raise HTTPException(400,"price and commission must be numeric")
+    return {"provider":"hotmart","product_id":str(p.get("product_id","")).strip(),"product_name":name,
+            "hotlink":hotlink,"niche":str(p.get("niche","")).strip(),"price":price,
+            "commission":commission,"currency":str(p.get("currency","BRL") or "BRL")[:8]}
 
-@app.post("/api/offers/import/leadlovers")
-def import_leadlovers_offers(authorization:str|None=Header(default=None)):
-    """Idempotent bootstrap of user-confirmed Hotmart affiliate links.
-    Authentication remains WERO_ADMIN_TOKEN from the production environment.
-    """
+def upsert_offer(c,p,t):
+    x=normalize_offer(p)
+    row=c.execute("SELECT id FROM offers WHERE hotlink=?",(x["hotlink"],)).fetchone()
+    if row:
+        c.execute("""UPDATE offers SET provider=?,product_id=?,product_name=?,niche=?,price=?,commission=?,currency=?,active=1,updated_at=? WHERE id=?""",
+                  (x["provider"],x["product_id"],x["product_name"],x["niche"],x["price"],x["commission"],x["currency"],t,row["id"]))
+        return row["id"],False
+    cur=c.execute("""INSERT INTO offers(provider,product_id,product_name,hotlink,niche,price,commission,currency,active,created_at,updated_at)
+                     VALUES(?,?,?,?,?,?,?,?,1,?,?)""",
+                  (x["provider"],x["product_id"],x["product_name"],x["hotlink"],x["niche"],x["price"],x["commission"],x["currency"],t,t))
+    return cur.lastrowid,True
+
+@app.post("/api/offers/import")
+async def import_offers(request:Request,authorization:str|None=Header(default=None)):
+    """Universal, authenticated and idempotent import for user-authorized Hotmart HotLinks."""
     admin(authorization)
-    c=db(); t=now(); created=0; existing=0
-    for x in LEADLOVERS_OFFERS:
-        row=c.execute("SELECT id FROM offers WHERE hotlink=?",(x["hotlink"],)).fetchone()
-        if row:
-            existing+=1
-            c.execute("UPDATE offers SET active=1,product_id=?,product_name=?,niche=?,updated_at=? WHERE id=?",
-                      (x["product_id"],x["product_name"],x["niche"],t,row["id"]))
-            continue
-        c.execute("""INSERT INTO offers(provider,product_id,product_name,hotlink,niche,price,commission,currency,active,created_at,updated_at)
-                     VALUES(?,?,?,?,?,?,?,?,?,?,?)""",
-                  ("hotmart",x["product_id"],x["product_name"],x["hotlink"],x["niche"],0,0,"BRL",1,t,t))
-        created+=1
-    c.commit()
-    rows=c.execute("SELECT id,product_id,product_name,hotlink,active FROM offers WHERE product_id=? ORDER BY id",("42903",)).fetchall()
+    p=await request.json(); items=p.get("offers") if isinstance(p,dict) else None
+    if not isinstance(items,list) or not items or len(items)>100:
+        raise HTTPException(400,"offers must be a non-empty list with at most 100 items")
+    c=db(); t=now(); created=0; updated=0; ids=[]
+    try:
+        for item in items:
+            if not isinstance(item,dict): raise HTTPException(400,"each offer must be an object")
+            oid,is_new=upsert_offer(c,item,t); ids.append(oid)
+            created+=1 if is_new else 0; updated+=0 if is_new else 1
+        c.commit()
+    except Exception:
+        c.rollback(); c.close(); raise
+    rows=c.execute("SELECT id,provider,product_id,product_name,hotlink,niche,price,commission,currency,active,updated_at FROM offers WHERE id IN (%s) ORDER BY id" % ",".join("?"*len(ids)),ids).fetchall()
     c.close()
-    return {"accepted":True,"product_id":"42903","created":created,"existing":existing,"offers":[dict(r) for r in rows]}
+    return {"accepted":True,"created":created,"updated":updated,"offers":[dict(r) for r in rows]}
 
 @app.post("/api/offers")
 async def add_offer(request:Request,authorization:str|None=Header(default=None)):
