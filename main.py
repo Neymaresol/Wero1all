@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.3.1"
+VERSION="1.3.2"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -133,6 +133,35 @@ def scan_catalog(authorization:str|None=Header(default=None)):
     c.commit(); c.close()
     return {"accepted":True,"products_seen":seen,"offers_activated":0,
     "message":"Catalogo oficial consultado. Nenhum HotLink de afiliado foi inventado ou ativado; a API documentada lista produtos do creator."}
+
+LEADLOVERS_OFFERS = [
+    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y","niche":"marketing automation","variant":"sales_page"},
+    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?dp=1","niche":"marketing automation","variant":"product_page"},
+    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?ap=f792","niche":"marketing automation","variant":"affiliate_page"},
+]
+
+@app.post("/api/offers/import/leadlovers")
+def import_leadlovers_offers(authorization:str|None=Header(default=None)):
+    """Idempotent bootstrap of user-confirmed Hotmart affiliate links.
+    Authentication remains WERO_ADMIN_TOKEN from the production environment.
+    """
+    admin(authorization)
+    c=db(); t=now(); created=0; existing=0
+    for x in LEADLOVERS_OFFERS:
+        row=c.execute("SELECT id FROM offers WHERE hotlink=?",(x["hotlink"],)).fetchone()
+        if row:
+            existing+=1
+            c.execute("UPDATE offers SET active=1,product_id=?,product_name=?,niche=?,updated_at=? WHERE id=?",
+                      (x["product_id"],x["product_name"],x["niche"],t,row["id"]))
+            continue
+        c.execute("""INSERT INTO offers(provider,product_id,product_name,hotlink,niche,price,commission,currency,active,created_at,updated_at)
+                     VALUES(?,?,?,?,?,?,?,?,?,?,?)""",
+                  ("hotmart",x["product_id"],x["product_name"],x["hotlink"],x["niche"],0,0,"BRL",1,t,t))
+        created+=1
+    c.commit()
+    rows=c.execute("SELECT id,product_id,product_name,hotlink,active FROM offers WHERE product_id=? ORDER BY id",("42903",)).fetchall()
+    c.close()
+    return {"accepted":True,"product_id":"42903","created":created,"existing":existing,"offers":[dict(r) for r in rows]}
 
 @app.post("/api/offers")
 async def add_offer(request:Request,authorization:str|None=Header(default=None)):
