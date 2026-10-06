@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.4.0"
+VERSION="1.4.1"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -53,8 +53,32 @@ def product_id(p): return str(getv(p,"data","product","id",default="") or "")
 def is_test(p,event):
     return event in TEST_EVENTS or bool(p.get("test")) or str(p.get("environment","")).lower() in {"test","sandbox"}
 
+AUTHORIZED_BOOTSTRAP_OFFERS = [
+    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y","niche":"marketing automation","currency":"BRL"},
+    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?dp=1","niche":"marketing automation","currency":"BRL"},
+    {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?ap=f792","niche":"marketing automation","currency":"BRL"},
+]
+
+def bootstrap_authorized_offers(c):
+    """Register only user-confirmed public affiliate HotLinks; safe to run on every startup."""
+    t=now()
+    for p in AUTHORIZED_BOOTSTRAP_OFFERS:
+        hotlink=p["hotlink"]
+        row=c.execute("SELECT id FROM offers WHERE hotlink=?",(hotlink,)).fetchone()
+        if row:
+            c.execute("UPDATE offers SET active=1,product_id=?,product_name=?,niche=?,currency=?,updated_at=? WHERE id=?",
+                      (p["product_id"],p["product_name"],p["niche"],p["currency"],t,row["id"]))
+        else:
+            c.execute("""INSERT INTO offers(provider,product_id,product_name,hotlink,niche,price,commission,currency,active,created_at,updated_at)
+                         VALUES(?,?,?,?,?,0,0,?,1,?,?)""",
+                      ("hotmart",p["product_id"],p["product_name"],hotlink,p["niche"],p["currency"],t,t))
+    c.commit()
+
 @app.on_event("startup")
-def startup(): db().close()
+def startup():
+    c=db()
+    try: bootstrap_authorized_offers(c)
+    finally: c.close()
 
 @app.get("/health")
 def health():
