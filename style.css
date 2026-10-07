@@ -79,3 +79,13 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .spiderHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.spiderHead h3,.spiderHead p{margin:0}.spiderHead p{margin-top:5px;color:#9fb0c5}.spiderHead>strong{color:#19ef83;font-size:20px}
 .spiderGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.spiderGrid article{display:grid;gap:5px;border:1px solid #17466f;border-radius:12px;padding:13px;background:#031321}.spiderGrid article>b{font-size:14px}.spiderGrid small{color:#8fa7bd}.spiderGrid article>strong{font-size:20px}.spiderGrid .ok{color:#18ed7d}.spiderGrid .pending{color:#f5c84b}
 @media(max-width:1000px){.spiderGrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.spiderGrid{grid-template-columns:1fr 1fr}.spiderHead{align-items:flex-start;flex-direction:column}.spiderGrid article>strong{font-size:17px}}
+
+/* v1.7.6 cockpit readability: keep needle clear; telemetry text below dial */
+.pressureGauge .gaugeValue,.pressureGauge .gaugeLabel,.pressureGauge .gaugeScale,
+.cockpitGauge .gaugeValue,.cockpitGauge .gaugeLabel,.cockpitGauge .gaugeScale{
+  position:relative;z-index:5;
+}
+.pressureGauge .gaugeValue,.cockpitGauge .gaugeValue{transform:translateY(54px)}
+.pressureGauge .gaugeLabel,.cockpitGauge .gaugeLabel{transform:translateY(58px)}
+.pressureGauge .gaugeScale,.cockpitGauge .gaugeScale{transform:translateY(61px)}
+.pressureGauge .needle,.cockpitGauge .needle{z-index:7;transform-origin:50% 100%;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
