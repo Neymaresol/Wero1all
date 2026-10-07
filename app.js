@@ -7,6 +7,14 @@ function hierarchy(id){const x=String(id||'').toLowerCase();return x.includes('f
 function fmtTime(v){if(!v)return 'Sem evento confirmado';const d=new Date(v);return isNaN(d)?String(v):d.toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'})}
 function esc(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
+function setProgressiveScale(id,value,step,formatter){
+  const v=Math.max(0,Number(value)||0),s=Math.max(Number(step)||1,0.000001);
+  const cycle=Math.floor(Math.max(0,v-0.000001)/s)+1,base=(cycle-1)*s,end=cycle*s,mid=base+s/2;
+  const fmt=formatter||((x)=>Number.isInteger(x)?x.toLocaleString('pt-BR'):x.toLocaleString('pt-BR',{maximumFractionDigits:2}));
+  const a=e(id+'ScaleStart'),b=e(id+'ScaleMid'),d=e(id+'ScaleEnd');
+  if(a)a.textContent=fmt(base);if(b)b.textContent=fmt(mid);if(d)d.textContent=fmt(end);
+  return v>0?((v-base-0.000001)%s)+0.000001:0;
+}
 function gaugeAngle(value,max){const n=Math.max(0,Math.min(Number(value)||0,max));return -120+(n/max)*240}
 const gaugeMotion={};function setNeedle(id,value,max,live=true){const n=e(id);if(!n)return;const target=gaugeAngle(value,max);if(!live){gaugeMotion[id]=target;n.style.transform='rotate('+target+'deg)';return}const prev=Number.isFinite(gaugeMotion[id])?gaugeMotion[id]:target;const activity=Math.min(10,Math.max(1,Math.abs(target-prev)*.18+2));const wave=Math.sin(Date.now()/520+(id.length*.73))*activity;const shown=Math.max(-120,Math.min(120,target+wave));gaugeMotion[id]=target;n.style.transform='rotate('+shown+'deg)'}
 function dynamicMax(value,base){const v=Math.max(0,Number(value)||0),b=Math.max(1,Number(base)||1);if(v<=b*.7)return b;const target=Math.max(b,v*1.6);const p=Math.pow(10,Math.floor(Math.log10(target)));const n=target/p;const nice=n<=1?1:n<=2?2:n<=5?5:10;return nice*p}
@@ -14,7 +22,17 @@ function cockpitBand(value,max){const p=max?Math.max(0,Math.min(Number(value)||0
 async function refreshPressure(){try{const [p,s,c]=await Promise.all([fetch('/api/performance',{cache:'no-store'}),fetch('/api/status',{cache:'no-store'}),fetch('/api/commercial',{cache:'no-store'})]);if(!p.ok)throw 0;const d=await p.json(),st=s.ok?await s.json():{},cm=c.ok?await c.json():{},t=st.totals||{},rps=Number(d.requests_per_second||0),requests=Number(d.requests||0),clicks=Number(cm.clicks||0),conv=Number(cm.conversion_pct||0),sales=Number(t.sales||0),commission=Number(t.commission||0);
 e('pressureMode').textContent='● INDICADORES AO VIVO';const stage=e('funnelStage'),detail=e('funnelDetail');if(stage&&detail){if(sales>0){stage.textContent='🛒 VENDAS CONFIRMADAS • funil convertido';detail.textContent=sales+' venda(s) confirmada(s) pelo provedor';}else if(conv>0){stage.textContent='🎯 CONVERSÕES • sinal de conversão detectado';detail.textContent='Aguardando confirmação real de venda pelo provedor';}else if(clicks>0){stage.textContent='👆 CLIQUES • tráfego rastreado detectado';detail.textContent=clicks+' clique(s) rastreado(s) • aguardando conversão';}else if(requests>0){stage.textContent='⚙️ EXECUÇÕES • atividade operacional detectada';detail.textContent=requests+' execuções • aguardando avanço para cliques rastreados';}else{stage.textContent='⏳ AGUARDANDO ATIVIDADE';detail.textContent='Nenhuma progressão comercial confirmada ainda';}}
 e('activityValue').textContent=rps.toFixed(2);e('executionValue').textContent=requests;e('clickValue').textContent=clicks;e('conversionValue').textContent=conv.toFixed(1)+'%';e('salesPressureValue').textContent=sales;e('commissionGaugeValue').textContent=money(commission);
-const executionMax=1000,executionCycle=requests>0?((requests-1)%1000)+1:0,clickMax=dynamicMax(clicks,1000),salesMax=dynamicMax(sales,20),commissionMax=dynamicMax(commission,5000);setNeedle('activityNeedle',rps,10,true);setNeedle('executionNeedle',executionCycle,executionMax,true);setNeedle('clickNeedle',clicks,clickMax,true);setNeedle('conversionNeedle',conv,20,true);setNeedle('salesNeedle',sales,salesMax,false);setNeedle('commissionNeedle',commission,commissionMax,false);
+const executionMax=1000,executionCycle=requests>0?((requests-1)%1000)+1:0,clickMax=dynamicMax(clicks,1000),salesMax=dynamicMax(sales,20),commissionMax=dynamicMax(commission,5000);setNeedle('activityNeedle',rps,10,true);setNeedle('executionNeedle',executionCycle,executionMax,true);
+    const activityCycle=setProgressiveScale('activity',rps,1,x=>x.toLocaleString('pt-BR',{maximumFractionDigits:1}));
+    const clickCycle=setProgressiveScale('click',clicks,1000);
+    const conversionCycle=setProgressiveScale('conversion',conversion,10,x=>x.toLocaleString('pt-BR',{maximumFractionDigits:1})+'%');
+    const salesCycle=setProgressiveScale('sales',sales,1000);
+    const commissionCycle=setProgressiveScale('commission',commission,1000,x=>'R$ '+x.toLocaleString('pt-BR',{maximumFractionDigits:0}));
+    setNeedle('activityNeedle',activityCycle,1,true);
+    setNeedle('clickNeedle',clickCycle,1000,true);
+    setNeedle('conversionNeedle',conversionCycle,10,true);
+    setNeedle('salesNeedle',salesCycle,1000,false);
+    setNeedle('commissionNeedle',commissionCycle,1000,false);setNeedle('clickNeedle',clicks,clickMax,true);setNeedle('conversionNeedle',conv,20,true);setNeedle('salesNeedle',sales,salesMax,false);setNeedle('commissionNeedle',commission,commissionMax,false);
 e('activityState').textContent=rps>0?'Execução: '+cockpitBand(rps,10):'Em espera';const executionCycleNumber=Math.floor(Math.max(0,requests-1)/1000)+1;
     const executionBase=(executionCycleNumber-1)*1000;
     const executionEnd=executionCycleNumber*1000;
