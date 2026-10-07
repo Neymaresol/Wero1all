@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.7.0"
+VERSION="1.8.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -50,7 +50,9 @@ def db():
     c.execute("""CREATE TABLE IF NOT EXISTS event_v112(event_id TEXT PRIMARY KEY,transaction_id TEXT,event_type TEXT,is_test INTEGER DEFAULT 0,received_at TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS catalog_products(product_id TEXT PRIMARY KEY,ucode TEXT,name TEXT,status TEXT,format TEXT,source TEXT,eligible INTEGER DEFAULT 0,last_scan TEXT)""")
     # v1.3.1 commercial funnel: tracks authorized campaign traffic without changing the financial ledger.
-    c.execute("""CREATE TABLE IF NOT EXISTS campaign_clicks(click_id TEXT PRIMARY KEY,offer_id INTEGER,channel TEXT,campaign TEXT,robot_id TEXT,created_at TEXT)""")
+    c.execute("""CREATE TABLE IF NOT EXISTS campaign_clicks(click_id TEXT PRIMARY KEY,offer_id INTEGER,channel TEXT,campaign TEXT,robot_id TEXT,creative TEXT DEFAULT '',created_at TEXT)""")
+    try:c.execute("ALTER TABLE campaign_clicks ADD COLUMN creative TEXT DEFAULT ''")
+    except sqlite3.OperationalError:pass
     c.commit(); return c
 
 def admin(auth):
@@ -138,13 +140,13 @@ def commercial():
             "ranking":[dict(x) for x in rows]}
 
 @app.get("/go/{offer_id}")
-def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:str="WERO1-PAI"):
+def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:str="wero1-operario",creative:str="default"):
     # Redirect only to an already registered/authorized HotLink; no links are fabricated.
     from fastapi.responses import RedirectResponse
     c=db(); o=c.execute("SELECT id,hotlink,active FROM offers WHERE id=?",(offer_id,)).fetchone()
     if not o or not o["active"]: c.close(); raise HTTPException(404,"active offer not found")
-    click_id=secrets.token_urlsafe(16); c.execute("INSERT INTO campaign_clicks(click_id,offer_id,channel,campaign,robot_id,created_at) VALUES(?,?,?,?,?,?)",
-        (click_id,offer_id,(channel or "direct")[:80],(campaign or "organic")[:120],(robot_id or "WERO1-PAI")[:80],now()))
+    click_id=secrets.token_urlsafe(16); c.execute("INSERT INTO campaign_clicks(click_id,offer_id,channel,campaign,robot_id,creative,created_at) VALUES(?,?,?,?,?,?,?)",
+        (click_id,offer_id,(channel or "direct")[:80],(campaign or "organic")[:120],(robot_id or "wero1-operario")[:80],(creative or "default")[:120],now()))
     c.commit(); url=o["hotlink"]; c.close()
     return RedirectResponse(url=url,status_code=302)
 
@@ -212,6 +214,30 @@ def acquisition():
       "next_action":next_action,"active_offers":len(offers),"tracked_clicks":clicks,
       "checkout_signals":checkout,"confirmed_sales":sales,"campaign_queue":queue,
       "rule":"Only real provider-confirmed purchases are counted as sales."}
+
+
+@app.get("/api/attribution")
+def attribution():
+    c=db()
+    rows=c.execute("""SELECT robot_id,channel,campaign,COALESCE(creative,'') creative,COUNT(*) clicks,MAX(created_at) last_click FROM campaign_clicks GROUP BY robot_id,channel,campaign,COALESCE(creative,'') ORDER BY clicks DESC,last_click DESC""").fetchall()
+    sales=c.execute("SELECT COUNT(*) n FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0").fetchone()["n"]
+    c.close()
+    return {"engine":"wero-attribution","version":VERSION,"confirmed_sales":sales,"campaigns":[dict(r) for r in rows],"note":"Clicks attributed by tracked URL; sales remain provider-confirmed."}
+
+@app.get("/api/growth")
+def growth():
+    c=db()
+    clicks=c.execute("SELECT COUNT(*) n FROM campaign_clicks").fetchone()["n"]
+    channels=c.execute("SELECT COUNT(DISTINCT channel) n FROM campaign_clicks").fetchone()["n"]
+    campaigns=c.execute("SELECT COUNT(DISTINCT campaign) n FROM campaign_clicks").fetchone()["n"]
+    checkout=sum(r["qty"] for r in c.execute("SELECT event_type,COUNT(*) qty FROM event_v112 GROUP BY event_type").fetchall() if r["event_type"] in FUNNEL_EVENTS)
+    sales=c.execute("SELECT COUNT(*) n FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0").fetchone()["n"]
+    c.close()
+    if clicks==0: stage="TRAFFIC"; action="DISTRIBUTE_TRACKED_LINKS"; reason="Nenhum clique rastreado."
+    elif checkout==0: stage="CLICK_TO_CHECKOUT"; action="TEST_CREATIVE_OFFER_LANDING"; reason="Ha cliques, mas nenhum sinal de checkout."
+    elif sales==0: stage="CHECKOUT_TO_SALE"; action="VERIFY_CHECKOUT_AND_PROVIDER_EVENTS"; reason="Ha checkout, mas nenhuma venda confirmada."
+    else: stage="SCALE"; action="SCALE_CONFIRMED_WINNERS"; reason="O funil possui venda confirmada."
+    return {"engine":"wero-growth","version":VERSION,"stage":stage,"next_action":action,"reason":reason,"tracked_clicks":clicks,"checkout_signals":checkout,"confirmed_sales":sales,"channels":channels,"campaigns":campaigns,"rule":"No simulated buyers, clicks, conversions, sales or commissions."}
 
 @app.get("/api/offers")
 def offers():
