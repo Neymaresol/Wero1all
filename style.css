@@ -89,3 +89,14 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .pressureGauge .gaugeLabel,.cockpitGauge .gaugeLabel{transform:translateY(58px)}
 .pressureGauge .gaugeScale,.cockpitGauge .gaugeScale{transform:translateY(61px)}
 .pressureGauge .needle,.cockpitGauge .needle{z-index:7;transform-origin:50% 100%;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+
+/* v1.7.7 — data is physically outside/below the dial */
+.gaugeCard{overflow:visible!important;padding-bottom:16px!important}
+.gaugeCard .gauge{margin-bottom:10px!important}
+.gaugeCard .gauge>strong,.gaugeCard .gauge>small{display:none!important}
+.gaugeData{position:relative!important;z-index:10!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:3px!important;min-height:92px!important;text-align:center!important}
+.gaugeData>strong{position:static!important;transform:none!important;font-size:25px!important;line-height:1.05!important;color:#fff!important}
+.gaugeData>small{position:static!important;transform:none!important;font-size:12px!important;color:#91a6b9!important}
+.gaugeData>b{position:static!important;font-size:14px!important;line-height:1.15!important}
+.gaugeData>span{position:static!important;display:block!important;min-height:34px!important;color:#91a6b9!important;line-height:1.25!important}
+@media(max-width:520px){.gaugeData>strong{font-size:21px!important}.gaugeData{min-height:100px!important}.gaugeCard .gauge{margin-bottom:8px!important}}
