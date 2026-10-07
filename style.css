@@ -122,3 +122,11 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .dialScale i:nth-child(2){left:50%!important;right:auto!important;top:8%!important;bottom:auto!important;transform:translateX(-50%)!important;color:#ffd64d!important}
 .dialScale i:nth-child(3){right:2%!important;left:auto!important;top:auto!important;bottom:13%!important;transform:none!important;color:#ff5757!important}
 .dialScale i:nth-child(n+4){display:none!important}
+
+/* v1.7.13 — manometer scale: 0 green / 500 yellow / 1000 red */
+.numericDialScale{position:absolute!important;inset:0!important;z-index:7!important;pointer-events:none!important;font-weight:900!important;font-size:12px!important;text-shadow:0 2px 4px #000!important}
+.numericDialScale i{position:absolute!important;font-style:normal!important;line-height:1!important}
+.numericDialScale i:nth-child(1){left:5%!important;bottom:13%!important;color:#39ef78!important}
+.numericDialScale i:nth-child(2){left:50%!important;top:7%!important;transform:translateX(-50%)!important;color:#ffd43b!important}
+.numericDialScale i:nth-child(3){right:2%!important;bottom:13%!important;color:#ff4545!important}
+.gaugeData{position:relative!important;z-index:12!important}
