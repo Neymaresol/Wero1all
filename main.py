@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.6.0"
+VERSION="1.7.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -177,6 +177,41 @@ def ai_sales():
       "confirmed_conversion_pct":round(conversion,2),"recommendations":decisions,
       "guardrails":["Somente ofertas autorizadas","Venda somente por evento confirmado do provedor",
                     "Sem trafego, comprador ou receita simulados","Reavaliar ranking com novos dados reais"]}
+
+@app.get("/api/acquisition")
+def acquisition():
+    """Commercial acquisition control plane: diagnoses the real bottleneck and produces an executable campaign queue."""
+    c=db()
+    offers=c.execute("""SELECT o.id,o.product_name,o.niche,o.price,o.commission,
+        COUNT(cc.click_id) clicks
+        FROM offers o LEFT JOIN campaign_clicks cc ON cc.offer_id=o.id
+        WHERE o.active=1 GROUP BY o.id ORDER BY clicks DESC,o.commission DESC,o.id""").fetchall()
+    clicks=c.execute("SELECT COUNT(*) n FROM campaign_clicks").fetchone()["n"]
+    sales=c.execute("SELECT COUNT(*) n FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0").fetchone()["n"]
+    funnel=c.execute("SELECT event_type,COUNT(*) qty FROM event_v112 GROUP BY event_type").fetchall()
+    c.close()
+    funnel_map={r["event_type"]:r["qty"] for r in funnel}
+    checkout=sum(v for k,v in funnel_map.items() if k in FUNNEL_EVENTS)
+    if not offers:
+        bottleneck="NO_ACTIVE_OFFERS"; next_action="IMPORT_AUTHORIZED_OFFERS"
+    elif clicks==0:
+        bottleneck="NO_TRACKED_TRAFFIC"; next_action="DISTRIBUTE_TRACKED_CAMPAIGNS"
+    elif checkout==0:
+        bottleneck="NO_CHECKOUT_SIGNAL"; next_action="OPTIMIZE_OFFER_AND_LANDING"
+    elif sales==0:
+        bottleneck="CHECKOUT_WITHOUT_CONFIRMED_SALE"; next_action="OPTIMIZE_CONVERSION_AND_VERIFY_PROVIDER"
+    else:
+        bottleneck="FUNNEL_CONVERTING"; next_action="SCALE_WINNERS"
+    queue=[]
+    for i,r in enumerate(offers):
+        queue.append({"priority":i+1,"offer_id":r["id"],"product_name":r["product_name"],
+          "niche":r["niche"],"tracked_clicks":r["clicks"],
+          "tracked_url":f"/go/{r['id']}?channel=campaign&campaign=wero-acquisition&robot_id=WERO1-PAI",
+          "objective":"FIRST_CONFIRMED_SALE" if sales==0 else "SCALE_CONFIRMED_SALES"})
+    return {"engine":"wero-acquisition","version":VERSION,"bottleneck":bottleneck,
+      "next_action":next_action,"active_offers":len(offers),"tracked_clicks":clicks,
+      "checkout_signals":checkout,"confirmed_sales":sales,"campaign_queue":queue,
+      "rule":"Only real provider-confirmed purchases are counted as sales."}
 
 @app.get("/api/offers")
 def offers():
