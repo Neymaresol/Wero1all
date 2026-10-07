@@ -73,3 +73,9 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 
 /* v1.7.3 verified funnel progress */
 .funnelProgress{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;align-items:center;margin-top:12px;padding:12px 15px;border:1px solid #15538a;border-radius:10px;background:#031321}.funnelProgress b{color:#70c7ff;letter-spacing:1px}.funnelProgress span{font-weight:700}.funnelProgress small{grid-column:2;color:#9fb0c5}@media(max-width:700px){.funnelProgress{grid-template-columns:1fr;text-align:center}.funnelProgress small{grid-column:1}}
+
+/* v1.7.4 — WERO spider parent overview, preserving PARADIGMA layout */
+.spiderMaster{margin:14px 0;border:1px solid #15538a;border-radius:14px;padding:15px;background:linear-gradient(145deg,#061a2d,#020c17)}
+.spiderHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.spiderHead h3,.spiderHead p{margin:0}.spiderHead p{margin-top:5px;color:#9fb0c5}.spiderHead>strong{color:#19ef83;font-size:20px}
+.spiderGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.spiderGrid article{display:grid;gap:5px;border:1px solid #17466f;border-radius:12px;padding:13px;background:#031321}.spiderGrid article>b{font-size:14px}.spiderGrid small{color:#8fa7bd}.spiderGrid article>strong{font-size:20px}.spiderGrid .ok{color:#18ed7d}.spiderGrid .pending{color:#f5c84b}
+@media(max-width:1000px){.spiderGrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.spiderGrid{grid-template-columns:1fr 1fr}.spiderHead{align-items:flex-start;flex-direction:column}.spiderGrid article>strong{font-size:17px}}
