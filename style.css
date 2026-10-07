@@ -100,3 +100,19 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .gaugeData>b{position:static!important;font-size:14px!important;line-height:1.15!important}
 .gaugeData>span{position:static!important;display:block!important;min-height:34px!important;color:#91a6b9!important;line-height:1.25!important}
 @media(max-width:520px){.gaugeData>strong{font-size:21px!important}.gaugeData{min-height:100px!important}.gaugeCard .gauge{margin-bottom:8px!important}}
+
+/* v1.7.8 — automotive sweep + readable in-dial scale */
+.gaugeCard{min-height:300px!important;padding:14px 10px 20px!important}
+.gaugeCard .gauge{position:relative!important;overflow:visible!important;height:155px!important;min-height:155px!important;margin:0 auto 14px!important}
+.gaugeCard .needle{z-index:8!important;transform-origin:50% 100%!important}
+.gaugeCard .hub{z-index:9!important}
+.dialScale{position:absolute!important;inset:0!important;z-index:6!important;pointer-events:none!important;font-size:9px!important;font-weight:800!important;color:#dce9f5!important;text-shadow:0 1px 3px #000!important}
+.dialScale i{position:absolute!important;font-style:normal!important;line-height:1!important}
+.dialScale i:nth-child(1){left:7%!important;bottom:15%!important}
+.dialScale i:nth-child(2){left:18%!important;top:29%!important}
+.dialScale i:nth-child(3){left:50%!important;top:10%!important;transform:translateX(-50%)!important}
+.dialScale i:nth-child(4){right:18%!important;top:29%!important}
+.dialScale i:nth-child(5){right:4%!important;bottom:15%!important;color:#ff5b5b!important}
+.gaugeData{min-height:110px!important;overflow:visible!important;padding-top:2px!important}
+.gaugeData>span{min-height:42px!important;overflow:visible!important}
+@media(max-width:520px){.gaugeCard{min-height:285px!important}.gaugeCard .gauge{height:140px!important;min-height:140px!important}.dialScale{font-size:8px!important}.gaugeData{min-height:115px!important}}
