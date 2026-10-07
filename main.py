@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.5.0"
+VERSION="1.6.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
@@ -147,6 +147,36 @@ def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:s
         (click_id,offer_id,(channel or "direct")[:80],(campaign or "organic")[:120],(robot_id or "WERO1-PAI")[:80],now()))
     c.commit(); url=o["hotlink"]; c.close()
     return RedirectResponse(url=url,status_code=302)
+
+@app.get("/api/ai-sales")
+def ai_sales():
+    """Evidence-based commercial decision layer. It never fabricates traffic, buyers or sales."""
+    c=db()
+    rows=c.execute("""SELECT o.id,o.product_name,o.niche,o.price,o.commission,o.currency,
+        COUNT(cc.click_id) clicks
+        FROM offers o LEFT JOIN campaign_clicks cc ON cc.offer_id=o.id
+        WHERE o.active=1 GROUP BY o.id ORDER BY o.id""").fetchall()
+    sales=c.execute("SELECT COUNT(*) n FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0").fetchone()["n"]
+    total_clicks=c.execute("SELECT COUNT(*) n FROM campaign_clicks").fetchone()["n"]
+    c.close()
+    decisions=[]
+    for r in rows:
+        clicks=int(r["clicks"] or 0); commission=float(r["commission"] or 0)
+        # Exploration protects new authorized offers from being permanently starved of traffic.
+        evidence=min(clicks/25.0,1.0)
+        commission_signal=min(max(commission,0)/500.0,1.0)
+        score=round(35+(evidence*45)+(commission_signal*20),1)
+        action="TESTAR DISTRIBUICAO" if clicks<25 else "PRIORIZAR" if score>=70 else "OTIMIZAR CRIATIVO"
+        decisions.append({"offer_id":r["id"],"product_name":r["product_name"],"niche":r["niche"],
+          "clicks":clicks,"price":r["price"],"commission":commission,"score":score,"action":action,
+          "tracked_url":f"/go/{r['id']}?channel=ai&campaign=wero-ai-sales&robot_id=WERO1-PAI"})
+    decisions.sort(key=lambda x:(x["score"],-x["offer_id"]),reverse=True)
+    conversion=(sales/total_clicks*100) if total_clicks else 0
+    return {"engine":"wero-ai-sales","version":VERSION,"mode":"decision-support",
+      "active_offers":len(decisions),"tracked_clicks":total_clicks,"confirmed_sales":sales,
+      "confirmed_conversion_pct":round(conversion,2),"recommendations":decisions,
+      "guardrails":["Somente ofertas autorizadas","Venda somente por evento confirmado do provedor",
+                    "Sem trafego, comprador ou receita simulados","Reavaliar ranking com novos dados reais"]}
 
 @app.get("/api/offers")
 def offers():
