@@ -70,3 +70,6 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .cockpitGrid .hub{z-index:9;left:calc(50% - 8px);bottom:2px;width:16px;height:16px}
 .cockpitGrid .gauge strong,.cockpitGrid .gauge small,.cockpitGrid .gauge:before{z-index:7}
 @media(max-width:700px){.cockpitGrid .needle{left:50%;width:46px;transform-origin:0 50%}.cockpitGrid .hub{left:calc(50% - 8px)}}
+
+/* v1.7.3 verified funnel progress */
+.funnelProgress{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;align-items:center;margin-top:12px;padding:12px 15px;border:1px solid #15538a;border-radius:10px;background:#031321}.funnelProgress b{color:#70c7ff;letter-spacing:1px}.funnelProgress span{font-weight:700}.funnelProgress small{grid-column:2;color:#9fb0c5}@media(max-width:700px){.funnelProgress{grid-template-columns:1fr;text-align:center}.funnelProgress small{grid-column:1}}
