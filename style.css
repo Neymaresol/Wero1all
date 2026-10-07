@@ -116,3 +116,9 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .gaugeData{min-height:110px!important;overflow:visible!important;padding-top:2px!important}
 .gaugeData>span{min-height:42px!important;overflow:visible!important}
 @media(max-width:520px){.gaugeCard{min-height:285px!important}.gaugeCard .gauge{height:140px!important;min-height:140px!important}.dialScale{font-size:8px!important}.gaugeData{min-height:115px!important}}
+
+/* v1.7.9 — semantic dial: INÍCIO → MEIO → FIM (máximo) */
+.dialScale i:nth-child(1){left:2%!important;right:auto!important;top:auto!important;bottom:13%!important;transform:none!important;color:#43ef8b!important}
+.dialScale i:nth-child(2){left:50%!important;right:auto!important;top:8%!important;bottom:auto!important;transform:translateX(-50%)!important;color:#ffd64d!important}
+.dialScale i:nth-child(3){right:2%!important;left:auto!important;top:auto!important;bottom:13%!important;transform:none!important;color:#ff5757!important}
+.dialScale i:nth-child(n+4){display:none!important}
