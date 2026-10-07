@@ -4,11 +4,16 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.8.0"
+VERSION="1.9.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
 HOTMART_ACCESS_TOKEN=os.getenv("HOTMART_ACCESS_TOKEN","")
+AMAZON_PARTNER_TAG=os.getenv("AMAZON_PARTNER_TAG","wero1mercados-20")
+AMAZON_CREATOR_CREDENTIAL_ID=os.getenv("AMAZON_CREATOR_CREDENTIAL_ID","")
+AMAZON_CREATOR_CREDENTIAL_SECRET=os.getenv("AMAZON_CREATOR_CREDENTIAL_SECRET","")
+AMAZON_MARKETPLACE="www.amazon.com.br"
+AMAZON_BOOTSTRAP_LINK="https://amzn.to/4rQF28a"
 app=FastAPI(title="Wero1 Operario",version=VERSION)
 BOOT_MONO=time.monotonic()
 PERF_MODE=os.getenv("WERO_PERFORMANCE_MODE","game").lower()
@@ -82,6 +87,7 @@ AUTHORIZED_BOOTSTRAP_OFFERS = [
     {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y","niche":"marketing automation","currency":"BRL"},
     {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?dp=1","niche":"marketing automation","currency":"BRL"},
     {"product_id":"42903","product_name":"LeadLovers","hotlink":"https://go.hotmart.com/O107910953Y?ap=f792","niche":"marketing automation","currency":"BRL"},
+    {"provider":"amazon","product_id":"","product_name":"Amazon BR - oferta inicial autorizada","hotlink":AMAZON_BOOTSTRAP_LINK,"niche":"marketplace","currency":"BRL"},
 ]
 
 def bootstrap_authorized_offers(c):
@@ -96,7 +102,7 @@ def bootstrap_authorized_offers(c):
         else:
             c.execute("""INSERT INTO offers(provider,product_id,product_name,hotlink,niche,price,commission,currency,active,created_at,updated_at)
                          VALUES(?,?,?,?,?,0,0,?,1,?,?)""",
-                      ("hotmart",p["product_id"],p["product_name"],hotlink,p["niche"],p["currency"],t,t))
+                      (p.get("provider","hotmart"),p["product_id"],p["product_name"],hotlink,p["niche"],p["currency"],t,t))
     c.commit()
 
 @app.on_event("startup")
@@ -107,7 +113,7 @@ def startup():
 
 @app.get("/health")
 def health():
-    return {"status":"ok","service":"wero1-operario","version":VERSION,"hotmart_hottok_configured":bool(HOTMART_HOTTOK),"admin_token_configured":bool(ADMIN_TOKEN),"hotmart_api_configured":bool(HOTMART_ACCESS_TOKEN),"time":now()}
+    return {"status":"ok","service":"wero1-operario","version":VERSION,"hotmart_hottok_configured":bool(HOTMART_HOTTOK),"admin_token_configured":bool(ADMIN_TOKEN),"hotmart_api_configured":bool(HOTMART_ACCESS_TOKEN),"amazon_partner_tag_configured":bool(AMAZON_PARTNER_TAG),"amazon_creators_api_configured":bool(AMAZON_CREATOR_CREDENTIAL_ID and AMAZON_CREATOR_CREDENTIAL_SECRET),"amazon_catalog_mode":"CREATORS_API" if (AMAZON_CREATOR_CREDENTIAL_ID and AMAZON_CREATOR_CREDENTIAL_SECRET) else "WAITING_API","time":now()}
 
 @app.get("/api/status")
 def status():
@@ -250,6 +256,42 @@ def hotmart_get(url):
         with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())
     except urllib.error.HTTPError as e: raise HTTPException(502,f"Hotmart API HTTP {e.code}")
     except Exception as e: raise HTTPException(502,f"Hotmart API error: {type(e).__name__}")
+
+
+def amazon_access_token():
+    if not (AMAZON_CREATOR_CREDENTIAL_ID and AMAZON_CREATOR_CREDENTIAL_SECRET):
+        raise HTTPException(503,"Amazon Creators API credentials not configured; catalog remains WAITING_API")
+    body=json.dumps({"grant_type":"client_credentials","client_id":AMAZON_CREATOR_CREDENTIAL_ID,"client_secret":AMAZON_CREATOR_CREDENTIAL_SECRET,"scope":"creatorsapi::default"}).encode()
+    req=urllib.request.Request("https://api.amazon.com/auth/o2/token",data=body,headers={"Content-Type":"application/json"},method="POST")
+    try:
+        with urllib.request.urlopen(req,timeout=20) as r:return json.loads(r.read().decode()).get("access_token","")
+    except urllib.error.HTTPError as e: raise HTTPException(502,f"Amazon token HTTP {e.code}")
+    except Exception as e: raise HTTPException(502,f"Amazon token error: {type(e).__name__}")
+
+def amazon_search(keywords,item_count=10,search_index="All"):
+    token=amazon_access_token()
+    payload={"partnerTag":AMAZON_PARTNER_TAG,"keywords":keywords,"itemCount":max(1,min(int(item_count),10)),"searchIndex":search_index,"marketplace":AMAZON_MARKETPLACE,"languagesOfPreference":["pt_BR"],"currencyOfPreference":"BRL","resources":["images.primary.medium","itemInfo.title","offersV2.listings.price"]}
+    req=urllib.request.Request("https://creatorsapi.amazon/catalog/v1/searchItems",data=json.dumps(payload).encode(),headers={"Authorization":"Bearer "+token,"Content-Type":"application/json","x-marketplace":AMAZON_MARKETPLACE,"User-Agent":"Wero1/1.9.0"},method="POST")
+    try:
+        with urllib.request.urlopen(req,timeout=20) as r:return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        detail=e.read().decode(errors="ignore")[:500]
+        raise HTTPException(502,f"Amazon Creators API HTTP {e.code}: {detail}")
+    except Exception as e: raise HTTPException(502,f"Amazon Creators API error: {type(e).__name__}")
+
+@app.get("/api/amazon/status")
+def amazon_status():
+    configured=bool(AMAZON_CREATOR_CREDENTIAL_ID and AMAZON_CREATOR_CREDENTIAL_SECRET)
+    return {"provider":"amazon","version":VERSION,"partner_tag":AMAZON_PARTNER_TAG,"marketplace":AMAZON_MARKETPLACE,"currency":"BRL","language":"pt_BR","creators_api_configured":configured,"catalog_mode":"CREATORS_API" if configured else "WAITING_API","bootstrap_offer_registered":True,"note":"WAITING_API never fabricates catalog data or confirmed sales."}
+
+@app.get("/api/amazon/catalog/search")
+def amazon_catalog_search(q:str,item_count:int=10,search_index:str="All",authorization:str|None=Header(default=None)):
+    admin(authorization)
+    q=q.strip()
+    if not q: raise HTTPException(400,"q required")
+    data=amazon_search(q,item_count,search_index)
+    items=((data.get("searchResult") or {}).get("items") or [])
+    return {"provider":"amazon","query":q,"count":len(items),"items":items}
 
 @app.get("/api/catalog")
 def catalog():
