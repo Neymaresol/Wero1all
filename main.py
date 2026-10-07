@@ -1,15 +1,38 @@
-import os, sqlite3, hmac, json, secrets, urllib.request, urllib.error
+import os, sqlite3, hmac, json, secrets, urllib.request, urllib.error, time
 from datetime import datetime, timezone
 from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-VERSION="1.4.1"
+VERSION="1.5.0"
 DB=os.getenv("DB_PATH","/app/data/wero1.db")
 HOTMART_HOTTOK=os.getenv("HOTMART_HOTTOK","")
 ADMIN_TOKEN=os.getenv("WERO_ADMIN_TOKEN","")
 HOTMART_ACCESS_TOKEN=os.getenv("HOTMART_ACCESS_TOKEN","")
 app=FastAPI(title="Wero1 Operario",version=VERSION)
+BOOT_MONO=time.monotonic()
+PERF_MODE=os.getenv("WERO_PERFORMANCE_MODE","game").lower()
+PERF={"requests":0,"errors":0,"latency_ms_ema":0.0}
+
+@app.middleware("http")
+async def performance_telemetry(request:Request,call_next):
+    start=time.perf_counter(); PERF["requests"]+=1
+    try:
+        response=await call_next(request); return response
+    except Exception:
+        PERF["errors"]+=1; raise
+    finally:
+        ms=(time.perf_counter()-start)*1000
+        PERF["latency_ms_ema"]=round(ms if PERF["latency_ms_ema"]==0 else PERF["latency_ms_ema"]*.85+ms*.15,2)
+
+@app.get("/api/performance")
+def performance():
+    uptime=max(time.monotonic()-BOOT_MONO,0.001)
+    return {"service":"wero1-operario","version":VERSION,"mode":PERF_MODE,
+      "requests":PERF["requests"],"errors":PERF["errors"],
+      "latency_ms_ema":PERF["latency_ms_ema"],"requests_per_second":round(PERF["requests"]/uptime,3),
+      "uptime_seconds":round(uptime,1),
+      "note":"Telemetria medida no processo atual; performance nao representa vendas."}
 
 SALE_EVENTS={"PURCHASE_APPROVED","PURCHASE_COMPLETE"}
 REVERSAL_EVENTS={"PURCHASE_REFUNDED","PURCHASE_CHARGEBACK","PURCHASE_CANCELED","PURCHASE_EXPIRED"}
