@@ -47,3 +47,17 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .gauge{width:150px;height:82px;margin:auto;position:relative;overflow:hidden;border-radius:150px 150px 12px 12px;background:conic-gradient(from 270deg at 50% 100%,#13ef83 0 22%,#f4c84d 22% 37%,#ff5c58 37% 50%,transparent 50%);box-shadow:0 0 20px rgba(21,151,255,.14)}
 .gauge:after{content:"";position:absolute;left:12px;right:12px;bottom:-52px;height:112px;border-radius:50%;background:#031321;border:1px solid #123b61}.needle{position:absolute;z-index:3;width:58px;height:3px;left:17px;bottom:10px;background:#f6f8fb;transform-origin:58px 50%;transform:rotate(0deg);transition:transform .7s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 8px #fff}.hub{position:absolute;z-index:4;width:14px;height:14px;border-radius:50%;left:68px;bottom:4px;background:#f7c64b;box-shadow:0 0 10px #f7c64b}.gauge strong{position:absolute;z-index:5;left:0;right:0;bottom:25px;font-size:19px}.gauge small{position:absolute;z-index:5;left:0;right:0;bottom:12px;color:#9fb0c5;font-size:9px}.salesPulse .gauge{box-shadow:0 0 24px rgba(19,239,131,.12)}
 @media(max-width:1000px){.gaugeGrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.gaugeGrid{grid-template-columns:1fr 1fr}.gauge{width:125px}.needle{width:47px;left:16px;transform-origin:47px 50%}.hub{left:57px}.pressureTitle{align-items:flex-start}.pressureTitle p{font-size:11px}}
+
+/* Cockpit WERO — automotive/aviation live gauges */
+.cockpitDeck{border-color:#1769a7;background:radial-gradient(circle at 50% -30%,rgba(20,137,255,.2),transparent 48%),linear-gradient(180deg,#071b2c,#020912)}
+.cockpitGrid{grid-template-columns:repeat(6,1fr)}
+.cockpitGrid .gaugeCard{padding:14px 8px;border-color:#1b4e78;background:radial-gradient(circle at 50% 55%,#09233b,#020b14 72%);box-shadow:inset 0 0 22px rgba(0,120,255,.09),0 8px 22px rgba(0,0,0,.25)}
+.cockpitGrid .gauge{width:138px;height:82px;border-radius:138px 138px 10px 10px;background:conic-gradient(from 270deg at 50% 100%,#11e979 0 18%,#d8ef3e 18% 30%,#ffc42e 30% 40%,#ff3b30 40% 50%,transparent 50%);border-top:2px solid rgba(255,255,255,.09);box-shadow:0 0 18px rgba(22,145,255,.16)}
+.cockpitGrid .gauge:before{content:"0       50      MAX";position:absolute;left:8px;right:8px;bottom:5px;z-index:6;color:#8da4b9;font-size:8px;letter-spacing:.2px}
+.cockpitGrid .gauge:after{left:11px;right:11px;background:#03101c}
+.cockpitGrid .needle{left:15px;width:54px;transform-origin:54px 50%;background:#fff;height:3px;box-shadow:0 0 9px #fff}
+.cockpitGrid .hub{left:62px;background:#dce7f3;border:3px solid #314b62;box-shadow:0 0 10px #4eb5ff}
+.cockpitGrid .gauge strong{bottom:28px;font-size:17px}.cockpitGrid .gauge small{bottom:16px}
+.cockpitGrid .gaugeCard>b{font-size:12px;letter-spacing:.8px;color:#eaf4ff}.cockpitGrid .gaugeCard>span{min-height:28px}
+.cockpitLegend{display:flex;justify-content:center;gap:28px;margin-top:12px;padding-top:10px;border-top:1px solid #123a5d;font-size:11px;font-weight:700;letter-spacing:1px}.cockpitLegend span:last-child{color:#ff5c58}
+@media(max-width:1450px){.cockpitGrid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.cockpitGrid{grid-template-columns:repeat(2,1fr)}.cockpitGrid .gauge{width:128px}.cockpitLegend{gap:10px;font-size:9px;flex-wrap:wrap}}
