@@ -61,3 +61,12 @@ aside nav button{cursor:pointer;transition:.2s}aside nav button:hover{background
 .cockpitGrid .gaugeCard>b{font-size:12px;letter-spacing:.8px;color:#eaf4ff}.cockpitGrid .gaugeCard>span{min-height:28px}
 .cockpitLegend{display:flex;justify-content:center;gap:28px;margin-top:12px;padding-top:10px;border-top:1px solid #123a5d;font-size:11px;font-weight:700;letter-spacing:1px}.cockpitLegend span:last-child{color:#ff5c58}
 @media(max-width:1450px){.cockpitGrid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.cockpitGrid{grid-template-columns:repeat(2,1fr)}.cockpitGrid .gauge{width:128px}.cockpitLegend{gap:10px;font-size:9px;flex-wrap:wrap}}
+
+/* v1.7.1 — gauge needle visibility fix */
+.cockpitGrid .gauge{overflow:visible}
+.cockpitGrid .gauge:after{z-index:1}
+.cockpitGrid .needle{z-index:8;left:50%;bottom:8px;width:52px;height:4px;transform-origin:0 50%;border-radius:4px;pointer-events:none}
+.cockpitGrid .needle:after{content:"";position:absolute;right:-5px;top:-3px;border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.cockpitGrid .hub{z-index:9;left:calc(50% - 8px);bottom:2px;width:16px;height:16px}
+.cockpitGrid .gauge strong,.cockpitGrid .gauge small,.cockpitGrid .gauge:before{z-index:7}
+@media(max-width:700px){.cockpitGrid .needle{left:50%;width:46px;transform-origin:0 50%}.cockpitGrid .hub{left:calc(50% - 8px)}}
