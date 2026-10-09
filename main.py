@@ -120,8 +120,16 @@ def status():
     c=db()
     rows=c.execute("""SELECT robot_id,COUNT(*) sales,COALESCE(SUM(amount),0) gross,MAX(last_seen) last_event FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0 GROUP BY robot_id""").fetchall()
     offers=c.execute("SELECT COUNT(*) total,COALESCE(SUM(CASE WHEN active=1 THEN 1 ELSE 0 END),0) active FROM offers").fetchone()
+    clicks=c.execute("""SELECT robot_id,COUNT(*) clicks,MAX(created_at) last_click FROM campaign_clicks WHERE robot_id IS NOT NULL AND TRIM(robot_id) != '' GROUP BY robot_id""").fetchall()
     c.close(); robots=[]
-    for r in rows: robots.append({"robot_id":r["robot_id"],"sales":r["sales"],"gross":r["gross"],"commission":0,"balance":0,"transferred":0,"last_event":r["last_event"]})
+    by_id={}
+    for r in rows:
+        by_id[r["robot_id"]]={"robot_id":r["robot_id"],"sales":r["sales"],"gross":r["gross"],"commission":0,"balance":0,"transferred":0,"last_event":r["last_event"],"tracked_clicks":0,"last_click":None,"operational_status":"UNVERIFIED"}
+    for r in clicks:
+        robot=by_id.setdefault(r["robot_id"],{"robot_id":r["robot_id"],"sales":0,"gross":0,"commission":0,"balance":0,"transferred":0,"last_event":None,"tracked_clicks":0,"last_click":None,"operational_status":"UNVERIFIED"})
+        robot["tracked_clicks"]=r["clicks"]
+        robot["last_click"]=r["last_click"]
+    robots=list(by_id.values())
     return {"mode":os.getenv("WERO_MODE","production"),"version":VERSION,"robots":robots,"offers":{"total":offers["total"] or 0,"active":offers["active"] or 0},"totals":{"robots":len(robots),"sales":sum(r["sales"] for r in robots),"gross":sum(r["gross"] for r in robots),"commission":0,"balance":0,"transferred":0}}
 
 @app.get("/api/funnel")
