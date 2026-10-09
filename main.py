@@ -97,8 +97,8 @@ def bootstrap_authorized_offers(c):
         hotlink=p["hotlink"]
         row=c.execute("SELECT id FROM offers WHERE hotlink=?",(hotlink,)).fetchone()
         if row:
-            c.execute("UPDATE offers SET active=1,product_id=?,product_name=?,niche=?,currency=?,updated_at=? WHERE id=?",
-                      (p["product_id"],p["product_name"],p["niche"],p["currency"],t,row["id"]))
+            # Preserve manual deactivation; startup must not reactivate blocked offers.
+            continue
         else:
             c.execute("""INSERT INTO offers(provider,product_id,product_name,hotlink,niche,price,commission,currency,active,created_at,updated_at)
                          VALUES(?,?,?,?,?,0,0,?,1,?,?)""",
@@ -317,7 +317,7 @@ def scan_catalog(authorization:str|None=Header(default=None)):
 def normalize_offer(p):
     hotlink=str(p.get("hotlink","")).strip()
     name=str(p.get("product_name","")).strip()
-    if not hotlink.startswith(("https://go.hotmart.com/","http://go.hotmart.com/")):
+    if not hotlink.startswith("https://go.hotmart.com/"):
         raise HTTPException(400,"authorized Hotmart hotlink required")
     if not name: raise HTTPException(400,"product_name required")
     try:
