@@ -15,7 +15,7 @@ function setProgressiveScale(id,value,step,formatter){
   if(a)a.textContent=fmt(base);if(b)b.textContent=fmt(mid);if(d)d.textContent=fmt(end);
   return v>0?((v-base-0.000001)%s)+0.000001:0;
 }
-function gaugeAngle(value,max){const n=Math.max(0,Math.min(Number(value)||0,max));return -120+(n/max)*240}
+function gaugeAngle(value,max){const n=Math.max(0,Math.min(Number(value)||0,max));return -90+(n/max)*180}
 const gaugeMotion={};function setNeedle(id,value,max,live=true){const n=e(id);if(!n)return;const target=gaugeAngle(value,max);gaugeMotion[id]=target;n.style.transform='rotate('+target+'deg)'}
 function dynamicMax(value,base){const v=Math.max(0,Number(value)||0),b=Math.max(1,Number(base)||1);if(v<=b*.7)return b;const target=Math.max(b,v*1.6);const p=Math.pow(10,Math.floor(Math.log10(target)));const n=target/p;const nice=n<=1?1:n<=2?2:n<=5?5:10;return nice*p}
 function cockpitBand(value,max){const p=max?Math.max(0,Math.min(Number(value)||0,max))/max:0;return p>=.8?'MÁXIMO':p>=.45?'Médio':'Baixo'}
@@ -25,14 +25,14 @@ e('activityValue').textContent=rps.toFixed(2);e('executionValue').textContent=re
 const executionMax=1000,executionCycle=requests>0?((requests-1)%1000)+1:0,clickMax=dynamicMax(clicks,1000),salesMax=dynamicMax(sales,20),commissionMax=dynamicMax(commission,5000);setNeedle('activityNeedle',rps,10,true);setNeedle('executionNeedle',executionCycle,executionMax,true);
     const activityCycle=setProgressiveScale('activity',rps,1,x=>x.toLocaleString('pt-BR',{maximumFractionDigits:1}));
     const clickCycle=setProgressiveScale('click',clicks,1000);
-    const conversionCycle=setProgressiveScale('conversion',conversion,10,x=>x.toLocaleString('pt-BR',{maximumFractionDigits:1})+'%');
+    const conversionCycle=setProgressiveScale('conversion',conv,10,x=>x.toLocaleString('pt-BR',{maximumFractionDigits:1})+'%');
     const salesCycle=setProgressiveScale('sales',sales,1000);
     const commissionCycle=setProgressiveScale('commission',commission,1000,x=>'R$ '+x.toLocaleString('pt-BR',{maximumFractionDigits:0}));
     setNeedle('activityNeedle',activityCycle,1,true);
     setNeedle('clickNeedle',clickCycle,1000,true);
     setNeedle('conversionNeedle',conversionCycle,10,true);
     setNeedle('salesNeedle',salesCycle,1000,false);
-    setNeedle('commissionNeedle',commissionCycle,1000,false);setNeedle('clickNeedle',clicks,clickMax,true);setNeedle('conversionNeedle',conv,20,true);setNeedle('salesNeedle',sales,salesMax,false);setNeedle('commissionNeedle',commission,commissionMax,false);
+    setNeedle('commissionNeedle',commissionCycle,1000,false);
 e('activityState').textContent=rps>0?'Execução: '+cockpitBand(rps,10):'Em espera';const executionCycleNumber=Math.floor(Math.max(0,requests-1)/1000)+1;
     const executionBase=(executionCycleNumber-1)*1000;
     const executionEnd=executionCycleNumber*1000;
