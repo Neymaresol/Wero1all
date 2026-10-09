@@ -58,6 +58,9 @@ def db():
     c.execute("""CREATE TABLE IF NOT EXISTS campaign_clicks(click_id TEXT PRIMARY KEY,offer_id INTEGER,channel TEXT,campaign TEXT,robot_id TEXT,creative TEXT DEFAULT '',created_at TEXT)""")
     try:c.execute("ALTER TABLE campaign_clicks ADD COLUMN creative TEXT DEFAULT ''")
     except sqlite3.OperationalError:pass
+    c.execute("""CREATE TABLE IF NOT EXISTS robot_heartbeats(
+        robot_id TEXT PRIMARY KEY,parent_robot_id TEXT,last_seen TEXT NOT NULL,
+        operational_status TEXT NOT NULL DEFAULT 'UNVERIFIED')""")
     c.commit(); return c
 
 def admin(auth):
@@ -131,6 +134,46 @@ def status():
         robot["last_click"]=r["last_click"]
     robots=list(by_id.values())
     return {"mode":os.getenv("WERO_MODE","production"),"version":VERSION,"robots":robots,"offers":{"total":offers["total"] or 0,"active":offers["active"] or 0},"totals":{"robots":len(robots),"sales":sum(r["sales"] for r in robots),"gross":sum(r["gross"] for r in robots),"commission":0,"balance":0,"transferred":0}}
+
+@app.post("/api/robots/heartbeat")
+async def robot_heartbeat(request:Request,authorization:str|None=Header(default=None)):
+    """Authenticated worker check-in. A check-in is not evidence of sales."""
+    admin(authorization)
+    payload=await request.json()
+    if not isinstance(payload,dict): raise HTTPException(400,"JSON object required")
+    robot_id=str(payload.get("robot_id") or "").strip()
+    parent_id=str(payload.get("parent_robot_id") or "").strip() or None
+    if not robot_id or len(robot_id)>80 or (parent_id and len(parent_id)>80):
+        raise HTTPException(400,"invalid robot identifier")
+    if parent_id==robot_id: raise HTTPException(400,"robot cannot be its own parent")
+    t=now(); c=db()
+    try:
+        c.execute("""INSERT INTO robot_heartbeats(robot_id,parent_robot_id,last_seen,operational_status)
+            VALUES(?,?,?,'HEARTBEAT_RECEIVED') ON CONFLICT(robot_id)
+            DO UPDATE SET parent_robot_id=excluded.parent_robot_id,last_seen=excluded.last_seen,
+            operational_status='HEARTBEAT_RECEIVED'""",(robot_id,parent_id,t))
+        c.commit()
+        return {"accepted":True,"robot_id":robot_id,"last_seen":t,
+            "note":"Authenticated heartbeat received; worker tasks and sales not independently verified."}
+    finally:
+        c.close()
+
+@app.get("/api/robots/heartbeats")
+def robot_heartbeats():
+    """Read-only freshness: online means recent authenticated check-in only."""
+    from datetime import timedelta
+    cutoff=(datetime.now(timezone.utc)-timedelta(seconds=180)).isoformat()
+    c=db()
+    try:
+        rows=c.execute("SELECT robot_id,parent_robot_id,last_seen FROM robot_heartbeats ORDER BY robot_id").fetchall()
+        robots=[{"robot_id":r["robot_id"],"parent_robot_id":r["parent_robot_id"],
+            "last_seen":r["last_seen"],"heartbeat_fresh":r["last_seen"]>=cutoff,
+            "task_execution_verified":False} for r in rows]
+        return {"version":VERSION,"heartbeat_fresh_count":sum(r["heartbeat_fresh"] for r in robots),
+            "robots":robots,"freshness_seconds":180,
+            "note":"Heartbeat confirms only a recent authenticated request, not active campaigns or sales."}
+    finally:
+        c.close()
 
 @app.get("/api/robots/diagnostics")
 def robots_diagnostics():
