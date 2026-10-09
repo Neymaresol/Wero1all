@@ -132,6 +132,35 @@ def status():
     robots=list(by_id.values())
     return {"mode":os.getenv("WERO_MODE","production"),"version":VERSION,"robots":robots,"offers":{"total":offers["total"] or 0,"active":offers["active"] or 0},"totals":{"robots":len(robots),"sales":sum(r["sales"] for r in robots),"gross":sum(r["gross"] for r in robots),"commission":0,"balance":0,"transferred":0}}
 
+@app.get("/api/robots/diagnostics")
+def robots_diagnostics():
+    """Read-only evidence of robot identifiers, not a claim of running workers."""
+    c=db()
+    try:
+        clicks=c.execute("""SELECT robot_id,COUNT(*) AS tracked_clicks,MAX(created_at) AS last_click
+            FROM campaign_clicks WHERE robot_id IS NOT NULL AND TRIM(robot_id)!=''
+            GROUP BY robot_id ORDER BY tracked_clicks DESC""").fetchall()
+        transactions=c.execute("""SELECT robot_id,COUNT(*) AS confirmed_sales,MAX(last_seen) AS last_event
+            FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0
+            AND robot_id IS NOT NULL AND TRIM(robot_id)!=''
+            GROUP BY robot_id""").fetchall()
+        by_id={}
+        for r in clicks:
+            by_id[r["robot_id"]]={"robot_id":r["robot_id"],"tracked_clicks":r["tracked_clicks"],
+                "last_click":r["last_click"],"confirmed_sales":0,"last_event":None,
+                "operational_status":"UNVERIFIED"}
+        for r in transactions:
+            item=by_id.setdefault(r["robot_id"],{"robot_id":r["robot_id"],
+                "tracked_clicks":0,"last_click":None,"confirmed_sales":0,"last_event":None,
+                "operational_status":"UNVERIFIED"})
+            item["confirmed_sales"]=r["confirmed_sales"]
+            item["last_event"]=r["last_event"]
+        return {"version":VERSION,"identified_robots":len(by_id),"robots":list(by_id.values()),
+            "worker_execution_verified":False,
+            "note":"Identificadores provêm apenas de cliques ou vendas reais. Sem heartbeat, não há confirmação de worker ativo."}
+    finally:
+        c.close()
+
 @app.get("/api/funnel")
 def funnel():
     c=db(); rows=c.execute("SELECT event_type kind,COUNT(*) qty FROM event_v112 GROUP BY event_type ORDER BY qty DESC").fetchall(); c.close()
