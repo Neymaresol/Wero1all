@@ -1,0 +1,29 @@
+name: Wero1 Operario - ciclo comercial seguro
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: wero1-commercial-worker
+  cancel-in-progress: false
+jobs:
+  planning-heartbeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      WERO_BASE_URL: ${{ vars.WERO_BASE_URL }}
+      WERO_ADMIN_TOKEN: ${{ secrets.WERO_ADMIN_TOKEN }}
+      WERO_ROBOT_ID: WERO1-WORKER
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate configuration without printing credentials
+        shell: bash
+        run: |
+          if [ -z "$WERO_BASE_URL" ] || [ -z "$WERO_ADMIN_TOKEN" ]; then
+            echo "::error::Set repository variable WERO_BASE_URL and secret WERO_ADMIN_TOKEN before running."
+            exit 1
+          fi
+      - name: Run real planning cycle and authenticated heartbeat
+        run: python scripts/run_commercial_cycle.py
