@@ -47,7 +47,7 @@ def run():
     result = report(tasks)
     result.update({"robot_id":robot, "heartbeat_accepted":True,
                    "acquisition_bottleneck":acquisition.get("bottleneck"),
-                   "worker_execution_verified":True,
+                   "planning_cycle_verified":True,
                    "publication_verified":False,
                    "note":"Worker API cycle completed; no campaigns published or sales claimed."})
     print(json.dumps(result, ensure_ascii=False))
