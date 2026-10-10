@@ -177,30 +177,45 @@ def robot_heartbeats():
 
 @app.get("/api/robots/diagnostics")
 def robots_diagnostics():
-    """Read-only evidence of robot identifiers, not a claim of running workers."""
+    """Read-only robot evidence: heartbeat, clicks and provider-confirmed sales stay distinct."""
+    from datetime import timedelta
+    cutoff=(datetime.now(timezone.utc)-timedelta(seconds=180)).isoformat()
     c=db()
     try:
         clicks=c.execute("""SELECT robot_id,COUNT(*) AS tracked_clicks,MAX(created_at) AS last_click
             FROM campaign_clicks WHERE robot_id IS NOT NULL AND TRIM(robot_id)!=''
-            GROUP BY robot_id ORDER BY tracked_clicks DESC""").fetchall()
+            GROUP BY robot_id""").fetchall()
         transactions=c.execute("""SELECT robot_id,COUNT(*) AS confirmed_sales,MAX(last_seen) AS last_event
             FROM transactions WHERE confirmed=1 AND reversed=0 AND is_test=0
             AND robot_id IS NOT NULL AND TRIM(robot_id)!=''
             GROUP BY robot_id""").fetchall()
+        heartbeats=c.execute("""SELECT robot_id,parent_robot_id,last_seen
+            FROM robot_heartbeats ORDER BY robot_id""").fetchall()
         by_id={}
+        def entry(robot_id):
+            return by_id.setdefault(robot_id,{"robot_id":robot_id,"parent_robot_id":None,
+                "tracked_clicks":0,"last_click":None,"confirmed_sales":0,
+                "last_event":None,"last_heartbeat":None,"heartbeat_fresh":False,
+                "task_execution_verified":False,"operational_status":"UNVERIFIED"})
         for r in clicks:
-            by_id[r["robot_id"]]={"robot_id":r["robot_id"],"tracked_clicks":r["tracked_clicks"],
-                "last_click":r["last_click"],"confirmed_sales":0,"last_event":None,
-                "operational_status":"UNVERIFIED"}
+            item=entry(r["robot_id"])
+            item["tracked_clicks"]=r["tracked_clicks"]
+            item["last_click"]=r["last_click"]
         for r in transactions:
-            item=by_id.setdefault(r["robot_id"],{"robot_id":r["robot_id"],
-                "tracked_clicks":0,"last_click":None,"confirmed_sales":0,"last_event":None,
-                "operational_status":"UNVERIFIED"})
+            item=entry(r["robot_id"])
             item["confirmed_sales"]=r["confirmed_sales"]
             item["last_event"]=r["last_event"]
-        return {"version":VERSION,"identified_robots":len(by_id),"robots":list(by_id.values()),
+        for r in heartbeats:
+            item=entry(r["robot_id"])
+            item["parent_robot_id"]=r["parent_robot_id"]
+            item["last_heartbeat"]=r["last_seen"]
+            item["heartbeat_fresh"]=bool(r["last_seen"] and r["last_seen"]>=cutoff)
+            item["operational_status"]="HEARTBEAT_FRESH" if item["heartbeat_fresh"] else "HEARTBEAT_STALE"
+        robots=sorted(by_id.values(),key=lambda x:x["robot_id"])
+        return {"version":VERSION,"identified_robots":len(robots),"robots":robots,
+            "heartbeat_fresh_count":sum(r["heartbeat_fresh"] for r in robots),
             "worker_execution_verified":False,
-            "note":"Identificadores provêm apenas de cliques ou vendas reais. Sem heartbeat, não há confirmação de worker ativo."}
+            "note":"Heartbeat prova somente check-in autenticado; tarefas e vendas exigem evidencias independentes."}
     finally:
         c.close()
 
