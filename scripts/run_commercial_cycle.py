@@ -25,7 +25,7 @@ def api(base, path, *, token=None, payload=None):
         return json.load(response)
 
 def run():
-    base = os.environ.get("WERO_BASE_URL", "").rstrip("/")
+    base = os.environ.get("WERO_BASE_URL", "").strip().rstrip("/")
     token = os.environ.get("WERO_ADMIN_TOKEN", "")
     robot = os.environ.get("WERO_ROBOT_ID", "WERO1-WORKER")
     parsed = urlsplit(base)
@@ -57,6 +57,11 @@ if __name__ == "__main__":
     try:
         sys.exit(run())
     except (ValueError, RuntimeError, HTTPError, URLError, TimeoutError) as exc:
+        message = str(exc)[:240]
+        if isinstance(exc, HTTPError) and exc.code == 401:
+            message = ("Authentication rejected (HTTP 401). Check that the GitHub Actions "
+                       "WERO_ADMIN_TOKEN secret matches the deployed Render WERO_ADMIN_TOKEN; "
+                       "do not print or share either value.")
         print(json.dumps({"status":"error","error_type":type(exc).__name__,
-                          "message":str(exc)[:240]}), file=sys.stderr)
+                          "message":message}), file=sys.stderr)
         sys.exit(1)
