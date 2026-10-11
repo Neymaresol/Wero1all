@@ -27,3 +27,12 @@ jobs:
           fi
       - name: Run real planning cycle and authenticated heartbeat
         run: python scripts/run_commercial_cycle.py
+      - name: Summarize verified scope
+        if: success()
+        shell: bash
+        run: |
+          echo "### Wero1 Operário — ciclo comercial" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Planejamento da fila: executado" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Heartbeat autenticado: aceito" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publicação em redes: não executada por este workflow" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Vendas e comissões: não verificadas por este workflow" >> "$GITHUB_STEP_SUMMARY"
