@@ -240,7 +240,9 @@ def commercial():
     conversion=(sales/clicks*100) if clicks else 0
     return {"engine":"wero1-commercial","version":VERSION,"active_offers":active,"clicks":clicks,
             "confirmed_sales":sales,"conversion_pct":round(conversion,2),
-            "ranking":[dict(x) for x in rows]}
+            "ranking":[dict(x) for x in rows],
+            "financial_rule":"Only confirmed, non-reversed, non-test transactions; click counts are not sales.",
+            "financial_source":"local_sqlite","partner_reconciliation":"not_verified_by_this_endpoint"}
 
 @app.get("/go/{offer_id}")
 def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:str="wero1-operario",creative:str="default"):
