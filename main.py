@@ -46,8 +46,10 @@ TEST_EVENTS={"PURCHASE_PROTEST"}
 
 def now(): return datetime.now(timezone.utc).isoformat()
 def db():
-    os.makedirs(os.path.dirname(DB),exist_ok=True)
-    c=sqlite3.connect(DB); c.row_factory=sqlite3.Row
+    db_dir=os.path.dirname(os.path.abspath(DB))
+    os.makedirs(db_dir,exist_ok=True)
+    c=sqlite3.connect(DB, timeout=15); c.row_factory=sqlite3.Row
+    c.execute("PRAGMA busy_timeout=15000")
     c.execute("""CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY AUTOINCREMENT,provider TEXT,event_id TEXT UNIQUE,robot_id TEXT,kind TEXT,amount REAL DEFAULT 0,confirmed INTEGER DEFAULT 0,created_at TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS offers(id INTEGER PRIMARY KEY AUTOINCREMENT,provider TEXT DEFAULT 'hotmart',product_id TEXT,product_name TEXT,hotlink TEXT UNIQUE,niche TEXT,price REAL DEFAULT 0,commission REAL DEFAULT 0,currency TEXT DEFAULT 'BRL',active INTEGER DEFAULT 1,created_at TEXT,updated_at TEXT)""")
     # v1.1.2 canonical transaction ledger. Old test/event rows remain for audit but no longer drive financial status.
@@ -238,7 +240,9 @@ def commercial():
     conversion=(sales/clicks*100) if clicks else 0
     return {"engine":"wero1-commercial","version":VERSION,"active_offers":active,"clicks":clicks,
             "confirmed_sales":sales,"conversion_pct":round(conversion,2),
-            "ranking":[dict(x) for x in rows]}
+            "ranking":[dict(x) for x in rows],
+            "financial_rule":"Only confirmed, non-reversed, non-test transactions; click counts are not sales.",
+            "financial_source":"local_sqlite","partner_reconciliation":"not_verified_by_this_endpoint"}
 
 @app.get("/go/{offer_id}")
 def go_offer(offer_id:int,channel:str="direct",campaign:str="organic",robot_id:str="wero1-operario",creative:str="default"):
