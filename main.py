@@ -508,3 +508,31 @@ async def webhook(provider:str,request:Request):
 app.mount("/static",StaticFiles(directory="/app/static"),name="static")
 @app.get("/")
 def dashboard():return FileResponse("/app/static/index.html")
+
+
+@app.get("/api/p0/readiness")
+def p0_readiness():
+    """Fail-closed diagnostic; SELECT-only SQLite/Neon, no automatic migration."""
+    from p0_reconciliation import sqlite_inventory, neon_inventory
+    from p0_commercial_gate import readiness
+    try:
+        local = sqlite_inventory(DB)
+    except (FileNotFoundError, sqlite3.Error, OSError):
+        raise HTTPException(503, "sqlite_inventory_unavailable")
+    url = os.getenv("DATABASE_URL")
+    if not url:
+        return {"ready": False, "sqlite": local, "neon": None,
+                "reason": "neon_readonly_connection_not_configured"}
+    try:
+        import psycopg
+        with psycopg.connect(url, options="-c default_transaction_read_only=on", connect_timeout=5) as conn:
+            remote = neon_inventory(conn)
+    except Exception:
+        raise HTTPException(503, "neon_readonly_inventory_unavailable")
+    # A local heartbeat is not proof of a persisted Neon heartbeat.
+    result = readiness(local, remote, heartbeat=None)
+    result["ready"] = False
+    result["reason"] = "record_level_parity_and_neon_heartbeat_not_verified"
+    result["sqlite"] = local
+    result["neon"] = remote
+    return result
