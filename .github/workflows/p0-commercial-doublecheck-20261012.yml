@@ -1,0 +1,17 @@
+name: P0 commercial offline double check
+on:
+  push:
+    branches:
+      - 'dev/p0-**'
+  pull_request:
+  workflow_dispatch:
+jobs:
+  offline-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline P0 tests (no network, no credentials)
+        run: python -m unittest discover -s tests -p 'test_p0_*20261012.py' -v
