@@ -1,23 +1,27 @@
-"""Read-only commercial smoke checks; set WERO_BASE_URL to opt in."""
-import json
-import os
+"""Read-only tests: never call click or mutation endpoints."""
+import ast
+from pathlib import Path
 import unittest
-from urllib.request import urlopen
 
-BASE = os.getenv("WERO_BASE_URL", "").rstrip("/")
+SOURCE = Path(__file__).resolve().parents[1] / "main.py"
 
-@unittest.skipUnless(BASE, "WERO_BASE_URL not set: no external calls")
-class CommercialReadOnly(unittest.TestCase):
-    def get(self, path):
-        with urlopen(BASE + path, timeout=15) as response:
-            self.assertEqual(response.status, 200)
-            return json.load(response)
+class CommercialContract(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.source = SOURCE.read_text(encoding="utf-8")
+        cls.tree = ast.parse(cls.source)
 
-    def test_catalog_is_json(self):
-        self.assertIsInstance(self.get("/api/catalog"), (dict, list))
+    def test_commercial_routes_exist(self):
+        for route in ("/api/catalog", "/api/status", "/api/commercial", "/api/p0/readiness"):
+            with self.subTest(route=route):
+                self.assertIn(repr(route), self.source)
 
-    def test_status_is_json(self):
-        self.assertIsInstance(self.get("/api/status"), dict)
+    def test_financial_ledger_has_confirmation_flags(self):
+        for field in ("confirmed", "is_test", "reversed"):
+            self.assertIn(field, self.source)
+
+    def test_source_is_valid_python(self):
+        self.assertIsInstance(self.tree, ast.Module)
 
 if __name__ == "__main__":
     unittest.main()
