@@ -1,0 +1,52 @@
+name: Wero1Divulgacao Double Check
+on:
+  push:
+    branches:
+      - feat/wero1divulgacao-bootstrap
+    paths:
+      - 'wero1divulgacao/**'
+      - '.github/workflows/wero1divulgacao-double-check.yml'
+  pull_request:
+    paths:
+      - 'wero1divulgacao/**'
+      - '.github/workflows/wero1divulgacao-double-check.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install runtime and test dependencies
+        run: |
+          python -m pip install -r wero1divulgacao/requirements.txt
+          python -m pip install pytest httpx
+      - name: Compile Python modules
+        run: python -m compileall -q wero1divulgacao
+      - name: Test all Wero1Divulgacao modules
+        run: python -m pytest -q wero1divulgacao
+      - name: Smoke test HTTP endpoints without production access
+        run: |
+          python - <<'PY'
+          from fastapi.testclient import TestClient
+          from wero1divulgacao.app import app
+          client = TestClient(app)
+          assert client.get('/health').status_code == 200
+          status = client.get('/api/status')
+          assert status.status_code == 200
+          assert status.json()['publication_enabled'] is False
+          simulation = client.get('/api/simulate/happy-path')
+          assert simulation.status_code == 200
+          assert simulation.json()['real_sales_created'] == 0
+          assert simulation.json()['real_transfers_created'] == 0
+          result = client.post('/api/intent/rank', json={
+              'offers':[{'id':1,'title':'Batom rosa','approved':True,'active':True,'affiliate_authorized':True}],
+              'public_queries':['batom rosa'], 'trending_topics':['batom'], 'limit':10})
+          assert result.status_code == 200
+          assert result.json()['count'] == 1
+          assert result.json()['published'] == 0
+          PY
