@@ -3,8 +3,9 @@ from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from typing import List
 from wero1divulgacao.planner import Offer, plan
+from wero1divulgacao.intent import rank_offers
 
-app = FastAPI(title="Wero1Divulgacao", version="0.2.0-dev")
+app = FastAPI(title="Wero1Divulgacao", version="0.3.0-dev")
 
 class OfferInput(BaseModel):
     id: int
@@ -18,9 +19,15 @@ class PlanRequest(BaseModel):
     offers: List[OfferInput] = Field(default_factory=list, max_length=1000)
     limit: int = Field(default=10, ge=1, le=1000)
 
+class IntentRequest(BaseModel):
+    offers: List[OfferInput] = Field(default_factory=list, max_length=1000)
+    public_queries: List[str] = Field(default_factory=list, max_length=100)
+    trending_topics: List[str] = Field(default_factory=list, max_length=100)
+    limit: int = Field(default=10, ge=1, le=1000)
+
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "wero1divulgacao", "version": "0.2.0-dev",
+    return {"status": "ok", "service": "wero1divulgacao", "version": "0.3.0-dev",
             "mode": "staging", "time": datetime.now(timezone.utc).isoformat(),
             "publication_enabled": False}
 
@@ -29,12 +36,21 @@ def status():
     return {"service": "wero1divulgacao", "mode": "staging",
             "publication_enabled": False, "paid_ads_enabled": False,
             "integrations": "not_configured", "campaigns_published": 0,
-            "planner": "available", "note": "No automated publications or verified sales."}
+            "planner": "available", "intent_ranking": "available",
+            "note": "Signals must be supplied by authorized sources; no autonomous publishing."}
 
 @app.post("/api/plan")
 def create_plan(payload: PlanRequest):
-    """Planning only. Does not publish, write to DB or create sales."""
     offers = [Offer(**o.model_dump()) for o in payload.offers]
     tasks = plan(offers, campaign=payload.campaign, limit=payload.limit)
     return {"mode": "staging", "tasks": tasks, "task_count": len(tasks),
             "published": 0, "financial_confirmations": 0}
+
+@app.post("/api/intent/rank")
+def rank_intent(payload: IntentRequest):
+    """Ranks only approved offers against supplied public signals."""
+    offers = [Offer(**o.model_dump()) for o in payload.offers]
+    results = rank_offers(offers, payload.public_queries, payload.trending_topics,
+                          payload.limit)
+    return {"mode": "staging", "ranked_offers": results, "count": len(results),
+            "signals_source": "caller_supplied", "published": 0}
