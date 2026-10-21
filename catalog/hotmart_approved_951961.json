@@ -1,0 +1,28 @@
+{
+  "provider": "hotmart",
+  "product_id": "951961",
+  "product_name": "Curso Especialista em Unhas Degradê - Faby Cardoso",
+  "producer": "CoEditora",
+  "market": "BR",
+  "language": "pt-BR",
+  "niche": "beleza",
+  "hotlink": "https://go.hotmart.com/G108129576P",
+  "affiliate_status": "approved_user_screenshot",
+  "commission_rate_percent": 38,
+  "commission_max_brl": 26.86,
+  "cookie_days": 90,
+  "attribution": "multiple_clicks_first_25_last_75",
+  "source": "user authenticated Hotmart screenshots 2026-10-21",
+  "destination_check": "pending",
+  "commission_ownership_check": "pending",
+  "publication_enabled": false,
+  "restrictions": [
+    "no_spam",
+    "no_unsolicited_messages",
+    "no_impersonation",
+    "no_false_claims",
+    "no_free_course_claims",
+    "no_unauthorized_creatives"
+  ],
+  "updated_at": "2026-10-21T13:24:00-03:00"
+}
