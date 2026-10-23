@@ -1,0 +1,20 @@
+name: P0 Commercial Contract Double Check
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [dev/p0-commercial-doublecheck-20261012]
+jobs:
+  p0-contract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile P0 tests
+        run: python -m py_compile tests/test_p0_catalog_heartbeat_contract.py
+      - name: Run P0 contract tests (offline)
+        run: python -m unittest discover -s tests -p 'test_p0_catalog_heartbeat_contract.py' -v
