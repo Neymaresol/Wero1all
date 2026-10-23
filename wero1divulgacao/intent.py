@@ -1,4 +1,8 @@
-"""Classificação de intenção pública para campanhas orgânicas."""
+"""Classificação de intenção pública para campanhas orgânicas.
+
+Pontuações são sinais públicos fornecidos pelo chamador, não evidência
+autenticada de intenção, conversão ou comissão.
+"""
 import re
 import unicodedata
 from collections import Counter
@@ -12,7 +16,7 @@ def tokens(text):
                if len(t) > 2 and t not in STOPWORDS)
 
 def rank_offers(offers, public_queries, trending_topics, limit=10):
-    """Somente ofertas autorizadas com correspondência positiva de intenção."""
+    """Somente ofertas autorizadas com ambos os sinais de intenção positivos."""
     if not 1 <= limit <= 1000:
         raise ValueError("limit out of range")
     search = Counter(t for q in public_queries[:100] for t in tokens(q))
@@ -24,7 +28,8 @@ def rank_offers(offers, public_queries, trending_topics, limit=10):
         words = tokens(offer.title)
         tag1 = sum(search[t] for t in words)
         tag2 = sum(trend[t] for t in words)
-        if tag1 + tag2 == 0:
+        # P0: uma pontuação zero não pode ser compensada pela outra.
+        if tag1 <= 0 or tag2 <= 0:
             continue
         ranked.append({"offer_id": offer.id, "title": offer.title,
                        "tag1_score": tag1, "tag2_score": tag2,
