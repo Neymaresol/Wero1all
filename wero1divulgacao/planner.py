@@ -20,7 +20,11 @@ def plan(offers: Iterable[Offer], *, campaign: str, channels=ALLOWED_CHANNELS,
     """Retorna tarefas propostas; execução externa exige validação e autorização."""
     if not 1 <= limit <= MAX_CHILDREN:
         raise ValueError("limit must be between 1 and 1000")
-    if not campaign or not campaign.replace("-", "").replace("_", "").isalnum():
+    # Wero1Mercados safe_campaign() silently drops non-ASCII or >80-char labels.
+    # Reject them here so planned links never appear attributed when they are not.
+    if (not isinstance(campaign, str) or not 1 <= len(campaign) <= 80
+            or not campaign.isascii()
+            or not campaign.replace("-", "").replace("_", "").isalnum()):
         raise ValueError("invalid campaign")
     if any(ch not in ALLOWED_CHANNELS for ch in channels):
         raise ValueError("unsupported channel")
