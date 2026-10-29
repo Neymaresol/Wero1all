@@ -7,6 +7,16 @@ MAX_CHILDREN = 1000
 ALLOWED_CHANNELS = ("facebook", "instagram", "tiktok")
 ALLOWED_TAGS = ("tag1_search", "tag2_creators")
 
+
+def _tracking_campaign(campaign: str, offer_id: int, tag: str, channel: str) -> str:
+    """Stable per-task attribution key accepted by Wero1Mercados safe_campaign.
+
+    Labels are NOT authenticated intent, verified referrals or sales.
+    """
+    from hashlib import sha256
+    suffix = sha256(f"{campaign}:{offer_id}:{tag}:{channel}".encode("ascii")).hexdigest()[:16]
+    return f"{campaign[:80 - len(suffix) - 1]}-{suffix}"
+
 @dataclass(frozen=True)
 class Offer:
     id: int
@@ -39,10 +49,13 @@ def plan(offers: Iterable[Offer], *, campaign: str, channels=ALLOWED_CHANNELS,
                 if len(tasks) >= limit:
                     return tasks
                 task_id = f"{campaign}:{offer.id}:{tag}:{channel}"
-                query = urlencode({"channel": channel, "campaign": campaign, "strategy": tag,
-                                   "task_id": task_id})
+                tracking_campaign = _tracking_campaign(campaign, offer.id, tag, channel)
+                # /go and /out persist only channel/campaign. Do not imply that
+                # task_id or strategy query parameters are recorded by Wero1Mercados.
+                query = urlencode({"channel": channel, "campaign": tracking_campaign})
                 tasks.append({"task_id": task_id, "parent": campaign, "offer_id": offer.id,
                               "title": offer.title, "tag": tag, "channel": channel,
+                              "tracking_campaign": tracking_campaign,
                               "url": f"{base_url}/go/{offer.id}?{query}",
                               "state": "proposed", "published": False,
                               "clicks": None, "sales_confirmed": None})

@@ -20,7 +20,10 @@ def test_planner_preserves_bounded_ascii_campaign_for_tracking():
                  tags=("tag1_search",), limit=1)
     assert len(tasks) == 1
     query = parse_qs(urlparse(tasks[0]["url"]).query)
-    assert query["campaign"] == [campaign]
+    assert query["campaign"] == [tasks[0]["tracking_campaign"]]
+    assert tasks[0]["parent"] == campaign
+    assert len(tasks[0]["tracking_campaign"]) == 80
+    assert tasks[0]["tracking_campaign"].isascii()
     assert query["channel"] == ["facebook"]
     assert tasks[0]["state"] == "proposed"
     assert tasks[0]["published"] is False
