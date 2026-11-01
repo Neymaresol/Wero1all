@@ -47,6 +47,10 @@ jobs:
               'offers':[{'id':1,'title':'Batom rosa','approved':True,'active':True,'affiliate_authorized':True}],
               'public_queries':['batom rosa'], 'trending_topics':['batom'], 'limit':10})
           assert result.status_code == 200
-          assert result.json()['count'] == 1
+          assert result.json()['count'] == 0
+          assert result.json()['ranked_offers'] == []
+          assert result.json()['ranking_status'] == 'BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE'
+          assert result.json()['signals_source'] == 'caller_supplied_unverified'
+          assert result.json()['publication_allowed'] is False
           assert result.json()['published'] == 0
           PY
