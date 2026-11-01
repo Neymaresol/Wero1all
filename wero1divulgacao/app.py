@@ -3,7 +3,6 @@ from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from typing import List
 from wero1divulgacao.planner import Offer, plan
-from wero1divulgacao.intent import rank_offers
 from wero1divulgacao.happy_path import simulate_happy_path
 
 app = FastAPI(title="Wero1Divulgacao", version="0.4.0-dev")
@@ -50,10 +49,21 @@ def create_plan(payload:PlanRequest):
 
 @app.post("/api/intent/rank")
 def rank_intent(payload:IntentRequest):
-    offers=[Offer(**o.model_dump()) for o in payload.offers]
-    results=rank_offers(offers,payload.public_queries,payload.trending_topics,payload.limit)
-    return {"mode":"staging","ranked_offers":results,"count":len(results),
-            "signals_source":"caller_supplied","published":0}
+    # public_queries and trending_topics are caller-supplied request data,
+    # not independently authenticated signals from an approved provider.
+    # Fail closed until a server-side source adapter verifies provenance,
+    # collection time, source identity and integrity.
+    return {
+        "mode":"staging",
+        "ranked_offers":[],
+        "count":0,
+        "signals_source":"caller_supplied_unverified",
+        "ranking_status":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
+        "candidate_offers_received":len(payload.offers),
+        "published":0,
+        "publication_allowed":False,
+        "requires_manual_review":True,
+    }
 
 @app.get("/api/simulate/happy-path")
 def happy_path():
