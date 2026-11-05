@@ -36,9 +36,12 @@ def status():
     return {"service":"wero1divulgacao","mode":"staging",
             "publication_enabled":False,"paid_ads_enabled":False,
             "integrations":"not_configured","campaigns_published":0,
-            "planner":"available","intent_ranking":"available",
+            "planner":"available",
+            "intent_ranking_endpoint":"available",
+            "intent_ranking":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
+            "intent_ranking_status":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
             "happy_path_simulator":"available",
-            "note":"Signals require authorized sources; no autonomous publishing."}
+            "note":"The intent endpoint is reachable, but ranking remains blocked until server-side authorized signals are verified; no autonomous publishing."}
 
 @app.post("/api/plan")
 def create_plan(payload:PlanRequest):
