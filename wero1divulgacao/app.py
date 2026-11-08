@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from typing import List
-from wero1divulgacao.planner import Offer, plan
 from wero1divulgacao.happy_path import simulate_happy_path
 
 app = FastAPI(title="Wero1Divulgacao", version="0.4.0-dev")
