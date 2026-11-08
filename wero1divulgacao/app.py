@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from typing import List
-from wero1divulgacao.planner import Offer, plan
 from wero1divulgacao.happy_path import simulate_happy_path
 
 app = FastAPI(title="Wero1Divulgacao", version="0.4.0-dev")
@@ -35,20 +34,34 @@ def health():
 def status():
     return {"service":"wero1divulgacao","mode":"staging",
             "publication_enabled":False,"paid_ads_enabled":False,
-            "integrations":"not_configured","campaigns_published":0,
-            "planner":"available",
+            "integrations":"not_configured",
+            "planner":"BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE",
+            "catalog_planning_status":"BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE",
+            "campaigns_published":0,
             "intent_ranking_endpoint":"available",
             "intent_ranking":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
             "intent_ranking_status":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
             "happy_path_simulator":"available",
-            "note":"The intent endpoint is reachable, but ranking remains blocked until server-side authorized signals are verified; no autonomous publishing."}
+            "note":"Planning and intent ranking remain blocked until server-side authorized catalog and signal sources are verified; caller-supplied offer flags are not authorization and no autonomous publishing is enabled."}
 
 @app.post("/api/plan")
 def create_plan(payload:PlanRequest):
-    offers=[Offer(**o.model_dump()) for o in payload.offers]
-    tasks=plan(offers,campaign=payload.campaign,limit=payload.limit)
-    return {"mode":"staging","tasks":tasks,"task_count":len(tasks),
-            "published":0,"financial_confirmations":0}
+    # Request-body flags are caller-controlled and cannot prove catalog approval,
+    # partner authorization, availability, price, or source freshness.
+    # Keep the endpoint explicit and fail-closed until a server-side catalog
+    # adapter validates those facts against an authorized provider.
+    return {
+        "mode":"staging",
+        "tasks":[],
+        "task_count":0,
+        "planning_status":"BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE",
+        "source":"caller_supplied_unverified",
+        "candidate_offers_received":len(payload.offers),
+        "published":0,
+        "financial_confirmations":0,
+        "publication_allowed":False,
+        "requires_manual_review":True,
+    }
 
 @app.post("/api/intent/rank")
 def rank_intent(payload:IntentRequest):
