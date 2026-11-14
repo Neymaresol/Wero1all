@@ -12,7 +12,7 @@ def tokens(text):
                if len(t) > 2 and t not in STOPWORDS)
 
 def rank_offers(offers, public_queries, trending_topics, limit=10):
-    """Somente ofertas autorizadas com correspondência positiva de intenção."""
+    """Somente ofertas autorizadas com correspondência positiva nas duas fontes."""
     if not 1 <= limit <= 1000:
         raise ValueError("limit out of range")
     search = Counter(t for q in public_queries[:100] for t in tokens(q))
@@ -24,7 +24,8 @@ def rank_offers(offers, public_queries, trending_topics, limit=10):
         words = tokens(offer.title)
         tag1 = sum(search[t] for t in words)
         tag2 = sum(trend[t] for t in words)
-        if tag1 + tag2 == 0:
+        # A positive sum is insufficient: each independent signal must be positive.
+        if tag1 <= 0 or tag2 <= 0:
             continue
         ranked.append({"offer_id": offer.id, "title": offer.title,
                        "tag1_score": tag1, "tag2_score": tag2,

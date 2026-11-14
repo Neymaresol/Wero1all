@@ -16,7 +16,27 @@ def test_zero_intent_and_unapproved_offers_cannot_enter_ranked_candidates():
         Offer(3, "Batom vermelho", True, True, True),
     ]
     assert rank_offers(offers, [], [], 10) == []
-    assert [row["offer_id"] for row in rank_offers(offers, ["fone bluetooth"], [], 10)] == [1]
+    assert rank_offers(offers, ["fone bluetooth"], [], 10) == []
+    assert [row["offer_id"] for row in rank_offers(
+        offers, ["fone bluetooth"], ["fone bluetooth"], 10
+    )] == [1]
+
+
+def test_tag1_and_tag2_must_each_be_positive():
+    offers = [
+        Offer(1, "Fone bluetooth", True, True, True),          # TAG1 > 0, TAG2 = 0
+        Offer(2, "Batom vermelho", True, True, True),          # TAG1 = 0, TAG2 > 0
+        Offer(3, "Fone bluetooth curso python", True, True, True),  # both > 0
+    ]
+    ranked = rank_offers(
+        offers,
+        public_queries=["fone bluetooth"],
+        trending_topics=["batom vermelho", "curso python"],
+        limit=10,
+    )
+    assert [row["offer_id"] for row in ranked] == [3]
+    assert ranked[0]["tag1_score"] > 0
+    assert ranked[0]["tag2_score"] > 0
 
 
 def test_public_signal_api_marks_source_as_caller_supplied_and_publishes_nothing():
