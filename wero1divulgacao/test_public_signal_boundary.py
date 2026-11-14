@@ -16,7 +16,10 @@ def test_zero_intent_and_unapproved_offers_cannot_enter_ranked_candidates():
         Offer(3, "Batom vermelho", True, True, True),
     ]
     assert rank_offers(offers, [], [], 10) == []
-    assert [row["offer_id"] for row in rank_offers(offers, ["fone bluetooth"], [], 10)] == [1]
+    assert rank_offers(offers, ["fone bluetooth"], [], 10) == []
+    assert [row["offer_id"] for row in rank_offers(
+        offers, ["fone bluetooth"], ["fone bluetooth"], 10
+    )] == [1]
 
 
 def test_tag1_and_tag2_must_each_be_positive():
