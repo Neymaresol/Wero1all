@@ -9,6 +9,7 @@ from wero1divulgacao.app import (
     PlanRequest,
     create_plan,
     rank_intent,
+    status,
 )
 
 
@@ -62,3 +63,15 @@ def test_rank_does_not_trust_caller_supplied_tag1_and_tag2():
     assert result["signals_source"] == "caller_supplied_unverified"
     assert result["published"] == 0
     assert result["publication_allowed"] is False
+
+
+def test_status_keeps_catalog_signal_and_publication_gates_closed():
+    result = status()
+
+    assert result["mode"] == "staging"
+    assert result["integrations"] == "not_configured"
+    assert result["planner"] == "BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE"
+    assert result["intent_ranking"] == "BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE"
+    assert result["campaigns_published"] == 0
+    assert result["publication_enabled"] is False
+    assert result["paid_ads_enabled"] is False
