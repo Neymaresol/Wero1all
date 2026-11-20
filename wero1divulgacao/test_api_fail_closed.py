@@ -71,6 +71,7 @@ def test_status_keeps_catalog_signal_and_publication_gates_closed():
     assert result["mode"] == "staging"
     assert result["integrations"] == "not_configured"
     assert result["planner"] == "BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE"
+    assert result["intent_ranking_endpoint"] == "registered_fail_closed"
     assert result["intent_ranking"] == "BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE"
     assert result["campaigns_published"] == 0
     assert result["publication_enabled"] is False
