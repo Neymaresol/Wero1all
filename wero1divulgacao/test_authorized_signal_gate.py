@@ -52,7 +52,7 @@ def test_status_does_not_advertise_blocked_intent_ranking_as_available():
     status = status_response.json()
     ranking = rank_response.json()
 
-    assert status["intent_ranking_endpoint"] == "available"
+    assert status["intent_ranking_endpoint"] == "registered_fail_closed"
     assert status["intent_ranking"] == "BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE"
     assert status["intent_ranking_status"] == ranking["ranking_status"]
     assert status["publication_enabled"] is False
