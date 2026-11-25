@@ -112,3 +112,32 @@ Fonte: [UOL — ChatGPT e Gemini indicam produtos diferentes na Black Friday (16
 
 Fonte: [Folha — Black Friday concentra planos de compras de maior valor ou não urgentes para 44% (15/11/2026)](https://www1.folha.uol.com.br/colunas/monicabergamo/2026/11/black-friday-concentra-planos-de-compras-de-maior-valor-ou-nao-urgentes-para-44-diz-pesquisa.shtml).
 
+
+
+## Atualização de sinais — compras de Natal e cautela promocional (25/11/2026)
+
+### CNDL/SPC Brasil — antecipação de presentes
+- 78% dos consumidores que costumam comprar na Black Friday aproveitam para antecipar presentes de Natal; 24% sempre antecipam parte/todos os presentes e 54% aproveitam algumas ofertas; 22% não usam a Black Friday para compras natalinas.
+- Efeito percebido no orçamento: 43% dizem gastar menos com presentes, 23% transferem gastos de dezembro para novembro e 34% acabam gastando mais ao comprar itens adicionais.
+- Metodologia informada: web, 27 capitais, adultos que pretendem comprar presentes de Natal; 789 respostas no levantamento inicial e 600 na etapa de intenção de compra; coleta de 28/09 a 07/10/2026; margens de erro de 3,49 p.p. e 4,0 p.p., respectivamente, a 95% de confiança.
+- **Uso consultivo:** conteúdos de presentes úteis e listas planejadas podem ser relevantes, mas evite pressão de urgência ou sugerir que comprar mais equivale a economizar.
+
+Fonte: [CNDL/SPC Brasil — 78% antecipam presentes de Natal na Black Friday (24/11/2026)](https://cndl.org.br/varejosa/78-dos-consumidores-aproveitam-a-black-friday-para-adiantar-presentes-de-natal-aponta-cndl-spc-brasil/).
+
+
+### Ipsos Comunidade Conectad@s — intenção e confiança
+- 66% disseram que pretendem comprar presentes de Natal na Black Friday; 56% planejam gastar acima de R$ 500; 63% se preocupam com promoções enganosas.
+- Categorias citadas: moda/acessórios 60%, cuidados pessoais 54%, eletrodomésticos 49%, eletrônicos 49% e maquiagem 35%; 7 em cada 10 disseram buscar informações sobre promoções em marketplaces.
+- Metodologia informada: 350 adultos, classes A/B/C, diferentes regiões, coleta de 11 a 16/11/2026 na Comunidade Conectad@s Ipsos.
+- **Limite:** esta pesquisa comunitária tem base e método diferentes do levantamento CNDL/SPC; não combinar percentuais ou transformá-los em um score único.
+
+Fonte: [BRA1/Ipsos — 66% querem antecipar compras de Natal na Black Friday (24/11/2026)](https://www.bra1.com.br/economia/id-732182/66__querem_aproveitar_a_black_friday_para_antecipar_as_compras_de_natal).
+
+
+### Ajuste consultivo para a Wero1Divulgação
+- Priorizar, para revisão editorial manual, **presentes planejados**, **moda/acessórios**, **cuidados pessoais**, **eletrodomésticos/eletrônicos** e **maquiagem**; são temas citados por levantamentos diferentes, não ranking de ofertas.
+- Reforçar preço total, histórico de preço quando disponível, frete, vendedor, variante, estoque e política de devolução.
+- Não criar ofertas, links, disponibilidade, comissão ou claims de desconto a partir de pesquisas de intenção.
+- Não alimentar INT.1/INT.2, ranking automático, catálogo elegível, conversões, vendas ou comissões.
+- Manter revisão humana e origem/data/metodologia de cada sinal público.
+
