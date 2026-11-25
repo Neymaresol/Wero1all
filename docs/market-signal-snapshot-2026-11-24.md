@@ -198,3 +198,30 @@ Fonte: [Folha C-Level — projeções da Black Friday e cenário de endividament
 - Usar as pesquisas como contexto de cautela, não como ranking de produtos.
 - Priorizar preço final, histórico quando disponível, vendedor, frete e orçamento; evitar urgência artificial.
 - Não alimentar INT.1/INT.2, ranking automático, catálogo elegível, conversões, vendas ou comissões.
+
+
+## Atualização de sinais — categorias e orçamento de Natal (25/11/2026)
+
+### Fiserv Insights / Opinion Box — intenção por faixa etária e categoria
+- Entre consumidores de 18 a 24 anos que pretendem ou podem comprar na Black Friday, cerca de 40% citaram moda e beleza; 27% citaram eletrônicos.
+- Aproximadamente um terço desse grupo afirma usar principalmente Pix nas compras online.
+- Dois terços dos jovens de 18 a 24 anos da pesquisa Fiserv disseram que pretendem comprar na Black Friday; outro levantamento Abecs/Datafolha citado na matéria aponta 60% nessa faixa.
+- Na amostra geral, eletrodomésticos/eletroportáteis aparecem em 36% e eletrônicos/informática em 33%; viagens em 29% e casa/decoração em 24%.
+- A Fiserv/Opinion Box ouviu 2.103 pessoas bancarizadas, com 18 anos ou mais, em coleta online de 04 a 21/09/2026; margem de erro informada de 2,1 p.p. para o total. Não tratar percentuais por faixa etária como se tivessem a mesma precisão da amostra total.
+
+Fonte: [E-Commerce Brasil — Moda e beleza lideram intenção de compra entre jovens na Black Friday (20/11/2026)](https://www.ecommercebrasil.com.br/noticias/jovens-black-friday-moda-beleza-fiserv). Os dados são intenção/preferência, não demanda observada ou venda do PARADIGMA.
+
+### LG Ad Solutions — intenção de gasto de lares com TV LG
+- 65% dos entrevistados brasileiros com pelo menos uma TV LG em casa disseram esperar gastar mais nas festas de fim de ano do que no ano anterior.
+- O levantamento é de 400 lares com TV LG no Brasil, parte de um estudo de 2.000 lares em cinco países, coletado de 29/09 a 09/10/2026.
+- **Limite:** amostra restrita a lares LG e pesquisa divulgada pela própria empresa que vende mídia; não representa o consumidor brasileiro em geral. Use apenas como sinal editorial estreito, especialmente para conteúdo de TVs/entretenimento, nunca como score comercial.
+
+Fonte: [PPC Land — 31% of US homes with LG TVs plan bigger holiday budgets, 65% in Brazil (25/11/2026)](https://ppc.land/31-of-us-homes-with-lg-tvs-plan-bigger-holiday-budgets-65-in-brazil/).
+
+### Implicação consultiva para Werozinha
+- Manter moda/beleza como tema editorial e testar conteúdos de comparação; o sinal juvenil não autoriza segmentação individual nem ranking.
+- Eletrônicos e eletrodomésticos continuam temas relevantes na amostra geral, mas sem ofertas verificadas não há catálogo ou CTA comercial.
+- Reforçar Pix como informação de meios de pagamento apenas quando o parceiro confirma essa opção; não assumir condições de produto.
+- Preservar comparação de preço total, frete, vendedor, estoque e orçamento.
+
+**Separação de dados:** esta atualização é documental e de fonte pública; não alimenta INT.1/INT.2, ranking, catálogo, campanhas automáticas, vendas, conversões ou comissões.
