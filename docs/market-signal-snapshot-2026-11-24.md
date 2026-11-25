@@ -258,3 +258,18 @@ Fonte: [E-Commerce Brasil — Black Friday 2026: consumidores estão mais decidi
 - **Limite:** a matéria não detalha a metodologia da pesquisa no texto consultado; manter os números como contexto editorial e não como score.
 
 Fonte: [Consumidor Moderno — Online vira ferramenta de economia para os brasileiros (23/11/2026)](https://consumidormoderno.com.br/ecommerce-fmcg-brasil-nielseniq-2026/).
+
+
+## Atualização de sinal — IA como apoio à compra e verificação de ofertas (25/11/2026)
+
+### Folha — orientações para pesquisa assistida na Black Friday (publicada em 25/11)
+- Assistentes de IA são mais úteis para planejar, filtrar opções e comparar especificações do que para afirmar o menor preço em tempo real: preços, cupons de app, frete regional e estoque podem mudar rapidamente ou não aparecer em páginas indexadas.
+- Prompts devem especificar uso, teto de orçamento em reais, modelo/SKU exato e preferência por vendedor oficial no Brasil; lacunas como frete, juros, garantia ou disponibilidade devem ser marcadas como **não informado**, sem inventar.
+- Para validar vantagem, conferir o código exato do modelo e seu histórico de preço em comparadores independentes; comparar a mesma variante e identificar o vendedor do marketplace.
+- Verificar loja oficial, reputação e link antes de comprar; não enviar dados bancários ou documentos a assistentes. A decisão e autorização financeira permanecem com o consumidor.
+- A matéria cita 15% de consumidores de Black Friday que usam IA como “copiloto”; em pesquisa do Mercado Livre citada, 54,1% aceitariam ajuda da IA para escolher, mas apenas 6,5% delegariam a compra inteira. Buscadores tradicionais ainda aparecem à frente da IA na busca de preços (34,4% vs. 9,9%). Não interpretar esses números como conversões ou resultado do PARADIGMA.
+- **Implicação para Werozinha:** estruturar fichas de produto com SKU/modelo/variante, fonte e data de atualização, preço total, frete, vendedor, estoque e garantia; indicar claramente o que falta e direcionar a conferência para a página oficial/autorizada.
+
+Fonte: [Folha — IA pode ajudar consumidor em compras na Black Friday; veja como utilizar a ferramenta (25/11/2026)](https://www1.folha.uol.com.br/mercado/2026/11/ia-pode-ajudar-consumidor-em-compras-na-black-friday-veja-como-utilizar-a-ferramenta.shtml).
+
+**Limite de integração:** sinal editorial público; não é feed de parceiro, preço/estoque live, INT.1/INT.2, clique, conversão, venda, comissão ou pagamento. Não alimentar ranking, catálogo elegível nem publicação automática.
