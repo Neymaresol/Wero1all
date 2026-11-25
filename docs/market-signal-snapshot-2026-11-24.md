@@ -246,3 +246,15 @@ Fonte: [E-Commerce Brasil — Black Friday 2026: consumidores estão mais decidi
 - Usar o sinal de maior decisão de compra apenas para orientar pauta; não o transformar em TAG, INT.1/INT.2, ranking, elegibilidade, conversão, venda, comissão ou pagamento.
 
 **Proveniência:** esta é uma atualização documental de fonte pública, não um feed autorizado nem dado de afiliado. Mantêm-se revisão humana, catálogo fechado e publicação desativada.
+
+
+## Atualização de sinal — e-commerce de consumo, economia e social commerce (25/11/2026)
+
+### NielsenIQ via Consumidor Moderno — custo final e descoberta social
+- Vendas online de bens de consumo de giro rápido (FMCG) somaram **R$ 26 bilhões** no ano móvel até junho de 2026, alta de **25%**; e-commerce representa **2,1%** do faturamento da cesta.
+- **74,6%** dos lares não se sentem confortáveis financeiramente; **68%** das motivações para comprar online estão ligadas ao custo total (promoções 26%, frete grátis 23%, preço menor 19%).
+- **84%** consideram preços online mais vantajosos; **46,8%** já compraram por influência de redes/plataformas e **47,9%** depois de live de vendas. **26,8%** usam IA para ajudar nas compras; **61,4%** dizem que revisariam a recomendação antes de finalizar.
+- **Uso consultivo:** enfatizar custo final (frete incluso), comparar preço e vendedor, e testar conteúdo orgânico demonstrativo somente após catálogo autorizado. Não confundir social commerce/IA com cliques, demanda, comissão ou venda do PARADIGMA.
+- **Limite:** a matéria não detalha a metodologia da pesquisa no texto consultado; manter os números como contexto editorial e não como score.
+
+Fonte: [Consumidor Moderno — Online vira ferramenta de economia para os brasileiros (23/11/2026)](https://consumidormoderno.com.br/ecommerce-fmcg-brasil-nielseniq-2026/).
