@@ -358,3 +358,15 @@ Fonte: [UOL — O Brasil aprendeu a vender pela internet, mas ainda não entrega
 Fonte: [Portal do Comércio — Intenção de Consumo das Famílias (ICF) cai em novembro e atinge menor nível em um ano (25/11/2026)](https://portaldocomercio.org.br/acoes-institucionais/intencao-de-consumo-das-familias-icf-cai-em-novembro-e-atinge-menor-nivel-em-um-ano/).
 
 **Limite de integração:** sinal público contextual, não fonte de catálogo, preço, estoque, comissão, INT.1/INT.2, ranking, conversão, venda ou pagamento. Manter separado de outras pesquisas e sem score automático.
+
+
+## Atualização complementar — logística rápida e promessa de prazo (25/11/2026)
+
+### Marketplaces ampliam distribuição para entregas no mesmo dia ou em até 24h (UOL, 25/11)
+- Reportagem informa que Amazon, Mercado Livre, Magazine Luiza e Shopee ampliaram centros de distribuição, rede de entregadores e promoções antecipadas para sustentar prazos rápidos durante Black Friday e dezembro.
+- O texto cita expansão de bases do Magalu, crescimento da rede de centros do Mercado Livre e Shopee, além de percentuais de entrega no dia seguinte reportados pelo Mercado Livre. São declarações e dados das empresas, não garantias aplicáveis a qualquer produto ou CEP.
+- **Implicação consultiva:** rapidez é um atributo competitivo, mas Werozinha só deve exibir prazo/cobertura quando a consulta atual do parceiro for específica para o item e destino. Não inferir entrega expressa de dados gerais de marketplace, não prometer prazo e manter frete/custo total visíveis.
+
+Fonte: [UOL — Black Friday: marketplaces reforçam logística para ampliar entregas em 24h (25/11/2026)](https://economia.uol.com.br/noticias/redacao/2026/11/25/logistica-black-friday.ghtm).
+
+**Limite de integração:** notícia pública e declarações de marketplaces; não é feed autorizado de catálogo, preço, estoque, prazo por CEP, INT.1/INT.2, ranking, conversão, venda, comissão ou pagamento. Nenhum sinal foi enviado ao runtime e nenhuma publicação foi criada.
