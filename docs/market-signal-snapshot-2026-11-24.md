@@ -225,3 +225,24 @@ Fonte: [PPC Land — 31% of US homes with LG TVs plan bigger holiday budgets, 65
 - Preservar comparação de preço total, frete, vendedor, estoque e orçamento.
 
 **Separação de dados:** esta atualização é documental e de fonte pública; não alimenta INT.1/INT.2, ranking, catálogo, campanhas automáticas, vendas, conversões ou comissões.
+
+
+## Atualização complementar — decisão de compra, orçamento e confiança (25/11/2026)
+
+### Reclame Aqui / E-Commerce Brasil — consumidores mais decididos, orçamento ainda limita (matéria de 19/11)
+- A parcela de consumidores que afirma estar decidida a comprar na Black Friday aumentou de 19% em agosto para 32,3% em novembro (+13,3 pontos percentuais); indecisos caíram de 61% para 51,6% e 16,1% dizem que ficarão de fora.
+- Entre compradores ou indecisos, 54,2% são estreantes ou retornam após não participar em 2025. 48,1% ainda não definiram quanto gastar; 17,4% concentram a maior parte das compras na sexta-feira.
+- Entre quem não pretende participar, 34,9% citam orçamento insuficiente e 34,5% não precisam de produtos; o motivo “metade do dobro” caiu de 51,6% em agosto para 15,6% em novembro.
+- Entre usuários de IA pesquisados, 66,3% usam IA para conhecer características de produtos, 40,2% para comparar preços/ofertas e 25,8% para buscar lojas. 76,1% pretendem consultar o Reclame Aqui; 69,1% pesquisam histórico da loja, 34,1% reclamações/respostas e 20,9% ferramentas de verificação de páginas.
+- **Limite:** a matéria não detalha metodologia/amostra no texto consultado; tratar os percentuais como sinais da pesquisa reportada, não como estimativa de toda a população nem desempenho do PARADIGMA.
+
+Fonte: [E-Commerce Brasil — Black Friday 2026: consumidores estão mais decididos, mas orçamento ainda pesa (19/11/2026)](https://www.ecommercebrasil.com.br/noticias/black-friday-2026-consumidores-decididos-compra).
+
+
+### Ajuste consultivo para a Werozinha
+- Criar conteúdo que facilite a verificação de modelo/variante, reputação da loja, preço total, frete e condição de pagamento, em vez de usar urgência.
+- Um comparador ou recomendação de IA deve apontar a fonte e deixar a pessoa conferir o link e a oferta final; não substituir a validação do parceiro.
+- Reforçar orçamento: não estimular compras adicionais como se fossem economia, especialmente quando o consumidor não planejou a aquisição.
+- Usar o sinal de maior decisão de compra apenas para orientar pauta; não o transformar em TAG, INT.1/INT.2, ranking, elegibilidade, conversão, venda, comissão ou pagamento.
+
+**Proveniência:** esta é uma atualização documental de fonte pública, não um feed autorizado nem dado de afiliado. Mantêm-se revisão humana, catálogo fechado e publicação desativada.
