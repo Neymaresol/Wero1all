@@ -333,3 +333,15 @@ Pesquisa documental para revisão humana: nenhum sinal alimenta INT.1/INT.2, sco
 Fonte: [Folha — 73% com 65 anos ou mais nunca compraram na Black Friday (19/11/2026)](https://www1.folha.uol.com.br/colunas/monicabergamo/2026/11/sete-em-cada-dez-brasileiros-com-mais-de-65-anos-nunca-compraram-na-black-friday-diz-pesquisa.shtml).
 
 **Limites de uso:** pesquisa pública e transversal; manter separado de outros levantamentos. Não alimenta INT.1/INT.2, ranking, catálogo elegível, campanhas automáticas, conversões, vendas ou comissões.
+
+## Atualização — logística de última milha e precisão de entrega (25/11/2026)
+
+### Data Favela — atrasos e endereçamento em favelas (pesquisa de 2025; reportagem UOL publicada em 25/11/2026)
+- Pesquisa Data Favela com 16 mil pessoas em 2025: 60% dos moradores de favelas entrevistados relataram atrasos nas entregas; 20% disseram já ter deixado de receber encomendas porque o endereço não foi localizado.
+- O artigo ressalta que um CEP geral para a comunidade não garante que cada rua, beco ou viela esteja reconhecido nos sistemas logísticos. O IBGE mapeou 12.348 favelas e comunidades urbanas com ao menos um CEP geral.
+- **Limite:** os percentuais se referem aos entrevistados moradores de favelas, não ao conjunto de consumidores brasileiros; não extrapolar para todos os CEPs nem transformar o dado em score de produto.
+- **Uso operacional consultivo:** só exibir prazo, frete e cobertura quando vierem da consulta atual do parceiro para a região/CEP; se a informação não existir, marcar como “não informado” ou “confirmar no parceiro”. Não prometer entrega, não inferir cobertura a partir de CEP geral e não coletar endereço completo sem necessidade.
+
+Fonte: [UOL — O Brasil aprendeu a vender pela internet, mas ainda não entrega para todos (25/11/2026)](https://noticias.uol.com.br/colunas/joildo-santos/2026/11/25/o-brasil-aprendeu-a-vender-pela-internet-mas-ainda-nao-entrega-para-todos.htm).
+
+**Limites de integração:** sinal público contextual, não feed autorizado de catálogo, estoque, preço, prazo, INT.1/INT.2, clique, conversão, venda, comissão ou pagamento. Nenhuma oferta foi atualizada e nenhuma campanha/publicação foi criada.
