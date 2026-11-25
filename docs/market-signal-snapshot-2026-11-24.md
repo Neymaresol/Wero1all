@@ -370,3 +370,28 @@ Fonte: [Portal do Comércio — Intenção de Consumo das Famílias (ICF) cai em
 Fonte: [UOL — Black Friday: marketplaces reforçam logística para ampliar entregas em 24h (25/11/2026)](https://economia.uol.com.br/noticias/redacao/2026/11/25/logistica-black-friday.ghtm).
 
 **Limite de integração:** notícia pública e declarações de marketplaces; não é feed autorizado de catálogo, preço, estoque, prazo por CEP, INT.1/INT.2, ranking, conversão, venda, comissão ou pagamento. Nenhum sinal foi enviado ao runtime e nenhuma publicação foi criada.
+
+
+## Atualização de sinais públicos — 25/11/2026
+
+### Intenção de compra e orçamento
+- Pesquisa CNDL/SPC Brasil + Offerwise (10/11): 51% dos consumidores das capitais declararam intenção de comprar na Black Friday 2026; 31% ainda dependiam de encontrar ofertas que valessem a pena; gasto médio planejado informado: R$ 1.053.
+- A pesquisa indica cautela com orçamento e endividamento; esses números são intenção e planejamento, não pedidos ou vendas.
+
+Fonte: [CNDL — pesquisa de intenção Black Friday 2026](https://cndl.org.br/varejosa/51-dos-consumidores-pretendem-comprar-na-black-friday-2026-mas-orcamento-apertado-e-endividamento-freiam-o-consumo-aponta-pesquisa-cndl-spc-brasil/?trk=article-ssr-frontend-pulse_little-text-block).
+
+### Projeção varejo e cenário de crédito
+- CNC, reportagem C-Level Folha (24/11): projeção de R$ 11,51 bilhões para a Black Friday no varejo, alta de 1,8% sobre o ano anterior; 81,6% das famílias tinham algum endividamento em outubro e 29,3% estavam inadimplentes, segundo os dados citados.
+- As estimativas de faturamento variam por entidade, período e canal; não combinar projeções distintas como se fossem uma mesma medição nem tratá-las como resultado realizado.
+
+Fonte: [C-Level Folha — projeção CNC e consumidor pressionado por dívidas](https://c-level.folha.uol.com.br/negocios/2026/11/black-friday-deve-ter-recorde-de-vendas-mesmo-com-consumidor-pressionado-por-dividas-projeta-cnc.shtml).
+
+### Prevenção de golpes e compra responsável
+- Alerta publicado pela Folha (23/11), atribuído à ABBC: reforçar verificação do recebedor, canais oficiais, cuidado com QR Codes e links enviados por mensagens, e evitar procedimentos inesperados.
+
+Fonte: [Folha — alerta de golpes na Black Friday](https://www1.folha.uol.com.br/mercado/2026/11/black-friday-exige-atencao-a-golpes-e-compras-por-impulso-estrategias-de-criminosos-mudaram.shtml).
+
+### Aplicação consultiva (documental; sem ranking ou publicação)
+- Conteúdo orgânico deve orientar orçamento, preço final, vendedor oficial, frete/prazo, devolução e conferência do desconto.
+- Evitar urgência artificial, links suspeitos e estímulo a crédito ou compras impulsivas.
+- Estes sinais públicos não qualificam ofertas, não comprovam demanda do catálogo e não alteram INT.1/INT.2, ranking, vendas, comissão ou pagamentos.
