@@ -38,7 +38,7 @@ def status():
             "planner":"BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE",
             "catalog_planning_status":"BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE",
             "campaigns_published":0,
-            "intent_ranking_endpoint":"available",
+            "intent_ranking_endpoint":"registered_fail_closed",
             "intent_ranking":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
             "intent_ranking_status":"BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE",
             "happy_path_simulator":"available",
