@@ -426,3 +426,20 @@ Fonte: [Folha — IA pode ajudar consumidor nas compras da Black Friday](https:/
 - Não usar pesquisas de intenção para calcular INT.1/INT.2, pontuação de oferta ou conversão.
 - Não importar preços/estoque de listas editoriais; validar cada item no feed autorizado do parceiro.
 - Manter a revisão humana e a atribuição por campanha como gates.
+
+
+## Atualização complementar — proteção do consumidor (25/11/2026)
+
+### Senacon/MJSP — cartilha oficial para compras online na Black Friday
+Publicada em 25/11/2026 às 16h04, a orientação da Secretaria Nacional do Consumidor recomenda:
+- pesquisar preços anteriores e comparar o custo final, incluindo frete, taxas e juros;
+- verificar a reputação do vendedor e conferir se o endereço do site é oficial;
+- desconfiar de descontos excessivos, perfis falsos e contadores de urgência;
+- conferir condições de pagamento, entrega, parcelamento, defeitos, produto divergente e reembolso;
+- recorrer aos canais oficiais de defesa do consumidor quando necessário.
+
+**Aplicação consultiva à Werozinha:** apresentar custo total e condições apenas quando retornados por fonte autorizada; evitar contadores/escassez artificiais; destacar vendedor, prazo, frete, política de devolução e canal oficial; não prometer desconto nem prazo não verificado.
+
+**Limite de proveniência:** esta cartilha é orientação pública de proteção ao consumidor. Não é feed de produtos, não autentica vendedor/oferta, não alimenta INT.1/INT.2, não altera ranking e não comprova clique, venda, comissão ou pagamento.
+
+Fonte: [MJSP/Senacon — Cartilha orienta consumidores nas compras da Black Friday (25/11/2026)](https://www.gov.br/secom/pt-br/acompanhe-a-secom/noticias/2026/11/cartilha-do-ministerio-da-justica-e-seguranca-publica-orienta-consumidores-nas-compras-da-black-friday).
