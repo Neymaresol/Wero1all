@@ -318,3 +318,18 @@ Fonte: [CNN Brasil — projeção Black Friday 2026 (13/10/2026)](https://www.cn
 
 ### Limites desta atualização
 Pesquisa documental para revisão humana: nenhum sinal alimenta INT.1/INT.2, score automático, catálogo de ofertas, conversão, comissão, venda ou pagamento. Nenhum conteúdo foi publicado/agendado e nenhum anúncio foi criado.
+
+
+## Atualização complementar — inclusão e familiaridade com a Black Friday (25/11/2026)
+
+### Nexus — experiência prévia e preferência de canal por faixa etária (Folha, 19/11)
+- 73% dos entrevistados com 65 anos ou mais nunca haviam comprado na Black Friday; entre 25–35 anos, 60% já tinham aproveitado alguma edição.
+- Para 2026, 25% do grupo 65+ pretende comprar, versus 59% de 18–24 e 55% de 25–35.
+- Entre 65+, 61% preferem lojas físicas; interesse declarado em eletrodomésticos (51%) e eletroeletrônicos (48%); 26% relatam influência da publicidade.
+- Entre 18–24, 61% preferem online e os interesses citados são celulares (52%), roupas (51%) e eletrônicos (50%); 52% relatam compra por impulso e 53% influência da publicidade.
+- Metodologia publicada: 5.544 brasileiros entrevistados presencialmente em domicílio, 08–20/05/2026. A matéria não apresenta esses números como compras efetivamente realizadas em 2026.
+- **Implicação consultiva:** acessibilidade e confiança — comparações simples, preço total, frete, vendedor, devolução e dados claramente atualizados. Não usar idade como gatilho de urgência nem extrapolar preferência de canal para todo o público.
+
+Fonte: [Folha — 73% com 65 anos ou mais nunca compraram na Black Friday (19/11/2026)](https://www1.folha.uol.com.br/colunas/monicabergamo/2026/11/sete-em-cada-dez-brasileiros-com-mais-de-65-anos-nunca-compraram-na-black-friday-diz-pesquisa.shtml).
+
+**Limites de uso:** pesquisa pública e transversal; manter separado de outros levantamentos. Não alimenta INT.1/INT.2, ranking, catálogo elegível, campanhas automáticas, conversões, vendas ou comissões.
