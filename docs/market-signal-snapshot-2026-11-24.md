@@ -273,3 +273,19 @@ Fonte: [Consumidor Moderno — Online vira ferramenta de economia para os brasil
 Fonte: [Folha — IA pode ajudar consumidor em compras na Black Friday; veja como utilizar a ferramenta (25/11/2026)](https://www1.folha.uol.com.br/mercado/2026/11/ia-pode-ajudar-consumidor-em-compras-na-black-friday-veja-como-utilizar-a-ferramenta.shtml).
 
 **Limite de integração:** sinal editorial público; não é feed de parceiro, preço/estoque live, INT.1/INT.2, clique, conversão, venda, comissão ou pagamento. Não alimentar ranking, catálogo elegível nem publicação automática.
+
+
+## Atualização complementar — intenção de compra Black Friday e orçamento (25/11/2026)
+
+### CNDL/SPC Brasil + Offerwise — intenção e cautela (publicado em 10/11)
+- 51% dos consumidores das capitais pretendem comprar na Black Friday; 31% permanecem indecisos e 19% dizem que não comprarão. A intenção de 51% é 37 pontos percentuais abaixo de 2023.
+- Entre os que pretendem comprar, 70% dizem que usarão a data para adquirir algo de que já precisam por um preço menor; 37% pretendem antecipar presentes de Natal e 28% admitem comprar sem necessidade específica.
+- Valor médio planejado: R$ 1.053; 49% esperam gastar até R$ 1.000, e 32% limitam a R$ 500.
+- Preferências citadas pelos compradores: roupas/calçados/acessórios 41%, eletrônicos 32%, beleza/perfumaria 28%, artigos para casa 28%, eletrodomésticos 25%, jogos/videogames 19% e acessórios de informática/celular 17%.
+- 81% pretendem comprar online; menor preço pesquisado e frete grátis são igualmente citados por 41% como fatores de escolha de loja. 29% preferem marcas conhecidas e 27% valorizam desconto à vista/Pix. 65% têm receio de fraudes.
+- **Uso consultivo para Werozinha:** oferecer comparação objetiva de preço total, frete, vendedor/reputação, variante, política de devolução e condições à vista/parceladas. Priorizar produtos planejados e não usar urgência artificial, impulso ou orçamento apertado como incentivo.
+- **Metodologia:** web, 27 capitais, adultos 18+, pós-ponderação por sexo, idade, renda e escolaridade; 1.133 casos para intenção inicial e 601 respondentes com intenção na etapa detalhada; coleta 07–19/10/2026; margens de erro informadas de 3,7 e 4,0 p.p., respectivamente, a 95% de confiança.
+
+Fonte: [CNDL/SPC Brasil — 51% pretendem comprar na Black Friday 2026 (10/11/2026)](https://sbcdistritos.cdls.org.br/51-dos-consumidores-pretendem-comprar-na-black-friday-2026-mas-orcamento-apertado-e-endividamento-freiam-o-consumo-aponta-pesquisa-cndl-spc-brasil/).
+
+**Limite de integração:** pesquisa pública, intenção declarada e metodologia própria; não é catálogo/feed autorizado, preço/estoque atual, sinal autenticado, INT.1/INT.2, ranking, click, conversão, venda, comissão ou pagamento. Manter fonte, data, amostra e unidades separadas; não somar pesquisas distintas em score.
