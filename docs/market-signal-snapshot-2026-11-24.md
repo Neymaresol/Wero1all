@@ -141,3 +141,37 @@ Fonte: [BRA1/Ipsos — 66% querem antecipar compras de Natal na Black Friday (24
 - Não alimentar INT.1/INT.2, ranking automático, catálogo elegível, conversões, vendas ou comissões.
 - Manter revisão humana e origem/data/metodologia de cada sinal público.
 
+
+
+## Atualização complementar — sinais públicos de consumo e confiança (25/11/2026)
+
+### Fiserv Insights / Opinion Box — consumidor mais seletivo (publicado em 06/11)
+- Intenção declarada de compra na Black Friday 2026: 62%, ante 78% em 2025; 24% ainda indecisos.
+- 29% pretendem gastar menos, 17% mais e 26% ainda não sabem quanto gastar; entre quem já decidiu comprar, 21,5% planejam ampliar o gasto.
+- Parcelamento sem juros é critério importante para 23,2% dos que já decidiram comprar na Black Friday (21% considerando compras em geral).
+- Categorias mais citadas: eletrodomésticos/eletroportáteis 36%; eletrônicos/informática 33%. Norte e Nordeste apresentam intenção declarada maior (69% e 66%), com mix regional próprio.
+- Metodologia: 2.103 pessoas bancarizadas, 18+, todas as classes e regiões, coleta online de 04 a 21/09/2026; margem de erro informada de 2,1 p.p.
+- **Leitura consultiva:** conteúdo deve destacar preço total e condições reais de pagamento, sem tratar intenção como demanda ou garantia de conversão.
+
+Fonte: [Fiserv — Black Friday 2026: intenção de compra cai de 78% para 62% (06/11/2026)](https://www.fiserv.com.br/insights/pesquisa-fiserv-insights-black-friday-2026/).
+
+### FGV / ICC — cautela macroeconômica (publicado em 24/11)
+- Índice de Confiança do Consumidor caiu 1,2 ponto em novembro, para 83,5, menor nível desde agosto de 2022.
+- Índice de Situação Atual recuou 1,5 ponto, para 79,9; percepção sobre a situação financeira das famílias caiu 2,1 pontos, para 69,2.
+- Em sentido contrário, intenção de compra de bens duráveis subiu 1,5 ponto, para 77,0; isso é um componente do indicador, não compra efetiva.
+- **Leitura consultiva:** evitar urgência artificial e promessas de economia; reforçar comparação de preço final, frete, parcelamento, vendedor e política de devolução.
+
+Fonte: [UOL — confiança do consumidor recua ao menor nível desde agosto de 2022, mostra FGV (24/11/2026)](https://economia.uol.com.br/noticias/redacao/2026/11/24/indice-de-confianca-do-consumidor-novembro-2026.ghtm).
+
+### Projeção de e-commerce — revisão de referência (Confi/Neotrust + E-Commerce Brasil)
+- Projeção para 26–29/11: R$ 13,3 bilhões e 69,4 milhões de produtos; são estimativas, não resultado realizado.
+- Entre janeiro e setembro de 2026, o e-commerce registrou R$ 322,6 bilhões (+16,9%) e 1,20 bilhão de pedidos (+34,9%); tíquete médio caiu 13,4%, de R$ 309,70 para R$ 268,20.
+- Categorias com maior faturamento projetado: eletrodomésticos R$ 2,12 bilhões (+44,5%); moda/acessórios R$ 1,38 bilhão (+44,2%); beleza/perfumaria R$ 910 milhões (+69,8%).
+
+Fonte: [CNN Brasil — Black Friday 2026 deve movimentar R$ 13,3 bi no e-commerce (13/10/2026)](https://www.cnnbrasil.com.br/economia/money/macroeconomia/black-friday-2026-deve-movimentar-r-133-bi-no-e-commerce-diz-pesquisa/).
+
+### Limites de integração
+- Os três conjuntos acima são pesquisas públicas ou projeções agregadas; não são feeds de afiliados, dados de estoque, preço, clique, conversão ou comissão.
+- Não alimentar INT.1/INT.2, não liberar ranking automático e não atualizar ofertas com base nesses percentuais.
+- Manter cada pesquisa separada por amostra, período, metodologia e unidade; não somar os percentuais em um score.
+- Só integrar fontes autorizadas de catálogo/sinais por adaptador server-side com identidade, timestamp, integridade e controles contra replay.
