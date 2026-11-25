@@ -92,3 +92,23 @@ Fonte: [UOL Guia de Compras — ofertas de 24/11](https://www.uol.com.br/guia-de
 ## Próximo gate
 
 Criar/adotar um adaptador de fonte pública/authorized feed com origem e timestamp verificáveis, separado de INT.1/INT.2. O snapshot serve apenas para orientar a revisão manual até a integração real ser homologada.
+
+## Atualização complementar — descoberta por IA e compras de maior valor (24/11/2026)
+
+### Comparação de recomendações de IA (UOL/Naia Index, publicada em 16/11)
+- O levantamento enviou 138 perguntas ao ChatGPT e ao Gemini em 27/10 e analisou 276 respostas, cobrindo 33 categorias.
+- Os líderes diferiram em 15 das 33 categorias; 96 dos 625 nomes de produtos/linhas (contados por categoria) apareceram nas duas plataformas.
+- O artigo relata possíveis divergências entre produto/variante e vendedor indicado no card; a pesquisa não mediu cliques nem compras.
+- **Implicação para o catálogo PARADIGMA:** antes de publicar, conferir SKU/modelo/variante, vendedor, estoque, preço final e se o link de afiliado abre exatamente a oferta correspondente. Não usar ranking de IA como evidência de venda.
+
+Fonte: [UOL — ChatGPT e Gemini indicam produtos diferentes na Black Friday (16/11/2026)](https://economia.uol.com.br/colunas/aline-sordili/2026/11/16/chatgpt-e-gemini-indicam-produtos-diferentes-na-black-friday.htm).
+
+
+### Compras de maior valor e smartphones (Folha/Ipsos/Jovi, publicada em 15/11)
+- 44% dos entrevistados disseram reservar compras de maior valor (24%) ou não urgentes (20%) para a Black Friday.
+- Sobre smartphones: 38% disseram que certamente ou provavelmente comprariam; 31% consideravam a possibilidade; 31% provavelmente ou definitivamente não comprariam. 54% planejam trocar o aparelho em até 12 meses.
+- Amostra: 1.200 usuários de smartphones com 18 anos ou mais, classes A/B/C, cinco regiões, entrevistados de 30/09 a 05/10; margem de erro informada de 2,8 pontos percentuais.
+- **Limite:** intenção declarada; não é demanda comprovada, clique, conversão nem dado de catálogo.
+
+Fonte: [Folha — Black Friday concentra planos de compras de maior valor ou não urgentes para 44% (15/11/2026)](https://www1.folha.uol.com.br/colunas/monicabergamo/2026/11/black-friday-concentra-planos-de-compras-de-maior-valor-ou-nao-urgentes-para-44-diz-pesquisa.shtml).
+
