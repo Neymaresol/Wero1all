@@ -289,3 +289,32 @@ Fonte: [Folha — IA pode ajudar consumidor em compras na Black Friday; veja com
 Fonte: [CNDL/SPC Brasil — 51% pretendem comprar na Black Friday 2026 (10/11/2026)](https://sbcdistritos.cdls.org.br/51-dos-consumidores-pretendem-comprar-na-black-friday-2026-mas-orcamento-apertado-e-endividamento-freiam-o-consumo-aponta-pesquisa-cndl-spc-brasil/).
 
 **Limite de integração:** pesquisa pública, intenção declarada e metodologia própria; não é catálogo/feed autorizado, preço/estoque atual, sinal autenticado, INT.1/INT.2, ranking, click, conversão, venda, comissão ou pagamento. Manter fonte, data, amostra e unidades separadas; não somar pesquisas distintas em score.
+
+## Atualização de sinais públicos — live commerce e IA na compra (25/11/2026)
+
+### Amazon Brasil: conteúdo ao vivo com influenciadores na Black Friday
+- A Folha reporta que a Amazon Brasil planeja 10 horas de programação ao vivo com 10 influenciadores no dia 27/11, no aplicativo, com transmissão replicada no Instagram.
+- As categorias citadas incluem celulares, notebooks, videogames, eletrodomésticos, livros, pets, beleza e cuidados pessoais.
+- A reportagem cita dados da Statista segundo os quais cerca de 48% dos consumidores brasileiros já compraram por recomendação de criadores digitais; este número é atribuído à pesquisa citada pela matéria, não é métrica da Werozinha.
+- **Implicação editorial (não execução):** considerar vídeos curtos de comparação, com especificações e critérios transparentes, em vez de copiar live commerce ou sugerir urgência. Publicação permanece suspensa enquanto a conta Instagram conectada for diferente da conta desejada e o catálogo não tiver ofertas elegíveis.
+
+Fonte: [Folha/C-Level — Amazon aposta em vídeos com influenciadores e live commerce na Black Friday (25/11/2026)](https://c-level.folha.uol.com.br/negocios/2026/11/amazon-aposta-em-videos-com-influenciadores-e-premia-cliente-com-r-1-milhao-na-black-friday.shtml).
+
+### IA como copiloto de pesquisa, não como preço/estoque em tempo real
+- Reportagem da Folha publicada em 25/11 destaca que IA ajuda a planejar, filtrar opções e comparar especificações; preço dinâmico, cache, cupons por fidelidade, frete regional e estoque real podem não estar atualizados.
+- A matéria cita levantamento Google/Norstat: 15% dos consumidores da Black Friday usam IA como copiloto para comparar produtos, simular cashback e conferir frete.
+- Cita também estudo Ipsos de janeiro de 2026: 57% disseram ter usado IA em alguma jornada de compra no ano anterior (2.700 consumidores e 17 mil jornadas analisadas).
+- Em um levantamento citado do Mercado Livre, 54,1% aceitariam ajuda da IA para escolher, mas 6,5% delegariam a compra inteira; buscadores tradicionais ainda lideraram a pesquisa de preço (34,4% versus 9,9% para IA).
+- **Implicação para Werozinha:** mostrar modelo/SKU, vendedor, preço e horário de verificação, frete, cupom e garantia; sinalizar campos ausentes como “não informado”; abrir o link oficial para confirmação e manter a decisão financeira com o consumidor.
+
+Fonte: [Folha — IA pode ajudar consumidor em compras na Black Friday; veja como utilizar (25/11/2026)](https://www1.folha.uol.com.br/mercado/2026/11/ia-pode-ajudar-consumidor-em-compras-na-black-friday-veja-como-utilizar-a-ferramenta.shtml).
+
+### Contexto e-commerce atualizado
+- Neotrust/Confi projeta R$ 13,3 bilhões no e-commerce brasileiro entre 26–29/11 (+20,7%) e 69,4 milhões de produtos (+15,4%).
+- De janeiro a setembro de 2026, pedidos online cresceram 34,9% (1,20 bilhão), enquanto o tíquete médio caiu 13,4%, para R$ 268,20.
+- As projeções são agregadas e não devem ser confundidas com resultados PARADIGMA.
+
+Fonte: [CNN Brasil — projeção Black Friday 2026 (13/10/2026)](https://www.cnnbrasil.com.br/economia/money/macroeconomia/black-friday-2026-deve-movimentar-r-133-bi-no-e-commerce-diz-pesquisa/).
+
+### Limites desta atualização
+Pesquisa documental para revisão humana: nenhum sinal alimenta INT.1/INT.2, score automático, catálogo de ofertas, conversão, comissão, venda ou pagamento. Nenhum conteúdo foi publicado/agendado e nenhum anúncio foi criado.
