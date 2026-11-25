@@ -395,3 +395,34 @@ Fonte: [Folha — alerta de golpes na Black Friday](https://www1.folha.uol.com.b
 - Conteúdo orgânico deve orientar orçamento, preço final, vendedor oficial, frete/prazo, devolução e conferência do desconto.
 - Evitar urgência artificial, links suspeitos e estímulo a crédito ou compras impulsivas.
 - Estes sinais públicos não qualificam ofertas, não comprovam demanda do catálogo e não alteram INT.1/INT.2, ranking, vendas, comissão ou pagamentos.
+
+
+## Atualização complementar — 25/11/2026 (véspera da Black Friday)
+
+### CNC — intenção de consumo mais cautelosa
+- O ICF recuou 0,9% em novembro, para 102,7 pontos, menor nível desde novembro de 2025.
+- Perspectiva de consumo caiu 1,6%; emprego e renda atuais recuaram 1% no mês.
+- O componente de compra de duráveis avançou 8,9% na comparação anual, mas caiu pelo quarto mês consecutivo na comparação mensal.
+- A pesquisa CNC reúne cerca de 18 mil questionários mensais.
+
+Fonte: [UOL Economia — CNC, 25/11/2026](https://economia.uol.com.br/noticias/redacao/2026/11/25/cnc-intencao-de-consumo-das-familias-recua-para-menor-patamar-desde-2025.ghtm). É contexto macro; não é demanda do catálogo PARADIGMA.
+
+
+### Fiserv — intenção de compra Black Friday
+- Intenção declarada de compra: 62% em 2026, contra 78% em 2025.
+- 24% ainda não decidiram; 29% planejam gastar menos.
+- Pesquisa Fiserv Insights/Opinion Box, divulgada em 06/11/2026.
+
+Fonte: [Fiserv Insights — Black Friday 2026](https://www.fiserv.com.br/insights/pesquisa-fiserv-insights-black-friday-2026/). Pesquisa de intenção, não vendas realizadas.
+
+
+### IA no apoio à compra — segurança e verificação
+Reportagem publicada em 25/11 destaca que IA pode ajudar a filtrar, comparar especificações e avaliar pagamentos, mas preços, cupons, frete e estoque podem estar desatualizados; recomenda conferir versão exata do produto, vendedor e histórico de preços, e identificar dados ausentes sem inventá-los.
+
+Fonte: [Folha — IA pode ajudar consumidor nas compras da Black Friday](https://www1.folha.uol.com.br/mercado/2026/11/ia-pode-ajudar-consumidor-em-compras-na-black-friday-veja-como-utilizar-a-ferramenta.shtml).
+
+### Aplicação consultiva (sem ranking automático)
+- Priorizar conteúdo de comparação com preço total, vendedor, prazo, frete e devolução verificáveis.
+- Não usar pesquisas de intenção para calcular INT.1/INT.2, pontuação de oferta ou conversão.
+- Não importar preços/estoque de listas editoriais; validar cada item no feed autorizado do parceiro.
+- Manter a revisão humana e a atribuição por campanha como gates.
