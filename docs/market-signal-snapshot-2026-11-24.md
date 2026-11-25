@@ -345,3 +345,16 @@ Fonte: [Folha — 73% com 65 anos ou mais nunca compraram na Black Friday (19/11
 Fonte: [UOL — O Brasil aprendeu a vender pela internet, mas ainda não entrega para todos (25/11/2026)](https://noticias.uol.com.br/colunas/joildo-santos/2026/11/25/o-brasil-aprendeu-a-vender-pela-internet-mas-ainda-nao-entrega-para-todos.htm).
 
 **Limites de integração:** sinal público contextual, não feed autorizado de catálogo, estoque, preço, prazo, INT.1/INT.2, clique, conversão, venda, comissão ou pagamento. Nenhuma oferta foi atualizada e nenhuma campanha/publicação foi criada.
+
+
+## Atualização complementar — CNC e cautela de consumo na semana Black Friday (25/11/2026)
+
+### CNC / ICF — intenção de consumo recua (publicado em 25/11)
+- O Índice de Intenção de Consumo das Famílias (ICF) caiu 0,9% em novembro, para 102,7 pontos, o menor nível desde novembro de 2025.
+- A perspectiva de consumo caiu 1,6%, quarta retração mensal consecutiva; o componente de compra de bens duráveis teve avanço de 8,9% na comparação anual, mas recuou mensalmente pela quarta vez.
+- O levantamento da CNC usa cerca de 18 mil questionários mensais em todo o país. O indicador é potencial/intenção, não compras realizadas, cliques ou vendas.
+- **Implicação editorial:** diante da cautela de consumo, Werozinha deve priorizar listas planejadas, comparação de custo final e transparência sobre frete, vendedor, crédito e preço; não criar urgência ou estimular gastos não planejados.
+
+Fonte: [Portal do Comércio — Intenção de Consumo das Famílias (ICF) cai em novembro e atinge menor nível em um ano (25/11/2026)](https://portaldocomercio.org.br/acoes-institucionais/intencao-de-consumo-das-familias-icf-cai-em-novembro-e-atinge-menor-nivel-em-um-ano/).
+
+**Limite de integração:** sinal público contextual, não fonte de catálogo, preço, estoque, comissão, INT.1/INT.2, ranking, conversão, venda ou pagamento. Manter separado de outras pesquisas e sem score automático.
