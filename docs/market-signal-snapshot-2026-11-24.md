@@ -44,6 +44,34 @@ O guia de compras do UOL publicado em 24/11 reúne ofertas em beleza, corrida, c
 
 Fonte: [UOL Guia de Compras — ofertas de 24/11](https://www.uol.com.br/guia-de-compras/ultimas-noticias/2026/11/24/lista-black-friday-2026-com-produtos-de-beleza-e-mais-ofertas.ghtm). É uma lista editorial e pode mudar; nenhum preço ou disponibilidade foi importado.
 
+## Atualização de sinais públicos — revisão de 24/11
+
+### Pesquisa Nexus (publicada hoje; metodologia de maio)
+- 44% disseram que pretendem aproveitar as ofertas de 2026; 54% não pretendem gastar e 11% ainda estavam indecisos no levantamento.
+- E-commerce teve preferência geral de 52%, mas entre consumidores que pretendem fazer a primeira compra na Black Friday, 52% preferiam loja física e 47% online.
+- No histórico de compras anteriores, eletrônicos (52%) e eletrodomésticos (46%) lideraram as categorias adquiridas.
+- 61% afirmaram comprar apenas o que já haviam planejado ou precisavam; 38% admitiram compras por impulso.
+- Metodologia informada: 5.544 entrevistas domiciliares presenciais, de 8 a 20/05/2026.
+
+Fonte: [Nexus — hábitos de consumo e preferências da Black Friday](https://www.nexus.fsb.com.br/estudos-divulgados/pesquisa-da-nexus-mapeia-habitos-de-consumo-historico-e-preferencia-dos-brasileiros-na-black-friday/). Intenção, preferências e histórico são dimensões diferentes; não usar como pontuação unificada.
+
+### XP/CNC — cenário macro e cautela com desconto
+- Estimativa de R$ 11,52 bilhões em vendas no varejo brasileiro para a Black Friday 2026, crescimento de 1,8% sobre 2025, atribuída à CNC.
+- O material recomenda verificar histórico de preços e custo final para identificar descontos reais; não é uma verificação de preço de produto do catálogo PARADIGMA.
+
+Fonte: [XP — como identificar descontos reais na Black Friday](https://conteudos.xpi.com.br/aprenda-a-investir/relatorios/black-friday-como-identificar-descontos-reais/), publicado/atualizado em 24/11/2026.
+
+### UOL — cobertura editorial atual
+O guia publicado em 24/11 apresenta exemplos em beleza, corrida, cozinha, games/consoles, celulares, casa inteligente, limpeza e mercado. Os itens e preços podem mudar; não foram importados nem validados pelo motor.
+
+Fonte: [UOL Guia de Compras — ofertas de 24/11](https://www.uol.com.br/guia-de-compras/ultimas-noticias/2026/11/24/lista-black-friday-2026-com-produtos-de-beleza-e-mais-ofertas.ghtm).
+
+### Leitura consultiva (sem liberação de ranking)
+- Eletrônicos e eletrodomésticos continuam relevantes, mas as pesquisas não são comparáveis entre si e não representam desempenho do catálogo.
+- Para descoberta online, priorizar linguagem de comparação, preço final e disponibilidade; não presumir que todos os públicos preferem compra digital.
+- Para consumidores novos no evento, o levantamento Nexus indica maior preferência por loja física; não extrapolar esse sinal para campanhas digitais.
+- Beleza, corrida, cozinha, games, celulares e casa inteligente são temas editoriais observados, não ofertas autorizadas.
+
 ## Prioridade consultiva sugerida (sem liberar ranking automático)
 
 1. **Eletrônicos / eletrodomésticos** — forte intenção declarada e maior projeção de faturamento.
