@@ -443,3 +443,27 @@ Publicada em 25/11/2026 às 16h04, a orientação da Secretaria Nacional do Cons
 **Limite de proveniência:** esta cartilha é orientação pública de proteção ao consumidor. Não é feed de produtos, não autentica vendedor/oferta, não alimenta INT.1/INT.2, não altera ranking e não comprova clique, venda, comissão ou pagamento.
 
 Fonte: [MJSP/Senacon — Cartilha orienta consumidores nas compras da Black Friday (25/11/2026)](https://www.gov.br/secom/pt-br/acompanhe-a-secom/noticias/2026/11/cartilha-do-ministerio-da-justica-e-seguranca-publica-orienta-consumidores-nas-compras-da-black-friday).
+
+
+## Atualização complementar — comportamento do consumidor e confiança na Black Friday (25/11/2026)
+
+### Procon-SP — pesquisa comportamental com 585 consumidores
+- Levantamento espontâneo realizado entre 08/10 e 10/11/2026.
+- 93,50% disseram comparar preços antes de comprar.
+- 91,45% acompanham ofertas durante a Black Friday; entre esses, 54,58% consideram que apenas parte dos preços realmente diminui e 39,63% avaliam que, em geral, não há redução.
+- Entre os respondentes que compram na data, 69,85% já se sentiram enganados em alguma compra, principalmente por preço disfarçado de desconto (“metade do dobro”).
+- Fatores mais citados na decisão: preço final 68,70%, percentual de desconto 12,60% e confiança na loja/site 10,31%.
+- 44,44% relataram já ter parcelado acreditando ser “sem juros” e só perceber depois que o valor final era maior.
+- Sobre mensagens de urgência (“só hoje”, “últimas unidades”, “estoque limitado”), apenas 5,98% disseram comprar rapidamente; os demais tendem a analisar, ignorar ou decidir conforme o produto.
+- **Limite:** pesquisa comportamental espontânea, não representa vendas observadas, tráfego, conversões nem desempenho do catálogo PARADIGMA.
+
+Fonte: [Procon-SP — Black Friday: consumidor está mais atento e desconfiado das ofertas (25/11/2026)](https://www.procon.sp.gov.br/black-friday-consumidor-esta-mais-atento-e-desconfiado-das-ofertas-avalia-procon-sp/).
+
+### Aplicação consultiva à Werozinha
+- Dar prioridade editorial à transparência do preço total e às condições reais de parcelamento; não usar apenas o percentual de desconto como argumento.
+- Quando houver histórico verificável, mostrar comparação de preço com data e fonte; se não houver, não afirmar que a oferta é “a menor” ou “imperdível”.
+- Identificar vendedor/loja, frete, prazo, juros, taxas e política de devolução; sinalizar campos ausentes como “não informado”.
+- Evitar contadores regressivos, escassez artificial e mensagens de pressão.
+- Tratar confiança e custo final como critérios de revisão humana, nunca como INT.1/INT.2 ou score automático.
+
+**Limites de integração:** sinal público contextual; não é feed autorizado de catálogo, preço, estoque, comissão ou disponibilidade. Não alimentar INT.1/INT.2, ranking automático, conversões, vendas, comissões ou pagamentos. Nenhuma oferta ou campanha foi criada a partir desta pesquisa.
