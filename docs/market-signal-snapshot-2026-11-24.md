@@ -175,3 +175,26 @@ Fonte: [CNN Brasil — Black Friday 2026 deve movimentar R$ 13,3 bi no e-commerc
 - Não alimentar INT.1/INT.2, não liberar ranking automático e não atualizar ofertas com base nesses percentuais.
 - Manter cada pesquisa separada por amostra, período, metodologia e unidade; não somar os percentuais em um score.
 - Só integrar fontes autorizadas de catálogo/sinais por adaptador server-side com identidade, timestamp, integridade e controles contra replay.
+
+
+## Atualização complementar — cautela de consumo e projeções divergentes (25/11/2026)
+
+### Fecomércio-AC/DataControl — amostra local de Rio Branco (publicada em 23/11)
+- Em pesquisa com 250 consumidores entrevistados em Rio Branco em 09/11, 58% não pretendiam comprar na Black Friday, 40,8% pretendiam e 1,2% estavam indecisos.
+- Entre os não compradores, 31,7% citam poupar e 25,6% desconfiam dos descontos. Eletrodomésticos aparecem em 17,6% das respostas de itens desejados, roupas 12% e eletrônicos 4,9%.
+- **Limite:** amostra regional; não extrapolar para o Brasil nem tratar como demanda do catálogo PARADIGMA.
+
+Fonte: [A Gazeta do Acre — pesquisa Fecomércio-AC/DataControl (23/11/2026)](https://agazetadoacre.com/2026/11/noticias/geral/quase-60-dos-consumidores-de-rio-branco-nao-pretendem-comprar-na-black-friday-aponta-pesquisa/).
+
+### Projeções nacionais — CNC, Abiacom e Neotrust (reportagem Folha, 24/11)
+- CNC projeta R$ 11,51 bilhões no varejo brasileiro para a Black Friday, alta anual de 1,8%.
+- Abiacom estima R$ 17 bilhões no e-commerce durante a semana (23–27/11); Neotrust projeta R$ 13 bilhões no fim de semana.
+- A reportagem cita 81,6% das famílias endividadas e 29,3% inadimplentes em outubro; reforça a necessidade de não incentivar compras além do orçamento.
+- **Limite:** projeções com períodos e entidades diferentes; não comparar como resultados realizados nem como desempenho do motor.
+
+Fonte: [Folha C-Level — projeções da Black Friday e cenário de endividamento (24/11/2026)](https://c-level.folha.uol.com.br/negocios/2026/11/black-friday-deve-ter-recorde-de-vendas-mesmo-com-consumidor-pressionado-por-dividas-projeta-cnc.shtml).
+
+### Ajuste editorial
+- Usar as pesquisas como contexto de cautela, não como ranking de produtos.
+- Priorizar preço final, histórico quando disponível, vendedor, frete e orçamento; evitar urgência artificial.
+- Não alimentar INT.1/INT.2, ranking automático, catálogo elegível, conversões, vendas ou comissões.
