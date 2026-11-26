@@ -467,3 +467,29 @@ Fonte: [Procon-SP — Black Friday: consumidor está mais atento e desconfiado d
 - Tratar confiança e custo final como critérios de revisão humana, nunca como INT.1/INT.2 ou score automático.
 
 **Limites de integração:** sinal público contextual; não é feed autorizado de catálogo, preço, estoque, comissão ou disponibilidade. Não alimentar INT.1/INT.2, ranking automático, conversões, vendas, comissões ou pagamentos. Nenhuma oferta ou campanha foi criada a partir desta pesquisa.
+
+## Atualização de sinais públicos — revisão de 25/11/2026
+
+**Black Friday:** 27/11/2026. Esta atualização reúne três fontes oficiais recentes para orientar a revisão editorial. Nenhum dado de preço foi importado para o catálogo e nenhum sinal foi convertido em INT.1/INT.2.
+
+### Senacon/MJSP — notificação preventiva a plataformas (18/11/2026)
+A Senacon informou que notificou marketplaces e varejistas para detalharem medidas de proteção ao consumidor durante a Black Friday, incluindo controles contra aumento artificial de preços, publicidade e afiliados, vendedores irregulares/falsificados, escassez ou contadores enganosos, cancelamentos, entrega e reembolso.
+
+Fonte: [Senacon — plataformas e varejistas notificadas](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-notifica-plataformas-e-varejistas-para-prevenir-problemas-durante-a-black-friday), publicada em 18/11/2026.
+
+### Cartilha Senacon/MJSP — compras online seguras (25/11/2026)
+A cartilha recomenda pesquisar preços, reputação e endereço oficial; comparar o total com frete, taxas e juros; revisar adicionais inseridos no carrinho; confirmar destinatário de Pix/boleto; guardar comprovantes; e conhecer o direito de arrependimento nas compras online.
+
+Fonte: [Senacon — cartilha Black Friday nas compras on-line](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday), publicada em 25/11/2026.
+
+### Procon-MT — monitoramento de preços (20/11/2026)
+O Procon-MT divulgou monitoramento de 30 produtos populares e comparação em grandes lojas virtuais e estabelecimentos físicos. Categorias mencionadas incluem celulares, TVs, games, eletrodomésticos, ar-condicionado, eletroportáteis, perfumaria e supermercado.
+
+Fonte: [Procon-MT — monitoramento de preços da Black Friday](https://www5.sefaz.mt.gov.br/web/procon/w/procon-estadual-monitora-pre%C3%A7os-de-produtos-mais-vendidos-na-black-friday), publicada em 20/11/2026. Os dados da pesquisa não foram copiados nem usados como preços atuais de ofertas PARADIGMA.
+
+### Ação consultiva segura
+- Exibir somente preço, frete, disponibilidade, vendedor, comissão e data de atualização comprovados pela fonte autorizada do parceiro.
+- Usar pesquisas de órgãos públicos apenas como contexto editorial e checklist de transparência.
+- Não criar urgência artificial, percentuais de desconto sem histórico verificável ou ranking baseado nesses estudos.
+- Manter divulgação orgânica em revisão manual; nenhuma publicação foi autorizada por esta atualização.
+- INT.1/INT.2, catálogo elegível, vendas, comissões e pagamentos permanecem bloqueados sem dados autenticados.
