@@ -20,6 +20,17 @@ Fonte: [Prefeitura de Lages — Procon orienta consumidores sobre promoções e 
 
 Fonte: [Prefeitura de Cuiabá — alerta sobre golpes e falsas promoções na Black Friday (26/11/2026)](https://www.cuiaba.mt.gov.br/noticias/procon-cuiaba-alerta-consumidores-sobre-golpes-e-falsas-promocoes-na-black-friday).
 
+### Senacon/MJSP — cartilha oficial para compras on-line (25/11)
+- Comparar o preço final, incluindo frete, taxas e juros, e pesquisar preços antes da promoção.
+- Conferir reputação e endereço oficial da loja; desconfiar de descontos exagerados, sites falsos e anúncios que imitam marcas.
+- Evitar pressão de compra por contadores regressivos ou mensagens de “últimas unidades” sem comprovação.
+- Revisar o carrinho para identificar serviços extras, seguros, garantias estendidas ou assinaturas não escolhidos.
+- Antes de Pix ou boleto, conferir nome e CPF/CNPJ do recebedor; não compartilhar senhas, tokens ou códigos de autenticação.
+- Guardar anúncio, pedido, comprovantes, rastreamento e protocolos.
+- Compras on-line têm direito de arrependimento de 7 dias nos termos da cartilha; problemas de entrega, defeito ou reembolso devem ser documentados.
+
+Fonte: [MJSP/Senacon — Senacon lança cartilha com orientações para compras seguras na Black Friday (publicada em 25/11/2026)](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday).
+
 ## Checklist editorial para Werozinha
 - Mostrar preço final, frete, prazo, vendedor e condições somente quando a fonte autorizada estiver atualizada; se ausente, usar “não informado/confirmar no parceiro”.
 - Não afirmar “menor preço” ou desconto real sem histórico de preços verificável e datado.
@@ -28,4 +39,4 @@ Fonte: [Prefeitura de Cuiabá — alerta sobre golpes e falsas promoções na Bl
 - Publicações orgânicas requerem revisão humana; este documento não agenda nem publica conteúdo.
 
 ## Limite de proveniência
-Os avisos dos Procons são orientação pública contextual. Não alimentam INT.1/INT.2, ranking, catálogo elegível, disponibilidade, conversões, vendas, comissão ou pagamentos. Nenhum produto, clique, campanha ou publicação foi criado a partir deles.
+Os avisos dos Procons e da Senacon são orientação pública contextual. Não alimentam INT.1/INT.2, ranking, catálogo elegível, disponibilidade, conversões, vendas, comissão ou pagamentos. Nenhum produto, clique, campanha ou publicação foi criado a partir deles.
