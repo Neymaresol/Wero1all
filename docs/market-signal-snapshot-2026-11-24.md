@@ -493,3 +493,16 @@ Fonte: [Procon-MT — monitoramento de preços da Black Friday](https://www5.sef
 - Não criar urgência artificial, percentuais de desconto sem histórico verificável ou ranking baseado nesses estudos.
 - Manter divulgação orgânica em revisão manual; nenhuma publicação foi autorizada por esta atualização.
 - INT.1/INT.2, catálogo elegível, vendas, comissões e pagamentos permanecem bloqueados sem dados autenticados.
+
+
+## Atualização complementar — Procon-ES: ampla variação de preços (18/11/2026)
+
+### Pesquisa de preços da Black Friday (coleta de 05 a 10/11)
+- O Procon-ES analisou mais de 40 produtos em lojas físicas e plataformas online.
+- Maior variação no levantamento online: 230% no preço à vista de uma churrasqueira elétrica Mondial CH 05, com valores observados entre R$ 140,76 e R$ 464,61.
+- Maior variação presencial: 138% em uma cafeteira expresso Três Corações Passione, entre R$ 179,90 e R$ 429,00.
+- Outros exemplos informados: jogo de panelas Eirilar 10 peças (145% à vista e 178% a prazo); Redmi Watch 5 Active (167% à vista e 206% a prazo).
+- **Uso consultivo:** não escolher ofertas apenas pelo desconto anunciado. Comparar preço final, histórico disponível, vendedor, frete, parcelamento e condições de entrega.
+- **Limite de integração:** os preços e variações são dados de uma pesquisa pública regional, coletada antes da Black Friday. Não são preços atuais de catálogo PARADIGMA, não comprovam estoque, comissão, disponibilidade, INT.1/INT.2, ranking, cliques, conversão, vendas ou pagamento. Não importar para runtime nem gerar score.
+
+Fonte: [Procon-ES — Black Friday: pesquisa identifica variação de até 230% nos preços de produtos (18/11/2026)](https://procon.es.gov.br/black-friday-pesquisa-do-procon-es-identifica-variacao-de-ate-230-nos-precos-de-produtos).
