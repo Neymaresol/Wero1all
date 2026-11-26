@@ -518,3 +518,28 @@ Fonte: [Procon-ES — Black Friday: pesquisa identifica variação de até 230% 
 
 Fonte: [Procon-SP — Black Friday: Procon-SP monitora preços e orienta consumidores nesta semana (23/11/2026)](https://www.procon.sp.gov.br/black-friday-procon-sp-monitora-precos-e-orienta-consumidores-nesta-semana/).
 Pesquisa citada: [Relatório de hábitos Black Friday 2026 (PDF)](https://www.procon.sp.gov.br/wp-content/uploads/2026/11/Relatorio-Black-Friday-2026-div.pdf).
+
+
+## Atualização de sinais públicos — 26/11/2026 (véspera da Black Friday)
+
+### Procon-SP — monitoramento e orientação (publicado em 23/11/2026)
+- O órgão informa que monitora preços desde setembro, compara preços e condições de pagamento em amostra de produtos populares e intensifica fiscalização presencial antes da Black Friday.
+- Reforça cuidados contra maquiagem de preços, ofertas enganosas e links enviados por mensagens: verificar URL oficial, vendedor, CNPJ/canais de atendimento, preço total, frete e condições.
+- **Aplicação consultiva:** mostrar preço final e condições somente quando obtidos de feed/consulta autorizada e recente; não declarar “menor preço” sem histórico verificável.
+
+Fonte: [Procon-SP — Black Friday: Procon-SP monitora preços e orienta consumidores nesta semana (23/11/2026)](https://www.procon.sp.gov.br/black-friday-procon-sp-monitora-precos-e-orienta-consumidores-nesta-semana/).
+
+### Senacon/MJSP — cartilha online (publicada em 25/11/2026, 10h36)
+- Pesquisar preços anteriores e reputação da loja; conferir endereço oficial e desconfiar de descontos excessivos.
+- Comparar o custo final incluindo frete, taxas e juros; revisar itens adicionais no carrinho.
+- Conferir o recebedor do Pix/boleto e guardar comprovantes, anúncios e rastreamento.
+- A cartilha explica direitos e procedimentos para atraso, defeito, produto divergente, reembolso e arrependimento em compras online.
+
+Fonte: [Senacon/MJSP — cartilha de compras seguras na Black Friday (25/11/2026)](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday).
+
+### Checklist editorial Werozinha (sem runtime/comercial)
+- Priorizar transparência: preço total, vendedor, frete, prazo, parcelamento, devolução e data da consulta.
+- Se o preço, estoque, frete ou prazo não estiver confirmado pela fonte autorizada, marcar como “confirmar no parceiro” ou “não informado”.
+- Não usar contadores, escassez artificial, percentual de desconto sem histórico ou pressão de compra.
+- Estes sinais são contexto público e não autorizam ofertas, não alimentam INT.1/INT.2, ranking, catálogo elegível, atribuição, conversões, vendas, comissões ou pagamentos.
+- Nenhuma oferta, campanha ou publicação foi criada com base nesta atualização.
