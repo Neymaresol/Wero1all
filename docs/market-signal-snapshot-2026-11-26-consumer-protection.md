@@ -31,6 +31,17 @@ Fonte: [Prefeitura de Cuiabá — alerta sobre golpes e falsas promoções na Bl
 
 Fonte: [MJSP/Senacon — Senacon lança cartilha com orientações para compras seguras na Black Friday (publicada em 25/11/2026)](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday).
 
+### Procon-SP — pesquisa comportamental da Black Friday (25/11)
+- Consulta espontânea realizada de 08/10 a 10/11/2026, com 585 consumidores; tratar como retrato dos participantes, não como amostra representativa de toda a população.
+- 93,50% disseram comparar preços antes de comprar; 91,45% acompanham ofertas na Black Friday.
+- Sobre a percepção de descontos, 54,58% disseram que os preços caem apenas parcialmente e 39,63% avaliaram que, em geral, não há redução.
+- Entre os que acompanham as ofertas, 48,97% costumam comprar; dentro desse grupo de compradores, 69,85% disseram já ter se sentido enganados em uma compra na data.
+- Na decisão de compra, o preço final foi o fator mais citado (68,70%), acima do percentual de desconto (12,60%) e da confiança na loja/site (10,31%).
+- Diante de mensagens como “só hoje” ou “últimas unidades”, 35,21% disseram analisar e decidir depois, 30,43% ignorar e 5,98% comprar rapidamente por medo de perder a oferta.
+- Implicação editorial: priorizar preço final, frete, prazo, reputação e comparação verificável; evitar escassez artificial e percentuais de desconto sem histórico comprovado.
+
+Fonte: [Procon-SP — Black Friday: consumidor está mais atento e desconfiado das ofertas (publicado em 25/11/2026)](https://www.procon.sp.gov.br/black-friday-consumidor-esta-mais-atento-e-desconfiado-das-ofertas-avalia-procon-sp/).
+
 ## Checklist editorial para Werozinha
 - Mostrar preço final, frete, prazo, vendedor e condições somente quando a fonte autorizada estiver atualizada; se ausente, usar “não informado/confirmar no parceiro”.
 - Não afirmar “menor preço” ou desconto real sem histórico de preços verificável e datado.
