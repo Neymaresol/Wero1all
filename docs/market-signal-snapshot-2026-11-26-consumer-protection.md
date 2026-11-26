@@ -42,6 +42,16 @@ Fonte: [MJSP/Senacon — Senacon lança cartilha com orientações para compras 
 
 Fonte: [Procon-SP — Black Friday: consumidor está mais atento e desconfiado das ofertas (publicado em 25/11/2026)](https://www.procon.sp.gov.br/black-friday-consumidor-esta-mais-atento-e-desconfiado-das-ofertas-avalia-procon-sp/).
 
+### Senacon — notificação preventiva a plataformas e varejistas (18/11)
+- A Senacon notificou Amazon, Mercado Livre, TikTok Shop/ByteDance, Shopee, Temu e o Instituto para Desenvolvimento do Varejo para solicitar informações sobre medidas de proteção durante a Black Friday.
+- Os questionamentos incluem controles contra preços artificialmente elevados para simular descontos e garantia de consistência entre preço/condições anunciados e os apresentados no checkout.
+- Também abrange identificação de publicidade patrocinada e conteúdo de influenciadores/afiliados, critérios para selos como “loja oficial” e “vendedor verificado”, contadores regressivos e alegações de escassez.
+- A fiscalização considera entrega, cancelamento unilateral, produtos divergentes/danificados, devolução, reembolso e atendimento pós-venda.
+
+Fonte: [MJSP/Senacon — Senacon notifica plataformas e varejistas para prevenir problemas durante a Black Friday (18/11/2026)](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-notifica-plataformas-e-varejistas-para-prevenir-problemas-durante-a-black-friday).
+
+**Implicação editorial para Werozinha:** identificar links afiliados de forma clara; não afirmar “loja oficial” ou “vendedor verificado” sem prova; evitar urgência/escassez não verificadas; conferir se preço e condições divulgados correspondem ao checkout; informar vendedor, frete, prazo e condições de devolução quando disponíveis.
+
 ## Checklist editorial para Werozinha
 - Mostrar preço final, frete, prazo, vendedor e condições somente quando a fonte autorizada estiver atualizada; se ausente, usar “não informado/confirmar no parceiro”.
 - Não afirmar “menor preço” ou desconto real sem histórico de preços verificável e datado.
