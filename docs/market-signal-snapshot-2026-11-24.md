@@ -508,10 +508,13 @@ Fonte: [Procon-MT — monitoramento de preços da Black Friday](https://www5.sef
 Fonte: [Procon-ES — Black Friday: pesquisa identifica variação de até 230% nos preços de produtos (18/11/2026)](https://procon.es.gov.br/black-friday-pesquisa-do-procon-es-identifica-variacao-de-ate-230-nos-precos-de-produtos).
 
 
-## Atualização de consulta oficial — Procon-SP (26/11/2026)
+## Atualização verificada — Procon-SP (26/11/2026)
 
-- Em consulta ao portal oficial em 26/11, o Procon-SP exibiu o aviso **“Black Friday: Procon-SP monitora preços e orienta consumidores nesta semana”**. O resumo disponível informa monitoramento de preços, fiscalização de estabelecimentos e orientação para evitar golpes e ofertas enganosas, na véspera da Black Friday (27/11).
-- **Limitação de fonte:** a página de notícias direta não foi recuperada; o sinal foi visto na página inicial oficial e no resultado de busca. Não foi possível confirmar a data exata do artigo, detalhes completos ou dados numéricos.
-- **Uso editorial permitido:** reforçar comparação do preço total, conferência de vendedor/URL, frete, condições e cautela com descontos/urgência. Não importar preços, não atualizar catálogo, não gerar INT.1/INT.2 nem ranking a partir deste aviso.
+- A página direta do aviso foi recuperada. **Publicado em 23/11/2026**, o Procon-SP informa que monitora preços desde setembro em amostra de produtos populares de grandes sites, compara valores e condições de pagamento para identificar possíveis “maquiagens de preços”, além de fiscalizações presenciais em estabelecimentos.
+- A consulta comportamental citada foi realizada de 08/10 a 10/11 e ouviu 585 consumidores; os resultados são percepção/hábito, não venda observada.
+- Orientações oficiais: evitar links recebidos por WhatsApp, SMS, e-mail ou redes sociais; buscar o site/canal oficial; conferir CNPJ, endereço, telefone e URL; desconfiar de ofertas muito vantajosas; não compartilhar dados pessoais/bancários nem repassar ofertas cuja origem não foi confirmada.
+- **Aplicação editorial Werozinha:** mostrar preço total e condições verificadas; conferir vendedor, URL, frete, pagamento e entrega; não afirmar “menor preço” sem histórico datado e fonte. A pauta pode orientar conteúdo orgânico, mas não qualifica produto.
+- **Limites:** não importar dados de pesquisa para o catálogo; não gerar INT.1/INT.2, ranking, conversões, cliques, vendas, comissões ou pagamentos. Nenhuma oferta ou publicação foi criada.
 
-Fonte: [Portal oficial Procon-SP](https://www.procon.sp.gov.br/).
+Fonte: [Procon-SP — Black Friday: Procon-SP monitora preços e orienta consumidores nesta semana (23/11/2026)](https://www.procon.sp.gov.br/black-friday-procon-sp-monitora-precos-e-orienta-consumidores-nesta-semana/).
+Pesquisa citada: [Relatório de hábitos Black Friday 2026 (PDF)](https://www.procon.sp.gov.br/wp-content/uploads/2026/11/Relatorio-Black-Friday-2026-div.pdf).
