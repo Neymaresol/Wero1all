@@ -543,3 +543,16 @@ Fonte: [Senacon/MJSP — cartilha de compras seguras na Black Friday (25/11/2026
 - Não usar contadores, escassez artificial, percentual de desconto sem histórico ou pressão de compra.
 - Estes sinais são contexto público e não autorizam ofertas, não alimentam INT.1/INT.2, ranking, catálogo elegível, atribuição, conversões, vendas, comissões ou pagamentos.
 - Nenhuma oferta, campanha ou publicação foi criada com base nesta atualização.
+
+
+## Atualização de sinal público — Procon Fortaleza (26/11/2026)
+
+### Monitoramento de preços antes da Black Friday
+- O Procon Fortaleza publicou em 26/11 um levantamento de 56 produtos em 9 lojas virtuais, com 2.332 registros em seis coletas entre 19/10 e 23/11.
+- Das 437 comparações válidas (mesmo produto na mesma loja, com pelo menos duas cotações), 364 (83,3%) apresentaram oscilação; 73 (16,7%) permaneceram iguais.
+- O órgão ressalta que os preços são históricos das datas coletadas, podem mudar e que nem todos os itens estavam disponíveis em todas as lojas.
+- **Aplicação editorial:** reforçar a comparação de preço final e histórico com data, conferir modelo/variante e condições do vendedor; não tratar percentual anunciado como prova de desconto real.
+
+Fonte: [Prefeitura de Fortaleza / Procon Fortaleza — relatório de variação de preços na Black Friday (26/11/2026)](https://www.fortaleza.ce.gov.br/noticias/procon-fortaleza-publica-relatorio-de-variacao-de-precos-na-black-friday).
+
+**Limite de integração:** sinal público contextual, não feed autorizado de catálogo, preço, estoque, comissão ou disponibilidade. Não alimentar INT.1/INT.2, ranking, conversões, vendas ou pagamentos; nenhuma oferta foi importada.
