@@ -506,3 +506,12 @@ Fonte: [Procon-MT — monitoramento de preços da Black Friday](https://www5.sef
 - **Limite de integração:** os preços e variações são dados de uma pesquisa pública regional, coletada antes da Black Friday. Não são preços atuais de catálogo PARADIGMA, não comprovam estoque, comissão, disponibilidade, INT.1/INT.2, ranking, cliques, conversão, vendas ou pagamento. Não importar para runtime nem gerar score.
 
 Fonte: [Procon-ES — Black Friday: pesquisa identifica variação de até 230% nos preços de produtos (18/11/2026)](https://procon.es.gov.br/black-friday-pesquisa-do-procon-es-identifica-variacao-de-ate-230-nos-precos-de-produtos).
+
+
+## Atualização de consulta oficial — Procon-SP (26/11/2026)
+
+- Em consulta ao portal oficial em 26/11, o Procon-SP exibiu o aviso **“Black Friday: Procon-SP monitora preços e orienta consumidores nesta semana”**. O resumo disponível informa monitoramento de preços, fiscalização de estabelecimentos e orientação para evitar golpes e ofertas enganosas, na véspera da Black Friday (27/11).
+- **Limitação de fonte:** a página de notícias direta não foi recuperada; o sinal foi visto na página inicial oficial e no resultado de busca. Não foi possível confirmar a data exata do artigo, detalhes completos ou dados numéricos.
+- **Uso editorial permitido:** reforçar comparação do preço total, conferência de vendedor/URL, frete, condições e cautela com descontos/urgência. Não importar preços, não atualizar catálogo, não gerar INT.1/INT.2 nem ranking a partir deste aviso.
+
+Fonte: [Portal oficial Procon-SP](https://www.procon.sp.gov.br/).
