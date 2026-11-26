@@ -556,3 +556,16 @@ Fonte: [Senacon/MJSP — cartilha de compras seguras na Black Friday (25/11/2026
 Fonte: [Prefeitura de Fortaleza / Procon Fortaleza — relatório de variação de preços na Black Friday (26/11/2026)](https://www.fortaleza.ce.gov.br/noticias/procon-fortaleza-publica-relatorio-de-variacao-de-precos-na-black-friday).
 
 **Limite de integração:** sinal público contextual, não feed autorizado de catálogo, preço, estoque, comissão ou disponibilidade. Não alimentar INT.1/INT.2, ranking, conversões, vendas ou pagamentos; nenhuma oferta foi importada.
+
+
+## Retificação — Procon Fortaleza, dados do relatório de 26/11/2026 (revisão 10:13 BRT)
+
+- A página oficial informa **56 produtos, 9 lojas virtuais, 2.332 registros e 6 coletas** entre 19/10 e 23/11.
+- Em **437 comparações válidas**, 364 (83,3%) oscilaram e 73 (16,7%) permaneceram iguais.
+- **Discrepância interna do relatório:** o título indica variação de até **1.235%**, mas o corpo descreve Galaxy Fit3 com mínimo R$ 339,00 e máximo R$ 4.560,00, cuja variação aritmética sobre o mínimo é **1.245,13%**. Manter ambos os valores identificados como divergentes; não escolher um silenciosamente.
+- Os preços são históricos das coletas e podem mudar; nem todos os itens estavam disponíveis em todas as lojas.
+- O Procon Fortaleza informa plantão Black Friday em 27/11, das 8h às 17h, e atendimento pelo 151.
+- **Uso consultivo:** exigir modelo/variante exatos, preço final, frete, prazo, vendedor e data da consulta; sinalizar preço ou estoque ausente como não informado. Não tratar a pesquisa como catálogo ou feed parceiro.
+- **Limite:** dado público editorial. Não importado para catálogo, ranking, INT.1/INT.2, campanha, conversão, venda, comissão ou pagamento.
+
+Fonte: [Prefeitura de Fortaleza / Procon Fortaleza — relatório de variação de preços na Black Friday (26/11/2026)](https://www.fortaleza.ce.gov.br/noticias/procon-fortaleza-publica-relatorio-de-variacao-de-precos-na-black-friday).
