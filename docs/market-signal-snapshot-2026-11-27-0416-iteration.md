@@ -62,3 +62,9 @@ Revisão read-only de GitHub, Render, Neon staging e Metricool. Nenhuma alteraç
 - Sem gastos, anúncios pagos, eventos sintéticos, writes em banco, merges ou deploys.
 - Wero1Operário e Wero1Elétrico intocados.
 - Gates: recuperar/migrar banco, backup/restauração, isolamento staging, segredo HMAC, runtime health e /go/ /out/, adapter autenticado, Double Check e rollback.
+
+
+## P1 — Nova fonte pública consultada (27/11/2026)
+- Senacon/MJSP publicou em 25/11 a cartilha `Black Friday nas compras on-line`: comparar preço final (frete, taxas e juros), reputação e URL oficial; desconfiar de descontos excessivos, contadores e “últimas unidades”; verificar o beneficiário Pix/boleto e guardar comprovantes. Inclui orientações sobre entrega, produto defeituoso, reembolso e direito de arrependimento de 7 dias para compras online.
+- Fonte oficial: https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday
+- Uso permitido neste projeto: checklist editorial/transparência. Não altera ranking, oferta, preço, estoque, INT, conversão, comissão ou atribuição; nenhuma publicação foi criada.
