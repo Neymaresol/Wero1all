@@ -74,3 +74,10 @@ Decisão: HOLD — sem promoção para produção.
 - Financeiro: nenhuma venda, comissão, conversão ou pagamento comprovado nesta iteração.
 
 Conclusão: HOLD. A main continua com riscos P0; as correções candidatas passaram CI, mas não estão homologadas em runtime. Produção preservada, sem promoção.
+
+
+## 9. Janelas orgânicas sugeridas pelo Metricool (28/11–04/12)
+- Facebook: sábado, 28/11, 10:00 (score relativo 8.850); domingo, 29/11, 10:00 (7.653).
+- TikTok: sábado, 28/11, 10:00 (score relativo 852); domingo, 29/11, 10:00 (816).
+- Instagram: scores iguais a zero em todos os horários consultados; não há recomendação baseada nesses dados.
+- São scores históricos/relativos da ferramenta, não previsão de alcance, vendas ou conversões. Nenhuma publicação foi agendada.
