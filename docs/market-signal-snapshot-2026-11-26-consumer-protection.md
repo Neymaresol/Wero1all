@@ -1,6 +1,6 @@
-# PARADIGMA — Sinais públicos de proteção ao consumidor (26/11/2026)
+# PARADIGMA — Sinais públicos de proteção ao consumidor (27/11/2026)
 
-**Uso:** contexto editorial para Wero1Divulgação e checklist de transparência na véspera da Black Friday. Este documento não é feed de afiliados, catálogo, INT.1/INT.2, preço, estoque, comissão ou sinal de conversão.
+**Uso:** contexto editorial para Wero1Divulgação e checklist de transparência durante a Black Friday. Este documento não é feed de afiliados, catálogo, INT.1/INT.2, preço, estoque, comissão ou sinal de conversão.
 
 ## Fontes oficiais verificadas
 
@@ -42,6 +42,22 @@ Fonte: [MJSP/Senacon — Senacon lança cartilha com orientações para compras 
 
 Fonte: [Procon-SP — Black Friday: consumidor está mais atento e desconfiado das ofertas (publicado em 25/11/2026)](https://www.procon.sp.gov.br/black-friday-consumidor-esta-mais-atento-e-desconfiado-das-ofertas-avalia-procon-sp/).
 
+### Procon-SP — monitoramento de preços e fiscalização (23/11)
+- O órgão informou que acompanha desde setembro uma amostra de produtos procurados em grandes sites, verificando preços, condições de pagamento e sinais de “maquiagem de preços”.
+- Também informou fiscalizações presenciais em estabelecimentos na capital e em regiões do estado.
+- Na orientação ao consumidor, recomenda acessar canais oficiais, conferir CNPJ, endereço, telefone e URL, desconfiar de preços muito abaixo do mercado e não compartilhar ofertas sem verificar origem e veracidade.
+
+Fonte: [Procon-SP — Black Friday: Procon-SP monitora preços e orienta consumidores nesta semana (23/11/2026)](https://www.procon.sp.gov.br/black-friday-procon-sp-monitora-precos-e-orienta-consumidores-nesta-semana/).
+
+### Procon-RS e Procon de Porto Alegre — atendimento itinerante (26–27/11)
+- Unidade móvel de atendimento e orientação no Centro Histórico de Porto Alegre, na Avenida Borges de Medeiros, entre as ruas José Montaury e dos Andradas, das 10h às 17h nos dias 26 e 27/11.
+- O alerta oficial inclui falsos descontos, publicidade enganosa, golpes por links e fraudes em compras on-line.
+- O Procon-RS orienta conferir a procedência da loja, CNPJ e responsável pela venda em marketplaces. HTTPS/cadeado indica conexão criptografada, mas não prova que a loja seja legítima.
+- Recomenda comparar preços, evitar links promocionais de remetentes desconhecidos, conferir o destinatário do Pix e o beneficiário do boleto, exigir nota fiscal e guardar comprovantes.
+- A fonte também resume o direito de arrependimento de 7 dias para compras on-line/fora do estabelecimento, nos termos legais.
+
+Fonte: [Procon-RS — Unidade móvel do Procon RS inicia atendimento durante a Black Friday (publicado em 26/11/2026)](https://www.procon.rs.gov.br/unidade-movel-do-procon-rs-inicia-atendimento-a-consumidores-em-parceria-com-o-procon-de-porto-alegre-durante-a-black-friday).
+
 ### Senacon — notificação preventiva a plataformas e varejistas (18/11)
 - A Senacon notificou Amazon, Mercado Livre, TikTok Shop/ByteDance, Shopee, Temu e o Instituto para Desenvolvimento do Varejo para solicitar informações sobre medidas de proteção durante a Black Friday.
 - Os questionamentos incluem controles contra preços artificialmente elevados para simular descontos e garantia de consistência entre preço/condições anunciados e os apresentados no checkout.
@@ -50,7 +66,7 @@ Fonte: [Procon-SP — Black Friday: consumidor está mais atento e desconfiado d
 
 Fonte: [MJSP/Senacon — Senacon notifica plataformas e varejistas para prevenir problemas durante a Black Friday (18/11/2026)](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-notifica-plataformas-e-varejistas-para-prevenir-problemas-durante-a-black-friday).
 
-**Implicação editorial para Werozinha:** identificar links afiliados de forma clara; não afirmar “loja oficial” ou “vendedor verificado” sem prova; evitar urgência/escassez não verificadas; conferir se preço e condições divulgados correspondem ao checkout; informar vendedor, frete, prazo e condições de devolução quando disponíveis.
+**Implicação editorial para Werozinha:** identificar links afiliados de forma clara; não afirmar “loja oficial” ou “vendedor verificado” sem prova; não usar o cadeado HTTPS como validação de legitimidade; evitar urgência/escassez não verificadas; conferir se preço e condições divulgados correspondem ao checkout; informar vendedor, frete, prazo e condições de devolução quando disponíveis.
 
 ## Checklist editorial para Werozinha
 - Mostrar preço final, frete, prazo, vendedor e condições somente quando a fonte autorizada estiver atualizada; se ausente, usar “não informado/confirmar no parceiro”.
