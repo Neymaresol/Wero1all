@@ -131,3 +131,11 @@ O PostgreSQL Render solicitado (`dpg-db2h93h7lnhs73ev17og-a`) não foi encontrad
 - Wero1Operário e Wero1Elétrico não foram alterados.
 
 **Decisão atual: HOLD.** Recuperação/migração do banco, backup restaurável, conexão isolada de staging, segredo HMAC, homologação de health e funil, fonte autenticada de conversões e rollback continuam obrigatórios antes da promoção.
+
+
+## Sinal público complementar — Senacon (verificado em 27/11/2026)
+
+- **Notificação preventiva (18/11/2026):** a Senacon solicitou informações de Amazon, Mercado Livre, TikTok Shop/ByteDance, Shopee, Temu e Instituto para Desenvolvimento do Varejo sobre prevenção de descontos artificiais, correspondência entre oferta e checkout, identificação de publicidade patrocinada/afiliados, selos de loja oficial/vendedor verificado, contadores regressivos, escassez, serviços extras, cancelamento, arrependimento e reembolso. [Fonte oficial](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-notifica-plataformas-e-varejistas-para-prevenir-problemas-durante-a-black-friday)
+- **Cartilha on-line (25/11/2026):** comparar o total com frete, taxas e juros; verificar URL oficial e reputação; confirmar beneficiário Pix/boleto; guardar anúncio, comprovantes e protocolo; evitar falsa urgência; direito de arrependimento de 7 dias para compras on-line, conforme a cartilha. [Fonte oficial](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday)
+
+**Aplicação editorial Werozinha:** identificar publicidade/links afiliados claramente; não usar selo “loja oficial”/“vendedor verificado” sem comprovação; não declarar desconto ou escassez sem fonte datada; exibir vendedor, preço, frete, prazo e condições apenas quando verificados. Os sinais permanecem editoriais — não alimentam catálogo, ranking, INT.1/INT.2, conversões, comissões ou pagamentos.
