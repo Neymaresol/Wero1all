@@ -104,3 +104,17 @@ Fontes oficiais:
 - Wero1Operário e Wero1Elétrico intocados.
 
 **Status: HOLD.** Recuperar/migrar PostgreSQL, comprovar backup/restauração e identidade/isolation de staging, provisionar segredo HMAC, homologar health/ready/go/out no runtime staging, integrar adaptador autenticado e validar rollback antes de qualquer promoção.
+
+
+## P0 — Revisão do código efetivamente implantado (read-only)
+
+Render aponta o deploy Live para commit `80018a1c3b4a41d8bb052ddf798b11b10d613afa`. A leitura de `main.py` na referência do deploy e na branch main retornou o mesmo blob SHA `1b17084ee04c910d19a694bf79dd4f6bb4ea4516` (SHA do arquivo, não do commit), confirmando que a revisão do código corresponde ao arquivo consultado.
+
+
+- **Ranking atual:** SQL não contém `HAVING COUNT(c.id) > 0` nem gate de clique recente; ofertas sem cliques podem aparecer.
+- **GET `/go/{offer_id}`:** existe, mas grava `offer_landing_visits` sem token de ação e sem proteção de prefetch.
+- **POST `/out/{offer_id}`:** existe, valida oferta/link, porém grava clique diretamente; não consome token de uso único.
+- **GET Amazon legado:** grava clique antes do redirect; pré-fetch pode produzir evento.
+- **Startup:** executa `init_db()` e seeds automaticamente.
+
+Essas condições são da main/deploy e não das PRs Draft. Não foi feito teste HTTP live devido à falha de startup/ausência de DB e ao risco de eventos de escrita. Os candidatos PR #137/#140/#141 contêm correções isoladas; não estão promovidos.
