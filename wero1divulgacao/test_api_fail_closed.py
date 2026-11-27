@@ -1,4 +1,4 @@
-"Regression tests for the deployed fail-closed Wero1Divulgacao API.
+"""Regression tests for the deployed fail-closed Wero1Divulgacao API.
 
 These tests call only pure request handlers. They do not access a database,
 invoke provider APIs, publish posts, create clicks, or record conversions.
