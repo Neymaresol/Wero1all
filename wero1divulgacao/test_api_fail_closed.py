@@ -8,9 +8,21 @@ from wero1divulgacao.app import (
     OfferInput,
     PlanRequest,
     create_plan,
+    health,
     rank_intent,
     status,
 )
+
+
+def test_health_reports_staging_without_enabling_publication():
+    result = health()
+
+    assert result["status"] == "ok"
+    assert result["service"] == "wero1divulgacao"
+    assert result["version"] == "0.4.0-dev"
+    assert result["mode"] == "staging"
+    assert isinstance(result["time"], str)
+    assert result["publication_enabled"] is False
 
 
 def test_plan_does_not_trust_caller_supplied_offer_flags():
@@ -71,6 +83,7 @@ def test_status_keeps_catalog_signal_and_publication_gates_closed():
     assert result["mode"] == "staging"
     assert result["integrations"] == "not_configured"
     assert result["planner"] == "BLOCKED_NO_AUTHORIZED_CATALOG_SOURCE"
+    assert result["intent_ranking_endpoint"] == "registered_fail_closed"
     assert result["intent_ranking"] == "BLOCKED_NO_AUTHORIZED_SIGNAL_SOURCE"
     assert result["campaigns_published"] == 0
     assert result["publication_enabled"] is False
