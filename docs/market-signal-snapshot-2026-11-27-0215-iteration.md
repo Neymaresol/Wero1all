@@ -78,3 +78,12 @@ Instagram best-time scores estão todos zerados. Nenhum conteúdo foi criado, pu
 Gates: recuperar/migrar DB; backup restaurável; identidade e isolamento do DB staging; segredo HMAC via canal seguro; homologar health e `/go/`/`/out/` no runtime atualizado; adapter de conversões de parceiro autenticado; Double Check e rollback.
 
 **Financeiro:** zero cliques, conversões, comissões e pagamentos comprovados em staging. Não há números de produção reconciliáveis.
+
+
+## P1 — Sinais públicos autorizados (revisão 27/11/2026)
+
+- **Procon-RS/Procon Porto Alegre, 26–27/11:** atendimento móvel de orientação ao consumidor em Porto Alegre, 10h–17h, com alertas sobre links e ofertas. [Fonte oficial](https://www.procon.rs.gov.br/unidade-movel-do-procon-rs-inicia-atendimento-a-consumidores-em-parceria-com-o-procon-de-porto-alegre-durante-a-black-friday).
+- **Senacon/MJSP, 18/11:** notificou marketplaces e varejistas para esclarecer medidas de proteção contra preços artificialmente elevados, descontos enganosos, publicidade afiliada não identificada, falsas escassezes, vendedores irregulares e problemas de entrega/reembolso. [Fonte oficial](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-notifica-plataformas-e-varejistas-para-prevenir-problemas-durante-a-black-friday).
+- **Cartilha Senacon/MJSP, 25/11:** reforça pesquisa de preço final (frete, taxas e juros), reputação e URL oficial, verificação do beneficiário de Pix/boleto, evitar contadores/escassez não comprovados, guardar comprovantes e direito de arrependimento em compras online. [Fonte oficial](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday).
+
+Uso para Werozinha: essas fontes sustentam apenas conteúdo editorial/educativo e checklist de transparência; não são sinais de catálogo, disponibilidade, ranking, INT, conversão ou comissão.
