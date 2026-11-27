@@ -139,3 +139,11 @@ O PostgreSQL Render solicitado (`dpg-db2h93h7lnhs73ev17og-a`) não foi encontrad
 - **Cartilha on-line (25/11/2026):** comparar o total com frete, taxas e juros; verificar URL oficial e reputação; confirmar beneficiário Pix/boleto; guardar anúncio, comprovantes e protocolo; evitar falsa urgência; direito de arrependimento de 7 dias para compras on-line, conforme a cartilha. [Fonte oficial](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday)
 
 **Aplicação editorial Werozinha:** identificar publicidade/links afiliados claramente; não usar selo “loja oficial”/“vendedor verificado” sem comprovação; não declarar desconto ou escassez sem fonte datada; exibir vendedor, preço, frete, prazo e condições apenas quando verificados. Os sinais permanecem editoriais — não alimentam catálogo, ranking, INT.1/INT.2, conversões, comissões ou pagamentos.
+
+
+## Render — métricas e deploy (consulta posterior, 27/11/2026 01:20 BRT)
+
+- Último deploy Live de Wero1Mercados: 23/10/2026 10:34 BRT, commit `80018a1c3b4a41d8bb052ddf798b11b10d613afa`; histórico não mostrou novo deploy nesta consulta.
+- Métricas do serviço produção na janela 26/11 19:00–27/11 01:20 BRT: uma série de memória com amostra 3.190.784 bytes às 01:20; CPU, instâncias, requisições HTTP e latência sem séries.
+- Métricas Wero1Mercados staging e Wero1Divulgação staging: CPU, memória, instâncias, HTTP e latência sem séries.
+- A leitura não autoriza deploy nem prova que o health HTTP está acessível.
