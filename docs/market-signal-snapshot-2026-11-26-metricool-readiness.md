@@ -82,3 +82,52 @@ O PostgreSQL Render solicitado (`dpg-db2h93h7lnhs73ev17og-a`) não foi encontrad
 - Nenhum merge foi realizado; esta atualização permanece em branch documental Draft.
 - Wero1Operário e Wero1Elétrico permanecem intocados.
 - A publicação comercial continua bloqueada até persistência/backup, identidade de banco, health, funil HTTP, catálogo elegível e proveniência autenticada serem homologados.
+
+---
+
+## Atualização operacional — 27/11/2026, 01:16 BRT
+
+**Esta seção é a leitura mais recente desta execução e substitui os números anteriores quando divergirem.**
+
+### Render
+
+- Workspace: My Workspace.
+- PostgreSQL Render: a listagem retorna **0 instâncias**; o ID `dpg-db2h93h7lnhs73ev17og-a` continua retornando HTTP 404.
+- Wero1Mercados produção: serviço `srv-db2fvq4s728c73cahjq0`, branch `main`, plano Free, auto-deploy ligado, health check vazio, não suspenso no painel; eventos registram falhas de servidor com exit code 3.
+- Logs mais recentes, 27/11 01:14 BRT: startup chama `init_db()`, falha ao resolver o host do PostgreSQL antigo e encerra. Evento `server_failed` registrado às 01:14 BRT. Foram retornados 11 eventos `server_failed` na janela consultada de 24 horas.
+- Wero1Mercados staging: branch `dev/p0-provider-reconciliation-20261012`, auto-deploy desligado, health check vazio; nenhum evento ou log na janela de 24h.
+- Wero1Divulgação staging: branch `feat/wero1divulgacao-bootstrap`, auto-deploy desligado, health check vazio; nenhum evento ou log na janela de 24h.
+- Nenhum teste HTTP de `/go/` ou `/out/` foi executado: o Render staging continua no branch antigo e as rotas anteriores podem gerar efeitos colaterais. A validação fica limitada ao código candidato e CI.
+
+### Neon
+
+- Produção (`long-tooth-35390946`, branch `br-spring-hall-b5ed425u`): zero tabelas públicas, zero snapshots e schedule vazio.
+- Staging (`floral-hat-53843763`, branch `br-autumn-salad-b4cg34pj`): 15 tabelas públicas, zero snapshots e schedule vazio.
+- SQL read-only confirmou `product_offers` = 19 registros, 19 ativos, 0 disponíveis, 0 verificados pelo provedor, 0 com preço positivo, 0 com comissão positiva, 0 atualizados nos últimos 7 dias.
+- `offers` = 20; `partners` = 2.
+- Cliques, conversões, tokens outbound, auditoria de conversão, ledger, visitas landing/catalog = 0.
+- `ops_persistence_probe` = **58 registros**; último probe `paradigma-iter11-20261127-0018-bst`, em 27/11 00:20:52 BRT. Não foi criado probe nesta execução.
+
+### Metricool — consulta desta execução
+
+- Brand NeyMareSol (7259526), Instagram conectado `@neymaresoloficial`, diferente de `@neymaresol`; Facebook e TikTok conectados.
+- Posts agendados entre 27/11 01:16 e 04/12 23:59 BRT: **0**.
+- Horários sugeridos para sexta, 27/11: Facebook 10h (score 12.767); TikTok 10h (1.379) e 18h (1.222); Instagram scores 0. São apenas sugestões de plataforma, não garantias.
+- Nenhuma publicação criada, enviada ou agendada. SmartLinks/atribuição comercial não foram novamente consultados nesta execução.
+
+### GitHub e Double Check
+
+- PR #98 Wero1Mercados: aberta, Draft, sem merge, HEAD `8e1f13a0b8f515869d214ebb6947eee5eb88cf44`; os quatro workflows associados concluíram `success`. Status check combinado não retornou entries; os workflows listados são a evidência CI disponível.
+- PR #95 Shopee: permanece aberta/Draft e contém helper que aceita `source_authenticated=True` e scores em mapping fornecido pelo chamador. Não mesclar separadamente; consolidar apenas com gate fail-closed da #98.
+- PR #50 Wero1Divulgação: aberta/Draft, sem merge; dois workflows associados concluíram `success`.
+- PR #51 permanece aberta/Draft; esta atualização é documental e não altera runtime, configuração, banco, ranking ou catálogo.
+
+### Limites
+
+- Persistência comprovada apenas no Neon staging; nenhum backup restaurável demonstrado.
+- Nenhuma conexão Render↔Neon staging ou produção comprovada.
+- Nenhuma venda, comissão ou pagamento comprovado; todos os contadores comerciais consultados estão zerados.
+- Sem merge, deploy, gasto, anúncio, publicação ou evento comercial sintético.
+- Wero1Operário e Wero1Elétrico não foram alterados.
+
+**Decisão atual: HOLD.** Recuperação/migração do banco, backup restaurável, conexão isolada de staging, segredo HMAC, homologação de health e funil, fonte autenticada de conversões e rollback continuam obrigatórios antes da promoção.
