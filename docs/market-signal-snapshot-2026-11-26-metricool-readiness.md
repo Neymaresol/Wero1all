@@ -1,6 +1,7 @@
 # PARADIGMA — Snapshot de sinais públicos e Metricool (27/11/2026)
 
-**Escopo:** contexto editorial e diagnóstico de divulgação orgânica. Documento-only; não altera runtime, catálogo, ranking, INT.1/INT.2, atribuição, vendas ou pagamentos.
+**Revisão:** 26/11/2026, 23:27 BRT.  
+**Escopo:** contexto editorial, diagnóstico de divulgação orgânica e reconciliação de staging. Documento-only; não altera runtime, catálogo, ranking, INT.1/INT.2, atribuição, vendas ou pagamentos.
 
 ## Sinais oficiais de proteção ao consumidor
 
@@ -9,43 +10,72 @@
 - **Senacon/MJSP (25/11/2026):** cartilha recomenda comparar preço final, frete, taxas e juros, conferir reputação e endereço oficial, evitar falsa urgência e guardar comprovantes. [Fonte oficial](https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-lanca-cartilha-com-orientacoes-para-compras-seguras-na-black-friday)
 
 ### Uso editorial permitido
+
 - Mensagens sobre comparar preço final, frete, prazo, vendedor, condições e histórico.
 - Sem falsa urgência, contagem regressiva ou “últimas unidades” sem evidência verificável.
 - Sinais públicos são contexto editorial; não autenticam parceiros, ofertas, preço, disponibilidade ou comissão.
 
-## Metricool — consulta em 27/11/2026
+## Metricool — consulta atualizada em 26/11/2026, 23:17 BRT
 
 Marca NeyMareSol (brandId 7259526), timezone America/Sao_Paulo.
 
 ### Identidade e atividade
+
 - Instagram conectado: **@neymaresoloficial**; difere do perfil desejado **@neymaresol**.
 - Facebook: página conectada (ID 102552892426549).
 - TikTok: conta conectada (neymaresoltiktok).
-- Agendamentos consultados de 27/11 a 11/12: **0**.
-- Consulta post-level do Facebook (FBPO01–FBPO14) no período 20–27/11: nenhuma linha retornada.
-- Consulta post-level do Instagram (IGPO01–IGPO15) no período 20–27/11: nenhuma linha retornada.
-- SmartLinks (timeline de visitas e cliques) no período 20–27/11: nenhuma linha retornada.
+- Agendamentos consultados de 26/11 23:17 a 10/12 23:59: **0**.
+- Consulta post-level do Facebook (FBPO01–FBPO14), período 20–26/11: nenhuma linha retornada.
+- Consulta post-level do Instagram (IGPO01–IGPO15), período 20–26/11: nenhuma linha retornada.
+- SmartLinks (SLTL01–SLTL05: visitas, cliques em botões/imagens), período 20–26/11: nenhuma linha retornada.
 - Atribuição por campanha: sem dados comprovados.
 
-### Analytics de conta (20–27/11)
-- **Facebook:** no registro de 27/11, a consulta de evolução retornou 0 para total de conteúdo (feed posts + reels) e 0 para interações de conteúdo; seguidores ganhos/perdidos vieram nulos nessa linha e não foram convertidos em zero. As consultas post-level não retornaram publicações.
-- **Instagram:** 45 seguidores nos registros de 20–25/11. No registro de 27/11, total de conteúdo, interações e views retornaram 0; reach e seguidores vieram nulos nessa linha. As consultas post-level não retornaram publicações.
-- Valores nulos/ausentes não são zero. Esses dados são métricas das contas conectadas, não atribuição comercial do PARADIGMA.
+### Analytics de conta (20–26/11)
+
+- **Facebook:** campo de seguidores retornou 2,0 nos registros de 20–25/11; na linha de 26/11, seguidores vieram nulos. Para 26/11, total de conteúdo (feed posts + reels) = 0 e interações de conteúdo = 0. A consulta post-level não retornou publicações.
+- **Instagram:** 45 seguidores nos registros de 20–25/11. Na linha de 26/11, feed posts = 0, views = 0, interações = 0 e total de conteúdo = 0; seguidores e alcance vieram nulos. A consulta post-level não retornou publicações.
+- **TikTok:** 14 vídeos publicados em 21/11, com 350 views, 43 likes, 2 comentários e 0 compartilhamentos. O campo de seguidores retornou 6.103 em 23/11; novos seguidores retornaram 0 em 26/11.
+- Valores nulos/ausentes não são zero. Métricas de redes sociais não são atribuição comercial do PARADIGMA.
 
 ### Horários sugeridos pelo Metricool para sexta-feira, 27/11
+
 - Facebook: **10h (score 12.767)**; alternativas 12h (12.237) e 11h (11.682).
 - TikTok: **10h (score 1.379)**; alternativas 12h (1.251) e 18h (1.222).
 - Instagram: score 0 em todos os horários retornados.
 
 Scores são recomendações internas do Metricool, não garantias de alcance ou engajamento. Horários são apenas sugestões; nenhuma publicação foi criada, enviada, aprovada ou agendada nesta execução.
 
-## Catálogo — staging, consulta SQL somente leitura (27/11)
-- 19 ofertas ativas; 0 disponíveis; 0 verificadas por provedor; 0 com preço positivo; 0 com comissão positiva; 0 atualizadas nos últimos 7 dias.
+## Catálogo — Neon staging, consulta SQL (26/11)
+
+- Projeto: `wero1mercados-staging`; branch main Ready; 15 tabelas públicas.
+- `product_offers`: 19 registros, 19 ativos.
+- Disponíveis: 0; verificadas pelo provedor: 0; preço positivo: 0; comissão positiva: 0; atualizadas nos últimos 7 dias: 0.
 - Elegibilidade completa: **0/19**.
-- Cliques, conversões, visitas, tokens outbound e ledger/audit de conversão: 0 linhas nas tabelas consultadas.
-- Probes operacionais de staging: 55 registros; último registro em 26/11 às 19:18 BRT. Esse readback histórico não comprova backup restaurável nem conexão do Render staging ao Neon.
+- `offers`: 20; produtos: 19; parceiros: 2; parceiros ativos: 1.
+- Cliques, conversões, tokens outbound, auditoria, ledger, visitas de landing e visitas de catálogo: 0 linhas.
+
+### Persistência operacional em staging
+
+- Probe operacional gravado e lido de volta nesta revisão: `paradigma-auto-run11-20261126-2317-bst`.
+- INSERT + SELECT por ID: sucesso.
+- Timestamp do banco: 2026-11-27T02:27:34.763Z (26/11, 23:27:34 BRT).
+- Total após o teste: **57 probes**.
+- O probe é exclusivamente operacional; não representa visita, clique, conversão, venda, comissão ou pagamento.
+
+O readback confirma persistência no Neon staging. Não comprova backup restaurável nem conexão do Render staging ao Neon.
+
+## Neon produção — distinção de ambiente
+
+- Projeto `wero1mercados-production`, branch main: Ready.
+- Tabelas públicas: 0.
+- Snapshots: 0; agendamento de snapshots vazio.
+- `written_data_bytes` no relatório de consumo: 0.
+- Nenhuma evidência disponível de conexão entre esse projeto e o serviço Render de produção.
+
+O PostgreSQL Render solicitado (`dpg-db2h93h7lnhs73ev17og-a`) não foi encontrado; consulta por ID retorna 404. Portanto, não classificar o projeto Neon separado como banco efetivo da produção Render.
 
 ## Gates e segurança
+
 - Este snapshot não autoriza ofertas nem publica conteúdo.
 - Nenhum clique, conversão, venda, comissão ou pagamento sintético foi gerado.
 - Nenhuma publicação, agendamento, anúncio, gasto ou deploy de produção foi realizado.
