@@ -1,4 +1,4 @@
-"""Regression tests for the deployed fail-closed Wero1Divulgacao API.
+"Regression tests for the deployed fail-closed Wero1Divulgacao API.
 
 These tests call only pure request handlers. They do not access a database,
 invoke provider APIs, publish posts, create clicks, or record conversions.
@@ -8,9 +8,21 @@ from wero1divulgacao.app import (
     OfferInput,
     PlanRequest,
     create_plan,
+    health,
     rank_intent,
     status,
 )
+
+
+def test_health_reports_staging_without_enabling_publication():
+    result = health()
+
+    assert result["status"] == "ok"
+    assert result["service"] == "wero1divulgacao"
+    assert result["version"] == "0.4.0-dev"
+    assert result["mode"] == "staging"
+    assert isinstance(result["time"], str)
+    assert result["publication_enabled"] is False
 
 
 def test_plan_does_not_trust_caller_supplied_offer_flags():
