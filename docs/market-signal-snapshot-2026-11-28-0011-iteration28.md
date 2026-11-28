@@ -73,6 +73,16 @@ Revisão dos patches:
 - PR #47 — HEAD `e4d47ecdf101b3184db8d8660b02bb2de107873c`, aberta, Draft; dois workflows success. TAG1 e TAG2 precisam ser positivas independentemente; sinais continuam `caller_supplied`, não autenticam intenção.
 - PR #50 — HEAD `b8203686def6e9036a19425f7dec135b0d0cb6f5`, aberta, Draft; dois workflows success. Status de ranking explicitamente `registered_fail_closed`.
 
+### Verificação direta da `main` — defeitos continuam presentes
+
+Leitura direta de `main.py` na branch `main` (blob SHA `bdf73cbf9a4a6d16f3dc4e49333bc4918fe01d11`) confirmou que a produção ainda não recebeu a candidata:
+- `/health` define `storage_persistent` a partir de `SELECT 1`, confundindo reachability com persistência durável.
+- `/api/tags/trends` não possui filtro `HAVING` de cliques positivos; ofertas com zero cliques continuam podendo aparecer.
+- GET `/go/{offer_id}` registra `offer_landing_visits` sem o novo guard de prefetch e sem token de ação.
+- POST `/out/{offer_id}` insere clique diretamente, sem consumo de token de uso único.
+
+Portanto, as correções descritas nas PRs são candidatas isoladas, não correções já ativas em produção.
+
 ### Documentação
 
 PR #51 continua aberta e Draft. HEAD observado: `e03596cc1b4b6eed2f7dca73f18ab31f5983120d`. Workflow PARADIGMA P0 Double Check concluído com success; combined status retornou lista vazia. Nenhuma PR foi mesclada.
