@@ -49,3 +49,9 @@ Vendas comprovadas: 0; conversões: 0; comissões: R$ 0,00; pagamentos: R$ 0,00.
 7. Só então avaliar promoção. P2 visual/escala permanece adiada.
 
 Nenhuma alteração Render/Neon, deploy, merge, anúncio, gasto, publicação, clique, conversão, venda sintética ou pagamento nesta rodada. Wero1Operário e Wero1Elétrico permanecem intocados.
+
+
+## Readback complementar (09:12 BRT)
+- Confirmado no branch Live de staging da Wero1Divulgação: `intent.py` SHA `24d320cc2be6006d628e0d7e6832b924fca5ca63` contém o guard independente `tag1 <= 0 or tag2 <= 0`; `app.py` SHA `2ac22c6f751daf4fcf49db1367d62afd0dbc79c0` reporta `registered_fail_closed`, catálogo bloqueado sem fonte autorizada e publicação 0. Readback de código, não teste HTTP/runtime.
+- Métricas TikTok foram consultadas com IDs válidos `TKPO07–TKPO11`; tentativa anterior com IDs `TTPOxx` foi rejeitada pelo catálogo e não usada. Reach está ausente/null, não deve ser reportado como zero.
+- PR documental #51 permanece aberta/Draft. Metadata retornou `mergeable=false`, mas compare de refs mostrou branch ahead 74, behind 0; a causa de mergeability não foi confirmada. Nenhum merge.
